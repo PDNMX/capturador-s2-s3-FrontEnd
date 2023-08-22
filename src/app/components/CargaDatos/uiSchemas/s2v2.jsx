@@ -12,20 +12,20 @@ let data = {
     "ui:placeholder": "Ejemplo: Rodríguez",
   },
   segundoApellido: {
-    "ui:placeholder": "Ejemplo: Gomez",
+    "ui:placeholder": "Ejemplo: Gómez",
   },
   empleoCargoComision: {
     "ui:options": {
       title: false,
     },
     areaAdscripcion: {
-      "ui:placeholder": "Ejemplo: Departamento de recursos humanos",
+      "ui:placeholder": "Ejemplo: Departamento de Recursos Humanos",
     },
     nivel: {
       "ui:placeholder": "Ejemplo: KA4",
     },
     nombre: {
-      "ui:placeholder": "Ejemplo: Dirección de sistemas",
+      "ui:placeholder": "Ejemplo: Dirección de Sistemas Informáticos",
     },
   },
 
@@ -43,10 +43,10 @@ let data = {
     },
   },
   curp: {
-    "ui:placeholder": "Ejemplo: PERG850101HDF",
+    "ui:placeholder": "Ejemplo: ABCD123456MDFEFG00",
   },
   rfc: {
-    "ui:placeholder": "Ejemplo: XAXX010101000",
+    "ui:placeholder": "Ejemplo: ABCD123456XXX",
   },
   observaciones: {
     "ui:widget": "textarea",

@@ -39,7 +39,7 @@ let data = {
   },
   type: "object",
   description:
-    "Indicar los datos generales de la persona servidora pública: nombre(s), primer y segundo apellidos, CURP, RFC y sexo.",
+    "Indicar los datos generales de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema",
   title: "1. DATOS GENERALES DE LA PERSONA SERVIDORA PÚBLICA",
   required: [
     "ejercicio",
@@ -65,14 +65,14 @@ let data = {
       type: "string",
       title: "Nombre (s)",
       description:
-        "Escribir el o los nombres de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas, ni signos especiales.",
+        "Escribir el o los nombres de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
       //example: "Juan",
     },
     primerApellido: {
       type: "string",
       title: "Primer Apellido",
       description:
-        "Escribir el primer apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas, ni signos especiales.",
+        "Escribir el primer apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
       //example: "Perez",
     },
 
@@ -99,7 +99,7 @@ let data = {
                   const: null,
                   title: "Segundo Apellido",
                   description:
-                    "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas, ni signos especiales.",
+                    "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
                   //example: "Gomez",
                 },
               },
@@ -112,7 +112,7 @@ let data = {
                   type: "string",
                   title: "Segundo Apellido",
                   description:
-                    "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas, ni signos especiales.",
+                    "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
                   //example: "Gomez",
                 },
               },
@@ -328,18 +328,17 @@ let data = {
         },
         ambitoGobierno: {
           type: "object",
-          title: "Ámbito de Gobierno",
+          title: "Ámbito de gobierno",
           properties: {
             clave: {
               title: "Ámbito de Gobierno",
               description:
-                "Seleccionar el orden de gobierno al que pertenece el ente público donde labora la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema: Federal, Estatal, Municipal/Alcaldía u otro (especificar).",
-              type: "string",
+                "Seleccionar el orden de gobierno al que pertenece el ente público donde labora la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
               enum: ["ESTATAL", "FEDERAL", "MUNICIPAL_ALCALDIA", "OTRO"],
               enumNames: [
                 "Estatal",
                 "Federal",
-                "Municipal y/o Alcadia",
+                "Municipal y/o Alcadía",
                 "Otro",
               ],
             },
@@ -380,17 +379,17 @@ let data = {
             "Ejecutivo",
             "Legislativo",
             "Judicial",
-            "Organo Autonomo",
+            "Órgano autónomo.",
           ],
           description:
-            "Seleccionar el poder u órgano de gobierno del ente público donde labora la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema: Ejecutivo, Legislativo, Judicial u Órgano autónomo.",
+            "Seleccionar el poder u órgano de gobierno del ente público donde labora la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
           example: "EJECUTIVO",
         },
         nombre: {
           type: "string",
           title: "Nombre del ente público",
           description:
-            "Escribir el nombre completo del ente público donde labora la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas, ni signos especiales.",
+            "Escribir el nombre completo del ente público donde labora la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
           example: "Secretaría de Hacienda y Crédito Público",
         },
         siglas: {
@@ -409,14 +408,14 @@ let data = {
         areaAdscripcion: {
           type: "string",
           title: "Área de adscripción",
-          description: "Escribir el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema. ",
+          description: "Escribir el nombre de la unidad administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema. ",
           example: "Departamento de Recursos Humanos",
         },
         nivel: {
           type: "string",
           title: "Clave o nivel del empleo, cargo o comisión",
           description:
-            "Escribir el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
+            "Escribir el nombre de la unidad administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
           example: "Q19",
         },
         nombre: {
@@ -445,7 +444,7 @@ let data = {
             "DICTAMEN_AVALUO",
           ],
           enumNames: [
-            "Contrataciones públicas",
+            "Contratación pública",
             "Otorgamiento de concesiones, licencias, permisos, autorizaciones y sus prórrogas",
             "Enajenación de bienes muebles",
             "Emisión de dictamen valuatorio y justipreciación de rentas",
@@ -471,7 +470,7 @@ let data = {
                       title: "",
                       description: "",
                       type: "string",
-                      enumNames: ["Bienes y Servicios", "Obra PÚblica"],
+                      enumNames: ["Bienes y servicios", "Obra pública"],
                       enum: ["bienesServicios", "obraPublica"],
                     },
                   },
