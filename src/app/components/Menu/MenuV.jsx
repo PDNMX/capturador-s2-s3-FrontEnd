@@ -353,7 +353,7 @@ export const MenuV =({ vistaRender, match , closeSession }) => {
             <AppBar position="fixed" className={classes.appBar} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar sx={{ justifyContent: "space-between" }}>
                    <Typography component="div" variant="h6" color="#fff" noWrap >
-                        {'Sistema de Captura de Información'}<br/>
+                        {'Sistema de Captura de Información heitor'}<br/>
                     </Typography>
                     <div sx={{ justifyContent: "flex-end" }}>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>

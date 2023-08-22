@@ -54,41 +54,41 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 interface FormDataEsquemaS2 {
     fechaCaptura?: string,
-    ejercicioFiscal?: String,
+    ejercicioFiscal?: string,
     ramo?: { clave?: number, valor?: string },
-    nombres?: String,
-    primerApellido?: String,
-    segundoApellido?: String,
-    rfc?: String,
-    curp?: String,
+    nombres?: string,
+    primerApellido?: string,
+    segundoApellido?: string,
+    rfc?: string,
+    curp?: string,
     genero?: {
-        clave: String,
-        valor: String
+        clave: string,
+        valor: string
     },
     institucionDependencia?: {
-        nombre: String,
-        clave: String,
-        siglas: String
+        nombre: string,
+        clave: string,
+        siglas: string
     },
     puesto?: {
-        nombre: String,
-        nivel: String
+        nombre: string,
+        nivel: string
     },
     tipoArea?: [{ clave: string, valor: string }],
     tipoProcedimiento?: [{ clave: string, valor: string }],
     nivelResponsabilidad?: [{ clave: string, valor: string }],
     superiorInmediato?: {
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
-        curp: String,
-        rfc: String,
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
+        curp: string,
+        rfc: string,
         puesto: {
-            nombre: String,
-            nivel: String
+            nombre: string,
+            nivel: string
         }
     },
-    observaciones?: String
+    observaciones?: string
 }
 
 export const ListS2Schema = () => {
@@ -109,7 +109,7 @@ export const ListS2Schema = () => {
     const [openModalUserInfo, setOpenModalUserInfo] = React.useState(false);
     const [selectedRegistro, setSelectedRegistro] = React.useState<FormDataEsquemaS2>({});
     const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('md');
-    var optionsDate = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+    const optionsDate = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
 
     const handleOpenModalUserInfo = (user) => {
         setOpenModalUserInfo(true);
@@ -140,7 +140,7 @@ export const ListS2Schema = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if (paginationSuper.page * newSize > paginationSuper.totalRows) {
             dispatch(S2Actions.requestListS2({query: query, page: 1, pageSize: parseInt(event.target.value, 10)}));
         } else {
@@ -153,7 +153,7 @@ export const ListS2Schema = () => {
         if (Array.isArray(id)) {
             disco = id.length;
         }
-        let sizeList = S2List.length - disco;
+        const sizeList = S2List.length - disco;
 
         dispatch(S2Actions.deleteRecordRequest(id));
         paginationSuper.totalRows = paginationSuper.totalRows - disco;
@@ -174,7 +174,7 @@ export const ListS2Schema = () => {
         handleClose();
     }
 
-    let EnhancedTableToolbar = () => {
+    const EnhancedTableToolbar = () => {
         return (
             <Toolbar className={classes.tool}>
                 <div className={classes.title}>
@@ -202,9 +202,9 @@ export const ListS2Schema = () => {
     };
 
     const handleCheckboxAll = (event) => {
-        let array = [];
+        const array = [];
         if (event.target.checked) {
-            for (let schema of S2List) {
+            for (const schema of S2List) {
                 // @ts-ignore
                 array.push(schema._id);
             }
@@ -277,17 +277,17 @@ export const ListS2Schema = () => {
 
     // yes, this can even be async!
     async function onSubmit(values: FormFiltersEsquemaS2) {
-        let newQuery = {};
-        for (let [key, value] of Object.entries(values)) {
+        const newQuery = {};
+        for (const [key, value] of Object.entries(values)) {
             if (key === "puestoNombre" && value !== null && value !== '') {
                 newQuery["puesto.nombre"] = {$regex: diacriticSensitiveRegex(value), $options: 'i'};
             } else if (key === "idnombre" && value !== null && value !== '') {
                 newQuery["institucionDependencia.nombre"] = {$regex: diacriticSensitiveRegex(value), $options: 'i'};
             } else if (key === "fechaCaptura" && value !== null && value !== '') {
-                let fecha = Date.parse(value);
+                const fecha = Date.parse(value);
                 console.log(formatISO(fecha, {representation: 'date'}));
                 newQuery["fechaCaptura"] = {$regex: formatISO(fecha, {representation: 'date'})};
-                ;
+                
             } else if (value !== null && value !== '') {
                 newQuery[key] = {$regex: diacriticSensitiveRegex(value), $options: 'i'};
             }
@@ -312,7 +312,7 @@ export const ListS2Schema = () => {
         history.push(path);
     }
 
-    var cont = 0;
+    const cont = 0;
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({

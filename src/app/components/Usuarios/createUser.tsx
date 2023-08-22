@@ -35,7 +35,7 @@ interface FormDataUser {
     constrasena?:string;
     sistemas?:string[];
     proveedorDatos?:string;
-    estatus?:Boolean;
+    estatus?:boolean;
 }
 
 interface MyFormProps {
@@ -51,7 +51,7 @@ interface MyFormProps {
 `; */
 
 function MyForm(props: MyFormProps ) {
-    let { initialValues , id , alerta , providers } = props;
+    const { initialValues , id , alerta , providers } = props;
     const alert = alerta;
     const dispatch = useDispatch();
 
@@ -139,13 +139,13 @@ function MyForm(props: MyFormProps ) {
     let sistemasData = [
 
     ];
-    var sistemaspro=[];
-    for(let pro of providers){
+    let sistemaspro=[];
+    for(const pro of providers){
         if(initialValues!=undefined){
             if(pro['value']==initialValues.proveedorDatos){
                 sistemaspro=pro['sistemas'];
-                var sistemasNew=[];
-                for (let sistema of sistemaspro){
+                const sistemasNew=[];
+                for (const sistema of sistemaspro){
                     if(sistema === "S2"){
                         // @ts-ignore
                         sistemasNew.push({label : 'Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación', value: 'S2'})
@@ -244,16 +244,16 @@ function MyForm(props: MyFormProps ) {
                                 <Select  name = "proveedorDatos" label="Proveedor de datos" required={true} data={providers} defaultValue={""}></Select>
                                 <OnChange name="proveedorDatos">
                                     {(value, previous) => {
-                                        let sistemasDataNew: [] = [];
+                                        const sistemasDataNew: [] = [];
                                         let sistemasDisponibles: string[] = [];
-                                        for(let prov of providers){
-                                            let obj: {value:string, sistemas:[]}= prov;
+                                        for(const prov of providers){
+                                            const obj: {value:string, sistemas:[]}= prov;
                                             if(value == obj.value){
                                                 sistemasDisponibles= obj.sistemas;
                                             }
                                         }
 
-                                        for (let sistema of sistemasDisponibles){
+                                        for (const sistema of sistemasDisponibles){
                                             if(sistema === "S2"){
                                                 // @ts-ignore
                                                 sistemasDataNew.push({label : 'Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación', value: 'S2'})
@@ -316,12 +316,12 @@ function MyForm(props: MyFormProps ) {
 }
 
 function mapStateToProps(state,ownProps){
-    let alert = state.alert;
-    let providers = state.providersEnabled;
+    const alert = state.alert;
+    const providers = state.providersEnabled;
     if( ownProps.match != undefined ){
-        let id = ownProps.match.params.id;
-        let user = state.users.find(user=>user._id === id);
-        let idUser = state.setUserInSession;
+        const id = ownProps.match.params.id;
+        const user = state.users.find(user=>user._id === id);
+        const idUser = state.setUserInSession;
         return {
             id,
             user,

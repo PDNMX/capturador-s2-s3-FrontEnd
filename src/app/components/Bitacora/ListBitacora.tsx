@@ -42,7 +42,7 @@ export const ListBitacora = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if (pagination.page * newSize > bitacora.length) {
             setPagination({ page: 0, pageSize: parseInt(event.target.value, 10) });
         } else {

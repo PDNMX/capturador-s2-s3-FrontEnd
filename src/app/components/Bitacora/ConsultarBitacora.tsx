@@ -44,7 +44,7 @@ interface MyFormProps {
 `; */
 
 function MyForm(props: MyFormProps ) {
-    let { initialValues , id , alerta ,  users } = props;
+    const { initialValues , id , alerta ,  users } = props;
     const alert = alerta;
     const dispatch = useDispatch();
 
@@ -236,11 +236,11 @@ function MyForm(props: MyFormProps ) {
 }
 
 function mapStateToProps(state,ownProps){
-    let alert = state.alert;
-    let providers = state.providerSelect;
-    let users = state.userSelect;
+    const alert = state.alert;
+    const providers = state.providerSelect;
+    const users = state.userSelect;
     if( ownProps.match != undefined ){
-        let users = state.userSelect;
+        const users = state.userSelect;
         return {
             alert,
             providers,

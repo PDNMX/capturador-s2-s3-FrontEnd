@@ -59,97 +59,97 @@ interface FormDataEsquemaS3P {
     particularSancionado?: {
         domicilioMexico: {
             pais: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             entidadFederativa: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             municipio: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             localidad: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             vialidad: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
-            codigoPostal: String,
-            numeroExterior: String,
-            numeroInterior: String
+            codigoPostal: string,
+            numeroExterior: string,
+            numeroInterior: string
         },
         domicilioExtranjero: {
             pais: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
-            calle: String,
-            ciudadLocalidad: String,
-            estadoProvincia: String,
-            codigoPostal: String,
-            numeroExterior: String,
-            numeroInterior: String
+            calle: string,
+            ciudadLocalidad: string,
+            estadoProvincia: string,
+            codigoPostal: string,
+            numeroExterior: string,
+            numeroInterior: string
         },
-        nombreRazonSocial: String,
-        objetoSocial: String,
-        rfc: String,
-        tipoPersona: String,
-        telefono: String,
+        nombreRazonSocial: string,
+        objetoSocial: string,
+        rfc: string,
+        tipoPersona: string,
+        telefono: string,
         directorGeneral?: {
-            nombres: String,
-            primerApellido: String,
-            segundoApellido: String,
-            curp: String
+            nombres: string,
+            primerApellido: string,
+            segundoApellido: string,
+            curp: string
         },
         apoderadoLegal?: {
-            nombres: String,
-            primerApellido: String,
-            segundoApellido: String,
-            curp: String
+            nombres: string,
+            primerApellido: string,
+            segundoApellido: string,
+            curp: string
         },
     },
     multa?: {
-        monto: Number,
+        monto: number,
         moneda: {
-            clave: String,
-            valor: String
+            clave: string,
+            valor: string
         }
     },
-    fechaCaptura?: String,
-    expediente?: String,
+    fechaCaptura?: string,
+    expediente?: string,
     institucionDependencia?: {
-        nombre: String,
-        clave: String,
-        siglas: String
+        nombre: string,
+        clave: string,
+        siglas: string
     },
-    objetoContrato?: String,
-    autoridadSancionadora?: String,
-    tipoFalta?: String,
-    tipoSancion?: [{ clave: String, valor: String, descripcion: String }],
-    causaMotivoHechos?: String,
-    acto?: String,
+    objetoContrato?: string,
+    autoridadSancionadora?: string,
+    tipoFalta?: string,
+    tipoSancion?: [{ clave: string, valor: string, descripcion: string }],
+    causaMotivoHechos?: string,
+    acto?: string,
     responsableSancion?: {
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
-        curp: String
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
+        curp: string
     },
     resolucion?: {
-        sentido: String,
-        url: String,
-        fechaNotificacion: String
+        sentido: string,
+        url: string,
+        fechaNotificacion: string
     },
     inhabilitacion?: {
-        plazo: String,
-        fechaInicial: String,
-        fechaFinal: String
+        plazo: string,
+        fechaInicial: string,
+        fechaFinal: string
     },
-    documentos?: [{ id: String, tipo: String, titulo: String, descripcion: String, url: String, fecha: String }],
-    observaciones?: String
+    documentos?: [{ id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string }],
+    observaciones?: string
 }
 
 export const ListS3PSchema = () => {
@@ -172,14 +172,14 @@ export const ListS3PSchema = () => {
     const [selectedRegistro, setSelectedRegistro] = React.useState<FormDataEsquemaS3P>({});
     const [match, setMatch] = React.useState({params: {id: ""}});
     const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('md');
-    var optionsDate = {
+    const optionsDate = {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric'
     };
-    var optionsOnlyDate = {year: 'numeric', month: 'long', day: 'numeric'};
+    const optionsOnlyDate = {year: 'numeric', month: 'long', day: 'numeric'};
 
 
     const handleOpenModalUserInfo = (user) => {
@@ -210,7 +210,7 @@ export const ListS3PSchema = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if (paginationSuper.page * newSize > paginationSuper.totalRows) {
             dispatch(S3PActions.requestListS3P({query: query, page: 1, pageSize: parseInt(event.target.value, 10)}));
         } else {
@@ -223,12 +223,12 @@ export const ListS3PSchema = () => {
         if (Array.isArray(id)) {
             disco = id.length;
         }
-        let sizeList = S3PList.length - disco;
+        const sizeList = S3PList.length - disco;
 
         dispatch(S3PActions.deleteRecordRequest(id));
         paginationSuper.totalRows = paginationSuper.totalRows - disco;
 
-        let changePage = sizeList < paginationSuper.page;
+        const changePage = sizeList < paginationSuper.page;
         if (changePage && paginationSuper.page > 1) {
             dispatch(S3PActions.requestListS3P({
                 query: query,
@@ -247,7 +247,7 @@ export const ListS3PSchema = () => {
         handleClose();
     }
 
-    let EnhancedTableToolbar = () => {
+    const EnhancedTableToolbar = () => {
         return (
             <Toolbar className={classes.tool}>
                 <div className={classes.title}>
@@ -275,9 +275,9 @@ export const ListS3PSchema = () => {
     };
 
     const handleCheckboxAll = (event) => {
-        let array = [];
+        const array = [];
         if (event.target.checked) {
-            for (let schema of S3PList) {
+            for (const schema of S3PList) {
                 // @ts-ignore
                 array.push(schema._id);
             }
@@ -346,8 +346,8 @@ export const ListS3PSchema = () => {
     // yes, this can even be async!
     async function onSubmit(values: FormDataEsquemaS3P) {
 
-        let newQuery = {};
-        for (let [key, value] of Object.entries(values)) {
+        const newQuery = {};
+        for (const [key, value] of Object.entries(values)) {
             if (key === "expediente" && value !== null && value !== '') {
                 newQuery["expediente"] = {$regex: diacriticSensitiveRegex(value), $options: 'i'};
             } else if (key === "idnombre" && value !== null && value !== '') {
@@ -358,24 +358,24 @@ export const ListS3PSchema = () => {
                     $options: 'i'
                 };
             } else if (key === "tipoPersona" && value !== null && value !== '') {
-                let objTipoPersona = JSON.parse(value);
+                const objTipoPersona = JSON.parse(value);
                 newQuery["particularSancionado.tipoPersona"] = {$in: [objTipoPersona.clave]};
             } else if (key === "tipoSancion") {
                 if (value.length > 0) {
-                    let arrayObjTipoSancion = value;
-                    let acumulado = []
-                    for (let obSancion of arrayObjTipoSancion) {
+                    const arrayObjTipoSancion = value;
+                    const acumulado = []
+                    for (const obSancion of arrayObjTipoSancion) {
                         // @ts-ignore
                         acumulado.push(JSON.parse(obSancion).clave);
                     }
                     newQuery["tipoSancion.clave"] = {$in: acumulado};
                 }
             } else if (key === "fechaFinal" && value !== null && value !== '') {
-                let fecha = Date.parse(value);
+                const fecha = Date.parse(value);
                 newQuery["inhabilitacion.fechaFinal"] = {$regex: formatISO(fecha, {representation: 'date'})};
 
             } else if (key === "fechaCaptura" && value !== null && value !== '') {
-                let fecha = Date.parse(value);
+                const fecha = Date.parse(value);
                 newQuery["fechaCaptura"] = {$regex: formatISO(fecha, {representation: 'date'})};
 
             } else if (value !== null && value !== '') {
@@ -404,7 +404,7 @@ export const ListS3PSchema = () => {
         history.push(path);
     }
 
-    var cont = 0;
+    const cont = 0;
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -1221,7 +1221,7 @@ export const ListS3PSchema = () => {
                                         {catalogos.tipoSancion &&
                                         <OnChange name="tipoSancion">
                                             {(value, previous) => {
-                                                for (let item of value) {
+                                                for (const item of value) {
                                                     if (item == "") {
                                                         // @ts-ignore
                                                         values.tipoSancion = [];

@@ -24,7 +24,7 @@ const CreateProvider = ({id, provider,alert }) => {
 interface FormProvider {
     dependencia?:string;
     sistemas?:string[];
-    estatus?:Boolean;
+    estatus?:boolean;
     fechaAlta?:string;
 }
 
@@ -36,7 +36,7 @@ interface MyFormProps {
 
 
 function MyForm(props: MyFormProps ) {
-    let { initialValues , id , alerta } = props;
+    const { initialValues , id , alerta } = props;
     const alert = alerta;
     const dispatch = useDispatch();
     const [loaderDisplay, setLoaderDisplay] = React.useState(false);
@@ -202,10 +202,10 @@ function MyForm(props: MyFormProps ) {
 }
 
 function mapStateToProps(state,ownProps){
-    let alert = state.alert;
+    const alert = state.alert;
     if( ownProps.match != undefined ){
-        let id = ownProps.match.params.id;
-        let provider = state.providers.find(provider=>provider._id === id);
+        const id = ownProps.match.params.id;
+        const provider = state.providers.find(provider=>provider._id === id);
         return {
             id,
             provider,

@@ -54,99 +54,99 @@ interface FormDataEsquemaS3P {
     particularSancionado?: {
         domicilioMexico: {
             pais: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             entidadFederativa: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             muncipio: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             localidad: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
             vialidad: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
-            codigoPostal: String,
-            numeroExterior: String,
-            numeroInterior: String
+            codigoPostal: string,
+            numeroExterior: string,
+            numeroInterior: string
         },
         domicilioExtranjero: {
             pais: {
-                valor: String,
-                clave: String
+                valor: string,
+                clave: string
             },
-            calle: String,
-            ciudadLocalidad: String,
-            estadoProvincia: String,
-            codigoPostal: String,
-            numeroExterior: String,
-            numeroInterior: String
+            calle: string,
+            ciudadLocalidad: string,
+            estadoProvincia: string,
+            codigoPostal: string,
+            numeroExterior: string,
+            numeroInterior: string
         },
-        nombreRazonSocial: String,
-        objetoSocial: String,
-        rfc: String,
-        tipoPersona: String,
-        telefono: String
+        nombreRazonSocial: string,
+        objetoSocial: string,
+        rfc: string,
+        tipoPersona: string,
+        telefono: string
     },
     multa?: {
-        monto: Number,
+        monto: number,
         moneda: {
-            clave: String,
-            valor: String
+            clave: string,
+            valor: string
         }
     },
-    fechaCaptura?: String,
-    expediente?: String,
+    fechaCaptura?: string,
+    expediente?: string,
     institucionDependencia?: {
-        nombre: String,
-        clave: String,
-        siglas: String
+        nombre: string,
+        clave: string,
+        siglas: string
     },
     directorGeneral?: {
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
-        curp: String
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
+        curp: string
     },
     apoderadoLegal?: {
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
-        curp: String
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
+        curp: string
     },
-    objetoContrato?: String,
-    autoridadSancionadora?: String,
-    tipoFalta?: String,
+    objetoContrato?: string,
+    autoridadSancionadora?: string,
+    tipoFalta?: string,
     tipoSancion?: [{ clave: string, valor: string, descripcion: string }],
     tipoSancionElement?: { clave: string, valor: string, descripcion: string },
-    causaMotivoHechos?: String,
-    acto?: String,
+    causaMotivoHechos?: string,
+    acto?: string,
     responsableSancion?: {
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
-        curp: String
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
+        curp: string
     },
     resolucion?: {
-        sentido: String,
-        url: String,
-        fechaNotificacion: String
+        sentido: string,
+        url: string,
+        fechaNotificacion: string
     },
     inhabilitacion?: {
-        plazo: String,
-        fechaInicial: String,
-        fechaFinal: String
+        plazo: string,
+        fechaInicial: string,
+        fechaFinal: string
     },
-    documentos?: [{ id: String, tipo: String, titulo: String, descripcion: String, url: String, fecha: String }],
-    documentElement?: { id: String, tipo: String, titulo: String, descripcion: String, url: String, fecha: String },
-    observaciones?: String
+    documentos?: [{ id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string }],
+    documentElement?: { id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string },
+    observaciones?: string
 }
 
 interface MyFormProps {
@@ -164,7 +164,7 @@ interface MyFormProps {
 `; */
 
 function MyForm(props: MyFormProps) {
-    let { initialValues, alerta, catalogos, id, flagOnlyRead } = props;
+    const { initialValues, alerta, catalogos, id, flagOnlyRead } = props;
     const alert = alerta;
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
@@ -315,15 +315,15 @@ function MyForm(props: MyFormProps) {
 
     const addSancion = (values, push, clear) => {
 
-        let schema = Yup.object().shape({
+        const schema = Yup.object().shape({
             tipoSancion: Yup.string().required('El campo Tipo de sanción es requerido')
         });
 
         schema.validate(values.tipoSancionElement).then((result) => {
 
-            let data = { ...JSON.parse(values.tipoSancionElement.tipoSancion), descripcion: values.tipoSancionElement.descripcion }
+            const data = { ...JSON.parse(values.tipoSancionElement.tipoSancion), descripcion: values.tipoSancionElement.descripcion }
 
-            let registrados = values.tipoSancion.map(e => e.clave.toLowerCase());
+            const registrados = values.tipoSancion.map(e => e.clave.toLowerCase());
 
             if (registrados.indexOf(data.clave.toLowerCase()) !== -1) {
                 setErrors({
@@ -350,7 +350,7 @@ function MyForm(props: MyFormProps) {
 
     const emailRegrex = /^((https?):\/\/)(www.)?([a-zA-Z0-9.-])+(.[a-zA-Z]{3})(\/[a-zA-Z0-9_:=?.-]+)+$/;
     const addDocument = async (values, push, clear) => {
-        let schema = Yup.object().shape({
+        const schema = Yup.object().shape({
             id: Yup.string().trim(),
             titulo: Yup.string()
                 .required('El campo Título es requerido')
@@ -370,10 +370,10 @@ function MyForm(props: MyFormProps) {
 
         schema.validate(values.documentElement, { abortEarly: false }).then((result) => {
 
-            let id = values.documentos.length ? parseInt(values.documentos[values.documentos.length - 1].id) + 1 : 1;
+            const id = values.documentos.length ? parseInt(values.documentos[values.documentos.length - 1].id) + 1 : 1;
 
-            let { titulo, descripcion, url, fecha } = values.documentElement;
-            let tipo = typeof values.documentElement.tipo === 'undefined' ? '' : JSON.parse(values.documentElement.tipo).valor;
+            const { titulo, descripcion, url, fecha } = values.documentElement;
+            const tipo = typeof values.documentElement.tipo === 'undefined' ? '' : JSON.parse(values.documentElement.tipo).valor;
 
             let datos = {};
 
@@ -1033,12 +1033,12 @@ function MyForm(props: MyFormProps) {
 }
 
 function mapStateToProps(state, ownProps) {
-    let alert = state.alert;
-    let catalogos = state.catalogs;
+    const alert = state.alert;
+    const catalogos = state.catalogs;
     if (ownProps.match != undefined) {
-        let id = ownProps.match.params.id;
-        let flagOnlyRead = ownProps.match.params.flagOnlyRead;
-        let registry = state.S3P.find(reg => reg._id === id);
+        const id = ownProps.match.params.id;
+        const flagOnlyRead = ownProps.match.params.flagOnlyRead;
+        const registry = state.S3P.find(reg => reg._id === id);
         return {
             id,
             registry,

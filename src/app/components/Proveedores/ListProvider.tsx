@@ -66,7 +66,7 @@ export const ListProvider = () => {
         estatus: "",
         sistemas: []
     });
-    var optionsDate = {
+    const optionsDate = {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -104,7 +104,7 @@ export const ListProvider = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if ((pagination.page+1) * newSize > providers.length) {
             setPagination({page: 0, pageSize: parseInt(event.target.value, 10)});
         } else {
@@ -114,9 +114,9 @@ export const ListProvider = () => {
 
     const confirmAction = (id) => {
         dispatch(providerActions.deleteProvider(id));
-        let initialRange = pagination.page * pagination.pageSize;
-        let endRange = pagination.page * pagination.pageSize + pagination.pageSize;
-        let totalProviders = providers.length - 1;
+        const initialRange = pagination.page * pagination.pageSize;
+        const endRange = pagination.page * pagination.pageSize + pagination.pageSize;
+        const totalProviders = providers.length - 1;
         if (totalProviders <= initialRange) {
             setPagination({page: pagination.page - 1, pageSize: pagination.pageSize});
         }

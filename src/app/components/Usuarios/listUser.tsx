@@ -77,7 +77,7 @@ export const ListUser = () => {
     const [openPassword, setOpenPassword] = React.useState(false);
     const [usuarioCorreo, setUsuarioCorreo] = React.useState("");
     const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('md');
-    var optionsDate = {
+    const optionsDate = {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -87,7 +87,7 @@ export const ListUser = () => {
 
     const renderSelect = (user) => {
         let c1 = false;
-        for (let value of providerSelect) {
+        for (const value of providerSelect) {
             if (value._id === user.proveedorDatos) {
                 c1 = true;
                 return (value.label);
@@ -124,7 +124,7 @@ export const ListUser = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if ((pagination.page +1 ) * newSize > users.length) {
             setPagination({page: 0, pageSize: parseInt(event.target.value, 10)});
         } else {
@@ -135,9 +135,9 @@ export const ListUser = () => {
 
     const confirmAction = (id) => {
         dispatch(userActions.deleteUser(id));
-        let initialRange = pagination.page * pagination.pageSize;
-        let endRange = pagination.page * pagination.pageSize + pagination.pageSize;
-        let totalUsers = users.length - 1;
+        const initialRange = pagination.page * pagination.pageSize;
+        const endRange = pagination.page * pagination.pageSize + pagination.pageSize;
+        const totalUsers = users.length - 1;
         if (totalUsers <= initialRange) {
             setPagination({page: pagination.page - 1, pageSize: pagination.pageSize});
         }
@@ -146,7 +146,7 @@ export const ListUser = () => {
 
     const confirmActionPassword = (correoElectronico) => {
         alerta.estatus = false;
-        let data = [];
+        const data = [];
         data["correo"] = correoElectronico;
         data["sistema"] = true;
         dispatch(requestResetPassword(data));

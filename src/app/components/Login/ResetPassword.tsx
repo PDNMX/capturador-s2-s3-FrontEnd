@@ -34,7 +34,7 @@ interface MyFormProps {
 
 function MyForm(props: MyFormProps ) {
 
-    let { initialValues } = props;
+    const { initialValues } = props;
 
     const style = makeStyles((theme) => ({
 

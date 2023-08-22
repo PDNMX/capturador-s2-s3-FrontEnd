@@ -56,52 +56,52 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 interface FormDataEsquemaS3S {
-    fechaCaptura?: String,
-    expediente?: String,
+    fechaCaptura?: string,
+    expediente?: string,
     institucionDependencia?: {
-        nombre: String,
-        clave: String,
-        siglas: String
+        nombre: string,
+        clave: string,
+        siglas: string
     },
     servidorPublicoSancionado?: {
-        rfc: String,
-        curp: String,
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
+        rfc: string,
+        curp: string,
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
         genero: {
-            clave: String,
-            valor: String
+            clave: string,
+            valor: string
         },
-        puesto: String,
-        nivel: String
+        puesto: string,
+        nivel: string
     },
-    autoridadSancionadora?: String,
+    autoridadSancionadora?: string,
     tipoFalta?: {
-        clave: String,
-        valor: String,
-        descripcion: String
+        clave: string,
+        valor: string,
+        descripcion: string
     },
     tipoSancion?: [{ clave: string, valor: string, descripcion: string }],
-    causaMotivoHechos?: String,
+    causaMotivoHechos?: string,
     resolucion?: {
-        url: String,
-        fechaResolucion: String
+        url: string,
+        fechaResolucion: string
     },
     multa?: {
-        monto: Number,
+        monto: number,
         moneda: {
-            clave: String,
-            valor: String
+            clave: string,
+            valor: string
         }
     },
     inhabilitacion?: {
-        plazo: String,
-        fechaInicial: String,
-        fechaFinal: String
+        plazo: string,
+        fechaInicial: string,
+        fechaFinal: string
     },
     documentos?: [{ id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string }],
-    observaciones?: String
+    observaciones?: string
 }
 
 export const ListS3SSchema = () => {
@@ -123,8 +123,8 @@ export const ListS3SSchema = () => {
     const [selectedRegistro, setSelectedRegistro] = React.useState<FormDataEsquemaS3S>({});
     const [match, setMatch] = React.useState({params: {id: ""}});
     const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('md');
-    var optionsDate = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
-    var optionsOnlyDate = {year: 'numeric', month: 'long', day: 'numeric'};
+    const optionsDate = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+    const optionsOnlyDate = {year: 'numeric', month: 'long', day: 'numeric'};
 
     const handleOpenModalUserInfo = (user) => {
         setOpenModalUserInfo(true);
@@ -155,7 +155,7 @@ export const ListS3SSchema = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if (paginationSuper.page * newSize > paginationSuper.totalRows) {
             dispatch(S3SActions.requestListS3S({query: query, page: 1, pageSize: parseInt(event.target.value, 10)}));
         } else {
@@ -168,11 +168,11 @@ export const ListS3SSchema = () => {
         if (Array.isArray(id)) {
             disco = id.length;
         }
-        let sizeList = S3SList.length - disco;
+        const sizeList = S3SList.length - disco;
 
         dispatch(S3SActions.deleteRecordRequest(id));
         paginationSuper.totalRows = paginationSuper.totalRows - disco;
-        let changePage = sizeList < paginationSuper.page;
+        const changePage = sizeList < paginationSuper.page;
 
         if (changePage && paginationSuper.page > 1) {
             dispatch(S3SActions.requestListS3S({
@@ -192,7 +192,7 @@ export const ListS3SSchema = () => {
         handleClose();
     }
 
-    let EnhancedTableToolbar = () => {
+    const EnhancedTableToolbar = () => {
         return (
             <Toolbar className={classes.tool}>
                 <div className={classes.title}>
@@ -220,9 +220,9 @@ export const ListS3SSchema = () => {
     };
 
     const handleCheckboxAll = (event) => {
-        let array = [];
+        const array = [];
         if (event.target.checked) {
-            for (let schema of S3SList) {
+            for (const schema of S3SList) {
                 // @ts-ignore
                 array.push(schema._id);
             }
@@ -293,8 +293,8 @@ export const ListS3SSchema = () => {
 
     // yes, this can even be async!
     async function onSubmit(values: FormDataEsquemaS3S) {
-        let newQuery = {};
-        for (let [key, value] of Object.entries(values)) {
+        const newQuery = {};
+        for (const [key, value] of Object.entries(values)) {
             if (key === "expediente" && value !== null && value !== '') {
                 newQuery["expediente"] = {$regex: diacriticSensitiveRegex(value), $options: 'i'};
             } else if (key === "idnombre" && value !== null && value !== '') {
@@ -313,19 +313,19 @@ export const ListS3SSchema = () => {
                 };
             } else if (key === "tipoSancion") {
                 if (value.length > 0) {
-                    let arrayObjTipoSancion = value;
-                    let acumulado = []
-                    for (let obSancion of arrayObjTipoSancion) {
+                    const arrayObjTipoSancion = value;
+                    const acumulado = []
+                    for (const obSancion of arrayObjTipoSancion) {
                         // @ts-ignore
                         acumulado.push(JSON.parse(obSancion).clave);
                     }
                     newQuery["tipoSancion.clave"] = {$in: acumulado};
                 }
             } else if (key === "inhabilitacionFechaFinal" && value !== null && value !== '') {
-                let fecha = Date.parse(value);
+                const fecha = Date.parse(value);
                 newQuery["inhabilitacion.fechaFinal"] = formatISO(fecha, {representation: 'date'});
             } else if (key === "fechaCaptura" && value !== null && value !== '') {
-                let fecha = Date.parse(value);
+                const fecha = Date.parse(value);
                 newQuery["fechaCaptura"] = {$regex: formatISO(fecha, {representation: 'date'})};
 
             }
@@ -351,7 +351,7 @@ export const ListS3SSchema = () => {
     }
 
 
-    var cont = 0;
+    const cont = 0;
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -894,7 +894,7 @@ export const ListS3SSchema = () => {
                                         {catalogos.tipoSancion &&
                                         <OnChange name="tipoSancion">
                                             {(value, previous) => {
-                                                for (let item of value) {
+                                                for (const item of value) {
                                                     if (item == "") {
                                                         // @ts-ignore
                                                         values.tipoSancion = [];

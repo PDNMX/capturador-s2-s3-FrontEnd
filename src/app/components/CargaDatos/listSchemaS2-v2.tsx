@@ -50,41 +50,41 @@ import TablePaginationActions from "../Common/TablePaginationActionsProps";
 
 interface FormDataEsquemaS2 {
   fechaCaptura?: string;
-  ejercicioFiscal?: String;
+  ejercicioFiscal?: string;
   ramo?: { clave?: number; valor?: string };
-  nombres?: String;
-  primerApellido?: String;
-  segundoApellido?: String;
-  rfc?: String;
-  curp?: String;
+  nombres?: string;
+  primerApellido?: string;
+  segundoApellido?: string;
+  rfc?: string;
+  curp?: string;
   genero?: {
-    clave: String;
-    valor: String;
+    clave: string;
+    valor: string;
   };
   institucionDependencia?: {
-    nombre: String;
-    clave: String;
-    siglas: String;
+    nombre: string;
+    clave: string;
+    siglas: string;
   };
   puesto?: {
-    nombre: String;
-    nivel: String;
+    nombre: string;
+    nivel: string;
   };
   tipoArea?: [{ clave: string; valor: string }];
   tipoProcedimiento?: [{ clave: string; valor: string }];
   nivelResponsabilidad?: [{ clave: string; valor: string }];
   superiorInmediato?: {
-    nombres: String;
-    primerApellido: String;
-    segundoApellido: String;
-    curp: String;
-    rfc: String;
+    nombres: string;
+    primerApellido: string;
+    segundoApellido: string;
+    curp: string;
+    rfc: string;
     puesto: {
-      nombre: String;
-      nivel: String;
+      nombre: string;
+      nivel: string;
     };
   };
-  observaciones?: String;
+  observaciones?: string;
 }
 
 export const ListS2Schemav2 = () => {
@@ -144,7 +144,7 @@ export const ListS2Schemav2 = () => {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    let newSize = parseInt(event.target.value, 10);
+    const newSize = parseInt(event.target.value, 10);
     if (paginationSuper.page * newSize > paginationSuper.totalRows) {
       dispatch(
         S2Actions.requestListS2({
@@ -169,7 +169,7 @@ export const ListS2Schemav2 = () => {
     if (Array.isArray(id)) {
       disco = id.length;
     }
-    let sizeList = S2List.length - disco;
+    const sizeList = S2List.length - disco;
 
     dispatch(S2Actions.deleteRecordRequest(id));
     paginationSuper.totalRows = paginationSuper.totalRows - disco;

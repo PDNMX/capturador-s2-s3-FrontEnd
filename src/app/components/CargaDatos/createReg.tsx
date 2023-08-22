@@ -55,7 +55,7 @@ interface MyFormProps {
 
 
 function MyForm(props: MyFormProps) {
-    let {initialValues, alerta, catalogos, id} = props;
+    const {initialValues, alerta, catalogos, id} = props;
     const alert = alerta;
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
@@ -281,7 +281,7 @@ function MyForm(props: MyFormProps) {
                                 {catalogos.tipoArea &&
                                 <OnChange name="tipoArea">
                                     {(value, previous) => {
-                                        for (let item of value) {
+                                        for (const item of value) {
                                             if (item == "") {
                                                 // @ts-ignore
                                                 values.tipoArea = [];
@@ -301,7 +301,7 @@ function MyForm(props: MyFormProps) {
                                 {catalogos.nivelResponsabilidad &&
                                 <OnChange name="nivelResponsabilidad">
                                     {(value, previous) => {
-                                        for (let item of value) {
+                                        for (const item of value) {
                                             if (item == "") {
                                                 // @ts-ignore
                                                 values.nivelResponsabilidad = [];
@@ -360,11 +360,11 @@ function MyForm(props: MyFormProps) {
                 }
 
 function mapStateToProps(state: any, ownProps: any) {
-    let alert = state.alert;
-    let catalogos = state.catalogs;
+    const alert = state.alert;
+    const catalogos = state.catalogs;
     if (ownProps.match != undefined) {
-        let id = ownProps.match.params.id;
-        let registry = state.S2.find(reg => reg._id === id);
+        const id = ownProps.match.params.id;
+        const registry = state.S2.find(reg => reg._id === id);
         return {
             id,
             registry,

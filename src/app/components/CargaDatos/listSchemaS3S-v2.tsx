@@ -58,52 +58,52 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 interface FormDataEsquemaS3S {
-    fechaCaptura?: String,
-    expediente?: String,
+    fechaCaptura?: string,
+    expediente?: string,
     institucionDependencia?: {
-        nombre: String,
-        clave: String,
-        siglas: String
+        nombre: string,
+        clave: string,
+        siglas: string
     },
     servidorPublicoSancionado?: {
-        rfc: String,
-        curp: String,
-        nombres: String,
-        primerApellido: String,
-        segundoApellido: String,
+        rfc: string,
+        curp: string,
+        nombres: string,
+        primerApellido: string,
+        segundoApellido: string,
         genero: {
-            clave: String,
-            valor: String
+            clave: string,
+            valor: string
         },
-        puesto: String,
-        nivel: String
+        puesto: string,
+        nivel: string
     },
-    autoridadSancionadora?: String,
+    autoridadSancionadora?: string,
     tipoFalta?: {
-        clave: String,
-        valor: String,
-        descripcion: String
+        clave: string,
+        valor: string,
+        descripcion: string
     },
     tipoSancion?: [{ clave: string, valor: string, descripcion: string }],
-    causaMotivoHechos?: String,
+    causaMotivoHechos?: string,
     resolucion?: {
-        url: String,
-        fechaResolucion: String
+        url: string,
+        fechaResolucion: string
     },
     multa?: {
-        monto: Number,
+        monto: number,
         moneda: {
-            clave: String,
-            valor: String
+            clave: string,
+            valor: string
         }
     },
     inhabilitacion?: {
-        plazo: String,
-        fechaInicial: String,
-        fechaFinal: String
+        plazo: string,
+        fechaInicial: string,
+        fechaFinal: string
     },
     documentos?: [{ id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string }],
-    observaciones?: String
+    observaciones?: string
 }
 
 export const ListS3SSchemav2 = () => {
@@ -125,8 +125,8 @@ export const ListS3SSchemav2 = () => {
     const [selectedRegistro, setSelectedRegistro] = React.useState<FormDataEsquemaS3S>({});
     //const [match, setMatch] = React.useState({params: {id: ""}});
     const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('md');
-    var optionsDate = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
-    var optionsOnlyDate = {year: 'numeric', month: 'long', day: 'numeric'};
+    const optionsDate = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+    const optionsOnlyDate = {year: 'numeric', month: 'long', day: 'numeric'};
 
     const handleOpenModalUserInfo = (user) => {
         setOpenModalUserInfo(true);
@@ -156,7 +156,7 @@ export const ListS3SSchemav2 = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        let newSize = parseInt(event.target.value, 10);
+        const newSize = parseInt(event.target.value, 10);
         if (paginationSuper.page * newSize > paginationSuper.totalRows) {
             dispatch(S3SActions.requestListS3S({query: query, page: 1, pageSize: parseInt(event.target.value, 10)}));
         } else {
@@ -169,11 +169,11 @@ export const ListS3SSchemav2 = () => {
         if (Array.isArray(id)) {
             disco = id.length;
         }
-        let sizeList = S3SList.length - disco;
+        const sizeList = S3SList.length - disco;
 
         dispatch(S3SActions.deleteRecordRequest(id));
         paginationSuper.totalRows = paginationSuper.totalRows - disco;
-        let changePage = sizeList < paginationSuper.page;
+        const changePage = sizeList < paginationSuper.page;
 
         if (changePage && paginationSuper.page > 1) {
             dispatch(S3SActions.requestListS3S({
@@ -193,7 +193,7 @@ export const ListS3SSchemav2 = () => {
         handleClose();
     }
 
-    let EnhancedTableToolbar = () => {
+    const EnhancedTableToolbar = () => {
         return (
             <Toolbar className={classes.tool}>
                 <div className={classes.title}>
@@ -221,9 +221,9 @@ export const ListS3SSchemav2 = () => {
     };
 
     const handleCheckboxAll = (event) => {
-        let array = [];
+        const array = [];
         if (event.target.checked) {
-            for (let schema of S3SList) {
+            for (const schema of S3SList) {
                 // @ts-ignore
                 array.push(schema._id);
             }

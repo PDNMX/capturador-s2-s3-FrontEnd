@@ -46,7 +46,7 @@ interface MyFormProps {
 `; */
 
 function MyForm(props: MyFormProps) {
-  let { initialValues, id } = props;
+  const { initialValues, id } = props;
 
   const { alerta } = useSelector((state) => ({
     alerta: state.alert,
@@ -90,7 +90,7 @@ function MyForm(props: MyFormProps) {
   //const required = makeRequired(schema)
 
   const redirectToRoute = () => {
-    let rol = localStorage.getItem("rol");
+    const rol = localStorage.getItem("rol");
     if (rol == "1") {
       history.push("/usuarios");
     } else {
@@ -204,11 +204,11 @@ function MyForm(props: MyFormProps) {
 }
 
 function mapStateToProps(state, ownProps) {
-  let alert = state.alert;
+  const alert = state.alert;
   if (ownProps.match != undefined) {
-    let id = ownProps.match.params.id;
-    let user = state.users.find((user) => user._id === id);
-    let idUser = state.setUserInSession;
+    const id = ownProps.match.params.id;
+    const user = state.users.find((user) => user._id === id);
+    const idUser = state.setUserInSession;
     return {
       id,
       user,

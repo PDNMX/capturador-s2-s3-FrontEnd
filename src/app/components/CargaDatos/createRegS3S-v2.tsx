@@ -18,7 +18,7 @@ import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/mui';
 
 const CreateReg = ({ id, alert, catalogos, registry }) => {
-    let data = { ...registry, tipoSancionArray: [], documents: [] };
+    const data = { ...registry, tipoSancionArray: [], documents: [] };
     return (
         <MyForm
             initialValues={registry != undefined ? registry : data}
@@ -30,39 +30,39 @@ const CreateReg = ({ id, alert, catalogos, registry }) => {
 };
 
 interface FormDataEsquemaS3S {
-    fechaCaptura?: String;
-    expediente?: String;
-    idnombre?: String;
-    idsiglas?: String;
-    idclave?: String;
-    SPSnombres?: String;
-    SPSprimerApellido?: String;
-    SPSsegundoApellido?: String;
+    fechaCaptura?: string;
+    expediente?: string;
+    idnombre?: string;
+    idsiglas?: string;
+    idclave?: string;
+    SPSnombres?: string;
+    SPSprimerApellido?: string;
+    SPSsegundoApellido?: string;
     SPSgenero?: {};
-    SPSpuesto?: String;
-    SPSnivel?: String;
-    autoridadSancionadora?: String;
+    SPSpuesto?: string;
+    SPSnivel?: string;
+    autoridadSancionadora?: string;
     tipoFalta?: { clave: string; valor: string; descripcion?: string };
-    tpfdescripcion?: String;
+    tpfdescripcion?: string;
     tipoSancionArray?: [{ clave: string; valor: string; descripcion?: string }];
     tipoSancionElement?: { clave: string; valor: string; descripcion?: string };
-    tsdescripcion?: String;
-    causaMotivoHechos?: String;
-    resolucionURL?: String;
-    resolucionFecha?: String;
+    tsdescripcion?: string;
+    causaMotivoHechos?: string;
+    resolucionURL?: string;
+    resolucionFecha?: string;
     multa?: {
-        monto: Number;
+        monto: number;
         moneda?: {
-            clave: String;
-            valor: String;
+            clave: string;
+            valor: string;
         };
     };
-    inhabilitacionPlazo?: String;
-    inhabilitacionFechaInicial?: String;
-    inhabilitacionFechaFinal?: String;
-    observaciones?: String;
-    documents?: [{ id: String; titulo: String; descripcion: String; url: String; fecha: String; tipo: {} }];
-    documentElement?: { id: String; titulo: String; descripcion: String; url: String; fecha: String; tipo: {} };
+    inhabilitacionPlazo?: string;
+    inhabilitacionFechaInicial?: string;
+    inhabilitacionFechaFinal?: string;
+    observaciones?: string;
+    documents?: [{ id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: {} }];
+    documentElement?: { id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: {} };
 }
 
 interface MyFormProps {
@@ -74,7 +74,7 @@ interface MyFormProps {
 
 
 function MyForm(props: MyFormProps) {
-    let { initialValues, alerta: alert, catalogos, id } = props;
+    const { initialValues, alerta: alert, catalogos, id } = props;
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     /*const [errors, setErrors] = React.useState({ tipoSancionElement: {}, documentElement: {} });
@@ -146,11 +146,11 @@ function MyForm(props: MyFormProps) {
 }
 
 function mapStateToProps(state: any, ownProps: any) {
-    let alert = state.alert;
-    let catalogos = state.catalogs;
+    const alert = state.alert;
+    const catalogos = state.catalogs;
     if (ownProps.match != undefined) {
-        let id = ownProps.match.params.id;
-        let registry = state.S3S.find((reg: any) => reg._id === id);
+        const id = ownProps.match.params.id;
+        const registry = state.S3S.find((reg: any) => reg._id === id);
         return {
             id,
             registry,
