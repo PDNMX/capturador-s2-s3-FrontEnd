@@ -39,7 +39,7 @@ let data = {
   },
   type: "object",
   description:
-    "Indicar los datos generales de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema",
+    "Indicar los datos generales de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
   title: "1. DATOS GENERALES DE LA PERSONA SERVIDORA PÚBLICA",
   required: [
     "ejercicio",
