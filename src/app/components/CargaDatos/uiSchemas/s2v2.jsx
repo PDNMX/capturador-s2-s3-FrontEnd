@@ -45,12 +45,14 @@ let data = {
   curp: {
     "ui:placeholder": "Ejemplo: PERG850101HDF",
     "ui:enableMarkdownInDescription": true,
-    "ui:description": "Escribir los dieciocho caracteres alfanuméricos como la emitió la Secretaría de Gobernación.  En caso de no contar con ella, podrá consultarla en la siguiente página: [Consulta tu CURP](https://www.gob.mx/curp/)",
+    "ui:description":
+      "Escribir los dieciocho caracteres alfanuméricos como la emitió la Secretaría de Gobernación.  En caso de no contar con ella, podrá consultarla en la siguiente página: <a target='_blank' href='https://www.gob.mx/curp/'>Consulta tu CURP</a>",
   },
   rfc: {
     "ui:placeholder": "Ejemplo: XAXX010101000",
     "ui:enableMarkdownInDescription": true,
-    "ui:description": "Escribir los primeros diez caracteres básicos y los tres correspondientes a la homoclave. En caso de no contar con este dato, podrá consultarlo en la página del [Servicio de Administración Tributaria](https://www.sat.gob.mx/aplicacion/operacion/31274/consulta-tu-clave-de-rfc-mediante-curp)"
+    "ui:description":
+      "Escribir los primeros diez caracteres básicos y los tres correspondientes a la homoclave. En caso de no contar con este dato, podrá consultarlo en la página del <a target='_blank' href='https://www.sat.gob.mx/aplicacion/operacion/31274/consulta-tu-clave-de-rfc-mediante-curp'>Servicio de Administración Tributaria</a>",
   },
   observaciones: {
     "ui:widget": "textarea",
