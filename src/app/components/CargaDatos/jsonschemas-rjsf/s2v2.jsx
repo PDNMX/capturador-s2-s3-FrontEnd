@@ -460,13 +460,13 @@ let data = {
                 tipo: {
                   enum: ["CONTRATACION_PUBLICA"],
                 },
-                tipoArea2: {
+                tipoArea: {
                   type: "object",
                   title: "Tipo de área de adscripción",
                   description:
                     "Se deberá seleccionar el rol del área en la que labora, pudiendo, de ser el caso, elegir más de una opción:",
                   properties: {
-                    tipoArea: {
+                    tipo: {
                       title: "",
                       description: "",
                       type: "string",
@@ -475,11 +475,11 @@ let data = {
                     },
                   },
                   dependencies: {
-                    tipoArea: {
+                    tipo: {
                       oneOf: [
                         {
                           properties: {
-                            tipoArea: {
+                            tipo: {
                               enum: ["bienesServicios"],
                             },
                             areas: {
@@ -495,30 +495,40 @@ let data = {
                                   "TECNICA",
                                   "OTRA",
                                 ],
+                                enumNames: [
+                                  "Requirente",
+                                  "Contratante",
+                                  "Técnica",
+                                  "Otra (especificar)",
+                                ],
                               },
                             },
                           },
                           dependencies: {
                             areas: {
                               oneOf: [
-                                {
-                                  properties: {
-                                    areas: {
-                                      const: ["OTRA"],
-                                    },
-                                    otroValor: {
-                                      type: "string",
-                                      title: "Escribe el valor para otro",
-                                    },
-                                  },
-                                },
+                                { properties: { areas: { const: ["REQUIRENTE"], } }, },
+                                { properties: { areas: { const: ["CONTRATANTE"], } }, },
+                                { properties: { areas: { const: ["TECNICA"], } }, },
+                                { properties: { areas: { const: ["OTRA"], }, otroValor: { type: "string", title: "Especifique", }, }, },
+                                { properties: { areas: { const: ["REQUIRENTE,CONTRATANTE"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,TECNICA"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["CONTRATANTE,TECNICA"], } }, },
+                                { properties: { areas: { const: ["CONTRATANTE,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,CONTRATANTE,TECNICA"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,CONTRATANTE,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["CONTRATANTE,TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,CONTRATANTE,TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
                               ],
                             },
                           },
                         },
                         {
                           properties: {
-                            tipoArea: {
+                            tipo: {
                               enum: ["obraPublica"],
                             },
                             areas: {
@@ -535,23 +545,50 @@ let data = {
                                   "RESPONSABLE_EJECUCION",
                                   "OTRA",
                                 ],
+                                enumNames: [
+                                  "Requirente",
+                                  "Responsable de la contratación",
+                                  "Técnica",
+                                  "Responsable de la ejecucción de los trabajos",
+                                  "Otra (especificar)",
+                                ],
                               },
                             },
                           },
                           dependencies: {
                             areas: {
                               oneOf: [
-                                {
-                                  properties: {
-                                    areas: {
-                                      const: ["OTRA"],
-                                    },
-                                    otroValor: {
-                                      type: "string",
-                                      title: "Escribe el valor para otro",
-                                    },
-                                  },
-                                },
+                                { properties: { areas: { const: ["REQUIRENTE"], } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION"], } }, },
+                                { properties: { areas: { const: ["TECNICA"], } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,TECNICA"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,TECNICA"], } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["TECNICA,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,TECNICA"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,TECNICA,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,TECNICA,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["TECNICA,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,TECNICA,RESPONSABLE_EJECUCION"], } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,TECNICA,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,TECNICA,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["RESPONSABLE_CONTRATACION,TECNICA,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
+                                { properties: { areas: { const: ["REQUIRENTE,RESPONSABLE_CONTRATACION,TECNICA,RESPONSABLE_EJECUCION,OTRA"], }, otroValor: { type: "string", title: "Especifique", } }, },
                               ],
                             },
                           },
@@ -560,148 +597,6 @@ let data = {
                     },
                   },
                 },
-                /* tipoArea: {
-                  type: "object",
-                  title: "Tipo Área",
-                  required: ["bienesServicios", "obraPublica"],
-                  properties: {
-                    bienesServicios: {
-                      title: "Bienes y Servicios",
-                      type: "object",
-                      description:
-                        "Tipos de área en la que se encuentra adscrito la persona servidora pública que interviene en procesos de contratación pública.",
-                      properties: {
-                        claves: {
-                          title:
-                            "Áreas que intervienen en procedimientos de contratación pública.",
-                          type: "array",
-                          uniqueItems: true,
-                          items: {
-                            type: "string",
-                            enum: [
-                              "REQUIRENTE",
-                              "CONTRATANTE",
-                              "TECNICA",
-                              "OTRA",
-                            ],
-                          },
-                        },
-                      },
-                      dependencies: {
-                        claves: {
-                          oneOf: [
-                            {
-                              properties: {
-                                claves: { const: ["OTRA"] },
-                                otroValor: {
-                                  type: "string",
-                                  title: "Escribe el valor para otro",
-                                },
-                              },
-                            },
-                            {
-                              properties: {
-                                claves: { const: ["OTRA", "REQUIRENTE"] },
-                                otroValor: {
-                                  type: "string",
-                                  title: "Escribe el valor para otro",
-                                },
-                              },
-                            },
-                            {
-                              properties: {
-                                claves: { const: ["OTRA", "REQUIRENTE"] },
-                                otroValor: {
-                                  type: "string",
-                                  title: "Escribe el valor para otro",
-                                },
-                              },
-                            },
-                            {
-                              properties: {
-                                claves: { const: ["OTRA", "REQUIRENTE"] },
-                                otroValor: {
-                                  type: "string",
-                                  title: "Escribe el valor para otro",
-                                },
-                              },
-                            },
-                            {
-                              properties: { claves: { const: ["REQUIRENTE"] } },
-                            },
-                            {
-                              properties: {
-                                claves: {
-                                  const: ["REQUIRENTE", "CONTRATANTE"],
-                                },
-                              },
-                            },
-                            {
-                              properties: {
-                                claves: { const: ["REQUIRENTE", "TECNICA"] },
-                              },
-                            },
-                            {
-                              properties: {
-                                claves: {
-                                  const: [
-                                    "REQUIRENTE",
-                                    "CONTRATANTE",
-                                    "TECNICA",
-                                  ],
-                                },
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    },
-                    obraPublica: {
-                      title: "Obra Pública",
-                      type: "object",
-                      description:
-                        "Tipos de área en la que se encuentra adscrito la persona servidora pública que interviene en procesos de contratación pública.",
-                      properties: {
-                        claves: {
-                          title:
-                            "Áreas que intervienen en procesos de contratación de obra pública.",
-                          type: "array",
-                          uniqueItems: true,
-                          items: {
-                            type: "string",
-                            enum: [
-                              "REQUIRENTE",
-                              "RESPONSABLE_CONTRATACION",
-                              "TECNICA",
-                              "RESPONSABLE_EJECUCION",
-                              "OTRA",
-                            ],
-                          },
-                        },
-                      },
-                      dependencies: {
-                        claves: {
-                          oneOf: [
-                            {
-                              properties: {
-                                claves: {
-                                  const: ["OTRA"],
-                                },
-                                otroValor: {
-                                  type: "string",
-                                  title: "Escribe el valor para otro",
-                                },
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    },
-                  },
-
-                  description:
-                    "Tipos de área en la que se encuentra adscrito la persona servidora pública que interviene en procesos de contratación pública.",
-                },  */
                 nivelesResponsabilidad: {
                   title: "Objeto y Nivel de responsabilidad",
                   type: "object",
