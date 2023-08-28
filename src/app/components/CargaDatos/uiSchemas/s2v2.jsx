@@ -168,6 +168,10 @@ let data = {
         },
       },
     },
+      responsabilidad: {
+        'ui:enumDisabled': ["ELABORAR"]
+      }
+    
   },
 };
 

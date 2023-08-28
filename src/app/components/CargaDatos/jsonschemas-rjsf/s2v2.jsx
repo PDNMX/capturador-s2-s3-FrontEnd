@@ -1,40 +1,16 @@
 let data = {
   definitions: {
-    responsabilidad: {
-      enumNames: [
-        "Elaborar",
-        "Revisar",
-        "Firmar, Autorizar o Dictaminar",
-        "Supervisar",
-        "Emitir o Suscribir",
-      ],
-      enum: [
-        {
-          name: "ELABORAR",
-          lat: 40,
-          lon: 74,
-        },
-        {
-          name: "REVISAR",
-          lat: 40,
-          lon: 74,
-        },
-        {
-          name: "FIRMAR_AUTORIZAR_DICTAMINAR",
-          lat: 52,
-          lon: 5,
-        },
-        {
-          name: "SUPERVISAR",
-          lat: 22,
-          lon: 114,
-        },
-        {
-          name: "EMITIR_SUSCRIBIR",
-          lat: 22,
-          lon: 114,
-        },
-      ],
+    responsabilidadTipo1: {
+      enumNames: [ "Elaborar", "Revisar", "Firmar, Autorizar o Dictaminar", "Supervisar", "Emitir o Suscribir" ],
+      enum: ["ELABORAR", "REVISAR", "FIRMAR_AUTORIZAR_DICTAMINAR", "SUPERVISAR", "EMITIR_SUSCRIBIR" ]
+    },
+    responsabilidadTipo2: {
+      enumNames: [ "Elaborar", "Revisar", "Firmar, Autorizar o Dictaminar", "Supervisar" ],
+      enum: ["ELABORAR", "REVISAR", "FIRMAR_AUTORIZAR_DICTAMINAR", "SUPERVISAR" ]
+    },
+    responsabilidadTipo3: {
+      enumNames: [ "Elaborar", "Revisar", "Emitir o Suscribir" ],
+      enum: ["ELABORAR", "REVISAR", "EMITIR_SUSCRIBIR" ]
     },
   },
   type: "object",
@@ -606,7 +582,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj2: {
@@ -614,7 +590,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj3: {
@@ -622,7 +598,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj4: {
@@ -630,7 +606,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj5: {
@@ -638,7 +614,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo3",
                       },
                     },
                     idObj6: {
@@ -646,7 +622,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo3",
                       },
                     },
                   },
@@ -688,7 +664,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj2: {
@@ -696,7 +672,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj3: {
@@ -704,7 +680,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj4: {
@@ -712,7 +688,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj5: {
@@ -720,7 +696,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo3",
                       },
                     },
                   },
@@ -741,7 +717,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj2: {
@@ -749,7 +725,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj3: {
@@ -757,7 +733,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj4: {
@@ -765,7 +741,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj5: {
@@ -773,7 +749,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj6: {
@@ -781,7 +757,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo3",
                       },
                     },
                     idObj7: {
@@ -789,7 +765,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo3",
                       },
                     },
                   },
@@ -810,7 +786,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo2",
                       },
                     },
                     idObj2: {
@@ -818,7 +794,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo1",
                       },
                     },
                     idObj3: {
@@ -826,7 +802,7 @@ let data = {
                       type: "array",
                       uniqueItems: true,
                       items: {
-                        $ref: "#/definitions/responsabilidad",
+                        $ref: "#/definitions/responsabilidadTipo1",
                       },
                     },
                   },
