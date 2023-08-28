@@ -92,7 +92,7 @@ let data = {
             {
               properties: {
                 sinSegundoApellido: { const: true },
-                valor: {
+                /* valor: {
                   readOnly: true,
                   type: "string",
                   default: null,
@@ -101,7 +101,7 @@ let data = {
                   description:
                     "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
                   //example: "Gomez",
-                },
+                }, */
               },
               required: ["sinSegundoApellido"],
             },
@@ -601,58 +601,49 @@ let data = {
                   title: "Objeto y Nivel de responsabilidad",
                   type: "object",
                   properties: {
-                    identificadorObjeto1: {
-                      title:
-                        "1. AUTORIZACIONES O DICTÁMENES PREVIOS PARA LLEVAR A CABO DETERMINADO PROCEDIMIENTO DE CONTRATACIÓN.",
+                    idObj1: {
+                      title: "a) Autorizaciones o dictámenes previos para llevar a cabo determinado procedimiento de contratación",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto2: {
-                      title:
-                        "2. JUSTIFICACIÓN PARA EXCEPCIÓN A LA LICITACIÓN PÚBLICA",
+                    idObj2: {
+                      title:"b) Justificación para la excepción a la licitación pública",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto3: {
-                      title:
-                        "3. CONVOCATORIA, INVITACIÓN O SOLICITUD DE COTIZACIÓN Y, EN SU CASO, BASES DEL CONCURSO Y MODIFICACIONES.",
+                    idObj3: {
+                      title:"c) Convocatoria, invitación o solicitud de cotización y, en su caso, bases del concurso y modificaciones",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto4: {
-                      title: "4. EVALUACIÓN DE PROPOSICIONES.",
+                    idObj4: {
+                      title: "d) Evaluación de proposiciones",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto5: {
-                      title: "5. ADJUDICACIÓN DEL CONTRATO.",
+                    idObj5: {
+                      title: "e) Adjudicación del contrato",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto6: {
-                      title: "6. FORMALIZACIÓN DEL CONTRATO.",
+                    idObj6: {
+                      title: "d) Formalización del contrato",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
@@ -692,49 +683,41 @@ let data = {
                   title: "Objeto y Nivel de responsabilidad",
                   type: "object",
                   properties: {
-                    identificadorObjeto1: {
-                      title:
-                        "1. CONVOCATORIA A CONCURSO O LICITACIÓN O EXCITATIVA A PRESENTAR LA SOLICITUD DE AUTORIZACIÓN.",
+                    idObj1: {
+                      title: "a) Convocatoria a concurso o licitación o excitativa a presentar la solicitud de autorización",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto2: {
-                      title: "2. DICTÁMENES U OPINIONES PREVIOS.",
+                    idObj2: {
+                      title: "b) Dictámenes u opiniones previos",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto3: {
-                      title: "3. VISITAS DE VERIFICACIÓN.",
+                    idObj3: {
+                      title: "c) Visitas de verificación",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto4: {
-                      title:
-                        "4. EVALUACIÓN DEL CUMPLIMIENTO DE LOS REQUISITOS PARA EL OTORGAMIENTO DE LA CONCESIÓN, LICENCIA, AUTORIZACIÓN, PERMISO, O SUS PRÓRROGAS.",
+                    idObj4: {
+                      title:"d) Evaluación del cumplimiento de los requisitos para el otorgamiento de la concesión, licencia, autorización, permiso, o sus prórrogas",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto5: {
-                      title:
-                        "5. DETERMINACIÓN SOBRE EL OTORGAMIENTO DE LA CONCESIÓN, LICENCIA, AUTORIZACIÓN, PERMISO O SUS PRÓRROGAS.",
+                    idObj5: {
+                      title: "e) Determinación sobre el otorgamiento de la concesión,licencia, autorización, permiso o sus prórrogas",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
@@ -753,66 +736,57 @@ let data = {
                   title: "Objeto y Nivel de responsabilidad",
                   type: "object",
                   properties: {
-                    identificadorObjeto1: {
-                      title:
-                        "1. AUTORIZACIONES O DICTÁMENES PREVIOS PARA LLEVAR A CABO DETERMINADO PROCEDIMIENTO DE ENAJENACIÓN DE BIENES MUEBLES.",
+                    idObj1: {
+                      title: "a) Autorizaciones o dictámenes previos para llevar a cabo determinado procedimiento de enajenación de bienes muebles",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto2: {
-                      title:
-                        "2. ANÁLISIS O AUTORIZACIÓN PARA LLEVAR A CABO LA DONACIÓN, PERMUTA O DACIÓN EN PAGO",
+                    idObj2: {
+                      title: "b) Análisis o autorización para llevar a cabo la donación, permuta o dación en pago",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto3: {
-                      title: "3. MODIFICACIONES A LAS BASES.",
+                    idObj3: {
+                      title: "c) Modificaciones a las bases",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto4: {
-                      title: "4. PRESENTACIÓN Y APERTURA DE OFERTAS.",
+                    idObj4: {
+                      title: "d) Presentación y apertura de ofertas",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto5: {
-                      title: "5. EVALUACIÓN DE OFERTAS.",
+                    idObj5: {
+                      title: "e) Evaluación de ofertas",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto6: {
-                      title: "6. ADJUDICACIÓN DE LOS BIENES MUEBLES.",
+                    idObj6: {
+                      title: "f) Adjudicación de los bienes muebles",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto7: {
-                      title: "7. FORMALIZACIÓN DEL CONTRATO. ",
+                    idObj7: {
+                      title: "g) Formalización del contrato",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
@@ -831,42 +805,31 @@ let data = {
                   title: "Objeto y Nivel de responsabilidad",
                   type: "object",
                   properties: {
-                    identificadorObjeto1: {
-                      title:
-                        "1. PROPUESTAS DE ASIGNACIONES DE AVALÚOS O JUSTIPRECIACIONES DE RENTA A PERITOS QUE FORMEN PARTE DEL PADRÓN NACIONAL DE PERITOS VALUADORES DEL INDAABIN.",
+                    idObj1: {
+                      title: "a) Propuestas de asignaciones de avalúos o justipreciaciones de renta a peritos que formen parte del padrón nacional de peritos valuadores del INDAABIN",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto2: {
-                      title:
-                        "2. ASIGNACIÓN DE AVALÚOS Y JUSTIPRECIACIONES DE RENTA A PERITOS QUE FORMEN PARTE DEL PADRÓN NACIONAL DE PERITOS VALUADORES DEL INDAABIN.",
+                    idObj2: {
+                      title: "b) Asignación de avalúos y justipreciaciones de renta a peritos que formen parte del padrón nacional de peritos valuadores del INDAABIN",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
-                    identificadorObjeto3: {
-                      title:
-                        "3. EMISIÓN DE DICTÁMENES VALUATORIOS (AVALÚOS Y JUSTIPRECIACIONES DE RENTA",
+                    idObj3: {
+                      title: "c) Emisión de dictámenes valuatorios (avalúos y justipreciaciones de renta)",
                       type: "array",
-                      minItems: 1,
                       uniqueItems: true,
                       items: {
                         $ref: "#/definitions/responsabilidad",
                       },
                     },
                   },
-                  required: [
-                    "identificadorObjeto1",
-                    "identificadorObjeto2",
-                    "identificadorObjeto3",
-                  ],
                 },
               },
             },
@@ -878,8 +841,7 @@ let data = {
     observaciones: {
       type: "string",
       title: "4. OBSERVACIONES",
-      description:
-        "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",
+      description: "En este espacio se podrán realizar las aclaraciones u observaciones que se consideren pertinentes.",
     },
   },
 };

@@ -124,43 +124,44 @@ let data = {
       },
     },
     nivelesResponsabilidad: {
-      identificadorObjeto1: {
+      idObj1: {
+        /* 'ui:enumDisabled': ["ELABORAR"], */
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
         },
       },
-      identificadorObjeto2: {
+      idObj2: {
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
         },
       },
-      identificadorObjeto3: {
+      idObj3: {
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
         },
       },
-      identificadorObjeto4: {
+      idObj4: {
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
         },
       },
-      identificadorObjeto5: {
+      idObj5: {
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
         },
       },
-      identificadorObjeto6: {
+      idObj6: {
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
         },
       },
-      identificadorObjeto7: {
+      idObj7: {
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
