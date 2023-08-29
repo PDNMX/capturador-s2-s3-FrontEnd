@@ -37,11 +37,11 @@ import {
 
 import schema from './validate.s3p';
 
-// @ts-ignore
+
 const url_api= import.meta.env.VITE_URL_API;
 
 const CreateReg = ({ id, alert, catalogos, registry, flagOnlyRead }) => {
-    // @ts-ignore
+    
     return <MyForm initialValues={
         registry != undefined ?
             (registry?.particularSancionado?.domicilioMexico ? registry : { ...registry, particularSancionado: { ...registry.particularSancionado, domicilioMexico: { pais: '{"clave":"MX","valor":"México"}' } } })
@@ -417,9 +417,9 @@ function MyForm(props: MyFormProps) {
         setOpen(true);
     }
 
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
+    
+    
+    
     return <>
         <Grid container justifyContent={"center"}>
             <Typography noWrap variant="h6" className={cla.fontblack}>
@@ -792,7 +792,7 @@ function MyForm(props: MyFormProps) {
                                                 <OnChange name="particularSancionado.domicilioMexico.municipio">
                                                     {(value, previous) => {
                                                         if (value) {
-                                                            // @ts-ignore
+                                                            
                                                             requestLocalidadByMunicipio(value, values.particularSancionado.domicilioMexico.entidadFederativa);
                                                         }
                                                     }}

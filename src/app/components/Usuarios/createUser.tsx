@@ -147,13 +147,13 @@ function MyForm(props: MyFormProps ) {
                 const sistemasNew=[];
                 for (const sistema of sistemaspro){
                     if(sistema === "S2"){
-                        // @ts-ignore
+                        
                         sistemasNew.push({label : 'Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación', value: 'S2'})
                     }else if(sistema === "S3S"){
-                        // @ts-ignore
+                        
                         sistemasNew.push({label: 'Sistema de los Servidores Públicos Sancionados', value: 'S3S'});
                     }else if(sistema === "S3P"){
-                        // @ts-ignore
+                        
                         sistemasNew.push( {label: 'Sistema de los Particulares Sancionados', value: 'S3P'});
                     }
                 }
@@ -255,13 +255,13 @@ function MyForm(props: MyFormProps ) {
 
                                         for (const sistema of sistemasDisponibles){
                                             if(sistema === "S2"){
-                                                // @ts-ignore
+                                                
                                                 sistemasDataNew.push({label : 'Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación', value: 'S2'})
                                             }else if(sistema === "S3S"){
-                                                // @ts-ignore
+                                                
                                                 sistemasDataNew.push({label: 'Sistema de los Servidores Públicos Sancionados', value: 'S3S'});
                                             }else if(sistema === "S3P"){
-                                                // @ts-ignore
+                                                
                                                 sistemasDataNew.push( {label: 'Sistema de los Particulares Sancionados', value: 'S3P'});
                                             }
                                         }

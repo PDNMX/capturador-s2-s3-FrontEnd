@@ -44,7 +44,7 @@ interface MyFormProps {
 `; */
 
 function MyForm(props: MyFormProps ) {
-    const { initialValues , id , alerta ,  users } = props;
+    const { initialValues , alerta ,  users } = props;
     const alert = alerta;
     const dispatch = useDispatch();
 
@@ -104,9 +104,9 @@ function MyForm(props: MyFormProps ) {
     });
 
 
-    const redirectToRoute = (path) =>{
+    /* const redirectToRoute = (path) =>{
         history.push(path);
-    }
+    } */
 
     const cla = styles();
 
@@ -117,11 +117,11 @@ function MyForm(props: MyFormProps ) {
     ];
 
 
-    const buttonSubmittProps = { // make sure all required component's inputs/Props keys&types match
+    /* const buttonSubmittProps = { // make sure all required component's inputs/Props keys&types match
         variant:"contained",
         color:"primary",
         type:"submit"
-    }
+    } */
 
     function resetForm (form){
         form.reset();
@@ -252,7 +252,7 @@ function mapStateToProps(state,ownProps){
 }
 
 
-function mapDispatchToProps(dispatch, ownProps){
+function mapDispatchToProps(){
     return {};
 }
 

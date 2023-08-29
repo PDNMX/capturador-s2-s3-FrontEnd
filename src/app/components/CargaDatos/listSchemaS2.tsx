@@ -23,7 +23,7 @@ import {
 } from "@mui/material";
 import makeStyles from '@mui/styles/makeStyles';
 import Checkbox from '@mui/material/Checkbox';
-import {TextField, makeValidate, makeRequired, DatePicker} from 'mui-rff';
+import {TextField, makeValidate, DatePicker} from 'mui-rff';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -92,7 +92,7 @@ interface FormDataEsquemaS2 {
 }
 
 export const ListS2Schema = () => {
-    const {S2List, alerta, paginationSuper, providerUser} = useSelector(state => ({
+    const {S2List, alerta, paginationSuper} = useSelector(state => ({
         S2List: state.S2,
         alerta: state.alert,
         paginationSuper: state.pagination,
@@ -205,7 +205,7 @@ export const ListS2Schema = () => {
         const array = [];
         if (event.target.checked) {
             for (const schema of S2List) {
-                // @ts-ignore
+                
                 array.push(schema._id);
             }
         }
@@ -216,7 +216,7 @@ export const ListS2Schema = () => {
     const handleCheckboxClick = (event, id) => {
         event.stopPropagation();
         //console.log("checkbox select");
-        // @ts-ignore
+        
         const selectedIndex = selectedCheckBox.indexOf(id);
         let newSelected = [];
 
@@ -264,11 +264,11 @@ export const ListS2Schema = () => {
 
     const schema = Yup.object().shape({
         ejercicioFiscal: Yup.string().matches(new RegExp('^[0-9]{4}$'), 'Debe tener 4 dígitos'),
-        nombres: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
-        primerApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
-        segundoApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
-        idnombre: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9_\.\' ]{1,50}$'), 'no se permiten cadenas vacias , max 50 caracteres ').trim(),
-        puestoNombre: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
+        nombres: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
+        primerApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
+        segundoApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
+        idnombre: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9_]{1,50}$'), 'no se permiten cadenas vacias , max 50 caracteres ').trim(),
+        puestoNombre: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'no se permiten números, ni cadenas vacias ').trim(),
         fechaCaptura: Yup.string().nullable(true)
     });
 
@@ -311,8 +311,6 @@ export const ListS2Schema = () => {
     const redirectToRoute = (path) => {
         history.push(path);
     }
-
-    const cont = 0;
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -455,8 +453,7 @@ export const ListS2Schema = () => {
     const classes = useStyles();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
-    // @ts-ignore
-    // @ts-ignore
+    
     return (
         <div>
             <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'center'}} open={alerta.status}
@@ -505,7 +502,7 @@ export const ListS2Schema = () => {
                                 <b>Fecha última actualización</b>
                             </Typography>
                             <Typography className={classes.body2} align="left" variant="body2">
-                                {//@ts-ignore
+                                {
                                     new Date(selectedRegistro.fechaCaptura).toLocaleDateString("es-ES", optionsDate)}
                             </Typography>
                         </Grid>
@@ -782,7 +779,7 @@ export const ListS2Schema = () => {
                     <Form
                         onSubmit={onSubmit}
                         validate={validate}
-                        render={({handleSubmit, form, values, submitting}) => (
+                        render={({handleSubmit, form, submitting}) => (
                             <form onSubmit={handleSubmit} noValidate>
                                 {alerta.status === undefined &&
                                 <div>
@@ -893,7 +890,7 @@ export const ListS2Schema = () => {
                                                       root: classes.root,
                                                       checked: classes.checked
                                                   }}
-                                            // @ts-ignore
+                                            
                                                   checked={selectedCheckBox.indexOf(schema._id) > -1}
 
                                         />

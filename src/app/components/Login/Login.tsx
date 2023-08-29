@@ -17,7 +17,7 @@ import { Alert } from "@mui/material";
 import { alertActions } from "../../_actions/alert.actions";
 import { history } from "../../store/history";
 
-export const LoginV = ({}) => {
+export const LoginV = () => {
   return <MyForm initialValues={{ username: "", password: "" }} />;
 };
 

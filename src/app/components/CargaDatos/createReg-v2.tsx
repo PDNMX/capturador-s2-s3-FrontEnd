@@ -5,7 +5,6 @@ import { Grid } from "@mui/material";
 import { S2Actions } from "../../_actions/s2.action";
 import Typography from "@mui/material/Typography";
 import { connect } from "react-redux";
-import makeStyles from "@mui/styles/makeStyles";
 import { history } from "../../store/history";
 import { useDispatch } from "react-redux";
 
@@ -100,7 +99,7 @@ interface MyFormProps {
 }
 
 function MyForm(props: MyFormProps) {
-  const { initialValues, alerta, catalogos, id } = props;
+  const { initialValues, alerta, id } = props;
   const alert = alerta;
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
@@ -111,45 +110,10 @@ function MyForm(props: MyFormProps) {
   //const validate = makeValidate(schema);
   //const required = makeRequired(schema)
 
-  const styles = makeStyles({
-    primary: {
-      main: "#D8ACD8",
-      light: "#bdffff",
-      dark: "#34b3eb",
-    },
-    fontblack: {
-      color: "#666666",
-    },
-
-    titulo: {
-      fontWeight: "bold",
-    },
-  });
-
-    const redirectToRoute = (path: any) => {
-        history.push(path);
-        dispatch(alertActions.clear());
-    }
-
-  //const cla = styles();
-
-  /* const buttonSubmittProps = { // make sure all required component's inputs/Props keys&types match
-        variant: "contained",
-        color: "primary",
-        type: "submit"
-    } */
-
-  // yes, this can even be async!
-  /* async function handleSubmit({ formData, e, }: { formData: any | object; e: any; }) {
-    console.log("En submit");
-    console.log(formData);
-    if (id != undefined) {
-      dispatch(S2Actions.requestEditDo({ ...formData, _id: id }));
-    } else {
-      dispatch(S2Actions.requestCreationS2v2(formData));
-    }
-    setOpen(true);
-  } */
+  const redirectToRoute = (path: any) => {
+      history.push(path);
+      dispatch(alertActions.clear());
+  }
 
   const onSubmit = ({ formData }: ISubmitEvent<FormData>) => {
     console.log("Data submitted: ", formData);

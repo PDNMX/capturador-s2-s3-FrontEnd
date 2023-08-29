@@ -28,8 +28,8 @@ interface FormDataEsquemaS2 {
     nombres?: string,
     primerApellido?: string,
     segundoApellido?: string,
-    genero?: {},
-    institucionDependencia?: {},
+    genero?: object,
+    institucionDependencia?: object,
     tipoArea?: [],
     tipoProcedimiento?: [],
     nivelResponsabilidad?: [],
@@ -280,10 +280,10 @@ function MyForm(props: MyFormProps) {
                                 </Grid>}
                                 {catalogos.tipoArea &&
                                 <OnChange name="tipoArea">
-                                    {(value, previous) => {
+                                    {(value) => {
                                         for (const item of value) {
                                             if (item == "") {
-                                                // @ts-ignore
+                                                
                                                 values.tipoArea = [];
                                             }
                                         }
@@ -300,10 +300,10 @@ function MyForm(props: MyFormProps) {
 
                                 {catalogos.nivelResponsabilidad &&
                                 <OnChange name="nivelResponsabilidad">
-                                    {(value, previous) => {
+                                    {(value) => {
                                         for (const item of value) {
                                             if (item == "") {
-                                                // @ts-ignore
+                                                
                                                 values.nivelResponsabilidad = [];
                                             }
                                         }

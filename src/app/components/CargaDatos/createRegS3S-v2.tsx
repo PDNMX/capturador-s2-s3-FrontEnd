@@ -38,7 +38,7 @@ interface FormDataEsquemaS3S {
     SPSnombres?: string;
     SPSprimerApellido?: string;
     SPSsegundoApellido?: string;
-    SPSgenero?: {};
+    SPSgenero?: object;
     SPSpuesto?: string;
     SPSnivel?: string;
     autoridadSancionadora?: string;
@@ -61,8 +61,8 @@ interface FormDataEsquemaS3S {
     inhabilitacionFechaInicial?: string;
     inhabilitacionFechaFinal?: string;
     observaciones?: string;
-    documents?: [{ id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: {} }];
-    documentElement?: { id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: {} };
+    documents?: [{ id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: object }];
+    documentElement?: { id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: object };
 }
 
 interface MyFormProps {

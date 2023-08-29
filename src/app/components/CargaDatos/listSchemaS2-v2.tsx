@@ -420,7 +420,7 @@ export const ListS2Schemav2 = () => {
                 align="left"
                 variant="body2">
                 {
-                  //@ts-ignore
+                  
                   new Date(selectedRegistro.fechaCaptura).toLocaleDateString(
                     "es-MX",
                     

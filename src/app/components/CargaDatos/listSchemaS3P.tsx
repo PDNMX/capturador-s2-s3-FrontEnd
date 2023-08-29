@@ -278,7 +278,7 @@ export const ListS3PSchema = () => {
         const array = [];
         if (event.target.checked) {
             for (const schema of S3PList) {
-                // @ts-ignore
+                
                 array.push(schema._id);
             }
         }
@@ -287,7 +287,7 @@ export const ListS3PSchema = () => {
 
     const handleCheckboxClick = (event, id) => {
         event.stopPropagation();
-        // @ts-ignore
+        
         const selectedIndex = selectedCheckBox.indexOf(id);
         let newSelected = [];
 
@@ -332,11 +332,11 @@ export const ListS3PSchema = () => {
     }
 
     const schema = Yup.object().shape({
-        expediente: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9\/ ]{1,25}$'), 'No se permiten cadenas vacías, máximo 25 caracteres').trim(),
-        idnombre: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9_\.\' ]{1,50}$'), 'No se permiten cadenas vacías, máximo 50 caracteres').trim(),
-        SP3nombres: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
-        SP3primerApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
-        SP3segundoApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
+        expediente: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9]{1,25}$'), 'No se permiten cadenas vacías, máximo 25 caracteres').trim(),
+        idnombre: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9_]{1,50}$'), 'No se permiten cadenas vacías, máximo 50 caracteres').trim(),
+        SP3nombres: Yup.string().matches(new RegExp("^['A-zÀ-ú- ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
+        SP3primerApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú- ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
+        SP3segundoApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú- ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
         fechaCaptura: Yup.string().nullable(true),
     });
 
@@ -365,7 +365,7 @@ export const ListS3PSchema = () => {
                     const arrayObjTipoSancion = value;
                     const acumulado = []
                     for (const obSancion of arrayObjTipoSancion) {
-                        // @ts-ignore
+                        
                         acumulado.push(JSON.parse(obSancion).clave);
                     }
                     newQuery["tipoSancion.clave"] = {$in: acumulado};
@@ -403,8 +403,6 @@ export const ListS3PSchema = () => {
     const redirectToRoute = (path) => {
         history.push(path);
     }
-
-    const cont = 0;
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -545,7 +543,7 @@ export const ListS3PSchema = () => {
     const classes = useStyles();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
-    // @ts-ignore
+    
 
     return (
         <div>
@@ -594,7 +592,7 @@ export const ListS3PSchema = () => {
                                 <b>Fecha última actualización</b>
                             </Typography>
                             <Typography className={classes.body2} align="left" variant="body2">
-                                {//@ts-ignore
+                                {
                                     new Date(selectedRegistro.fechaCaptura).toLocaleDateString("es-ES", optionsDate)
                                 }
                             </Typography>
@@ -701,7 +699,7 @@ export const ListS3PSchema = () => {
                                 <b>Fecha</b>
                             </Typography>
                             <Typography className={classes.body2} align="left" variant="body2">
-                                {//@ts-ignore
+                                {
                                     selectedRegistro.resolucion?.fechaNotificacion ? new Date(selectedRegistro.resolucion.fechaNotificacion + "T00:00:00.000").toLocaleDateString("es-ES", optionsOnlyDate) :
                                         <Nota/>
                                 }
@@ -749,7 +747,7 @@ export const ListS3PSchema = () => {
                                 <b>Fecha inicial</b>
                             </Typography>
                             <Typography className={classes.body2} align="left" variant="body2">
-                                {//@ts-ignore
+                                {
                                     selectedRegistro.inhabilitacion?.fechaInicial ? new Date(selectedRegistro.inhabilitacion.fechaInicial + "T00:00:00.000").toLocaleDateString("es-ES", optionsOnlyDate) :
                                         <Nota/>
                                 }
@@ -760,7 +758,7 @@ export const ListS3PSchema = () => {
                                 <b>Fecha final</b>
                             </Typography>
                             <Typography className={classes.body2} align="left" variant="body2">
-                                {//@ts-ignore
+                                {
                                     selectedRegistro.inhabilitacion?.fechaFinal ? new Date(selectedRegistro.inhabilitacion.fechaFinal + "T00:00:00.000").toLocaleDateString("es-ES", optionsOnlyDate) :
                                         <Nota/>
                                 }
@@ -1220,10 +1218,10 @@ export const ListS3PSchema = () => {
                                         </Grid>}
                                         {catalogos.tipoSancion &&
                                         <OnChange name="tipoSancion">
-                                            {(value, previous) => {
+                                            {(value) => {
                                                 for (const item of value) {
                                                     if (item == "") {
-                                                        // @ts-ignore
+                                                        
                                                         values.tipoSancion = [];
                                                     }
                                                 }
@@ -1320,7 +1318,7 @@ export const ListS3PSchema = () => {
                                                       root: classes.root,
                                                       checked: classes.checked
                                                   }}
-                                            // @ts-ignore
+                                            
                                                   checked={selectedCheckBox.indexOf(schema._id) > -1}
 
                                         />

@@ -223,7 +223,7 @@ export const ListS3SSchema = () => {
         const array = [];
         if (event.target.checked) {
             for (const schema of S3SList) {
-                // @ts-ignore
+                
                 array.push(schema._id);
             }
         }
@@ -232,7 +232,7 @@ export const ListS3SSchema = () => {
 
     const handleCheckboxClick = (event, id) => {
         event.stopPropagation();
-        // @ts-ignore
+        
         const selectedIndex = selectedCheckBox.indexOf(id);
         let newSelected = [];
 
@@ -279,11 +279,11 @@ export const ListS3SSchema = () => {
     }
 
     const schema = Yup.object().shape({
-        expediente: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9\/ ]{1,25}$'), 'No se permiten cadenas vacías, máximo 25 caracteres').trim(),
-        idnombre: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9_\.\' ]{1,50}$'), 'No se permiten cadenas vacías, máximo 50 caracteres').trim(),
-        SPSnombres: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
-        SPSprimerApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
-        SPSsegundoApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-\. ]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
+        expediente: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9]{1,25}$'), 'No se permiten cadenas vacías, máximo 25 caracteres').trim(),
+        idnombre: Yup.string().matches(new RegExp('^[A-zÀ-ú-0-9_]{1,50}$'), 'No se permiten cadenas vacías, máximo 50 caracteres').trim(),
+        SPSnombres: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
+        SPSprimerApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
+        SPSsegundoApellido: Yup.string().matches(new RegExp("^['A-zÀ-ú-]{1,25}$"), 'No se permiten números, ni cadenas vacías máximo 25 caracteres').trim(),
         inhabilitacionFechaFinal: Yup.string().nullable(true),
         fechaCaptura: Yup.string().nullable(true),
     });
@@ -316,7 +316,7 @@ export const ListS3SSchema = () => {
                     const arrayObjTipoSancion = value;
                     const acumulado = []
                     for (const obSancion of arrayObjTipoSancion) {
-                        // @ts-ignore
+                        
                         acumulado.push(JSON.parse(obSancion).clave);
                     }
                     newQuery["tipoSancion.clave"] = {$in: acumulado};
@@ -491,8 +491,8 @@ export const ListS3SSchema = () => {
     const classes = useStyles();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
-    // @ts-ignore
-    // @ts-ignore
+    
+    
     return (
         <div>
             <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'center'}} open={alerta.status}
@@ -541,7 +541,7 @@ export const ListS3SSchema = () => {
                                     <b>Fecha última actualización</b>
                                 </Typography>
                                 <Typography className={classes.body2} align="left" variant="body2">
-                                    {//@ts-ignore
+                                    {
                                         new Date(selectedRegistro.fechaCaptura).toLocaleDateString("es-ES", optionsDate)}
                                 </Typography>
                             </Grid>
@@ -678,7 +678,7 @@ export const ListS3SSchema = () => {
                                     <b>Fecha</b>
                                 </Typography>
                                 <Typography className={classes.body2} align="left" variant="body2">
-                                    {//@ts-ignore
+                                    {
                                         selectedRegistro.fechaResolucion ? new Date(selectedRegistro.resolucion?.fechaResolucion + "T00:00:00.000").toLocaleDateString("es-ES", optionsOnlyDate) :
                                             <Nota/>}
                                 </Typography>
@@ -716,7 +716,7 @@ export const ListS3SSchema = () => {
                                 </Typography>
 
                                 <Typography className={classes.body2} align="left" variant="body2">
-                                    {//@ts-ignore
+                                    {
                                         selectedRegistro.inhabilitacion?.fechaInicial ? new Date(selectedRegistro.inhabilitacion.fechaInicial + "T00:00:00.000").toLocaleDateString("es-ES", optionsOnlyDate) :
                                             <Nota/>
                                     }
@@ -729,7 +729,7 @@ export const ListS3SSchema = () => {
                                     <b>Fecha final</b>
                                 </Typography>
                                 <Typography className={classes.body2} align="left" variant="body2">
-                                    {//@ts-ignore
+                                    {
                                         selectedRegistro.inhabilitacion?.fechaFinal ? new Date(selectedRegistro.inhabilitacion.fechaFinal + "T00:00:00.000").toLocaleDateString("es-ES", optionsOnlyDate) :
                                             <Nota/>
                                     }
@@ -896,7 +896,7 @@ export const ListS3SSchema = () => {
                                             {(value, previous) => {
                                                 for (const item of value) {
                                                     if (item == "") {
-                                                        // @ts-ignore
+                                                        
                                                         values.tipoSancion = [];
                                                     }
                                                 }
@@ -987,7 +987,7 @@ export const ListS3SSchema = () => {
                                                       root: classes.root,
                                                       checked: classes.checked
                                                   }}
-                                            // @ts-ignore
+                                            
                                                   checked={selectedCheckBox.indexOf(schema._id) > -1}
 
                                         />

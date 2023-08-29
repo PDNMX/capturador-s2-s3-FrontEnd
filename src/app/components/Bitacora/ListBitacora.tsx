@@ -1,6 +1,6 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
     Table,
     TableBody,
@@ -21,20 +21,19 @@ import TablePaginationActions from '../Common/TablePaginationActionsProps';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Alert } from '@mui/material';
 import { history } from "../../store/history";
-import withStyles from '@mui/styles/withStyles';
 import { CSVLink } from "react-csv";
 
 
 export const ListBitacora = () => {
 
-    const { providers, alerta, providerSelect, idUser, bitacora } = useSelector(state => ({
+    const { bitacora } = useSelector(state => ({
         providers: state.providers,
         alerta: state.alert,
         providerSelect: state.providerSelect,
         idUser: state.userInSession,
         bitacora: state.bitacora
     }));
-    const dispatch = useDispatch();
+    /* const dispatch = useDispatch(); */
     const [pagination, setPagination] = React.useState({ page: 0, pageSize: 10 });
 
     const handleChangePage = (event, newPage) => {
@@ -51,11 +50,11 @@ export const ListBitacora = () => {
     };
 
 
-    const StyledTableCell = withStyles({
+    /* const StyledTableCell = withStyles({
         root: {
             color: '#666666'
         }
-    })(TableCell);
+    })(TableCell); */
 
     const redirectToRoute = (path) => {
         history.push(path);
