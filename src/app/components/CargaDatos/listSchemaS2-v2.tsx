@@ -54,7 +54,10 @@ interface FormDataEsquemaS2 {
   ramo?: { clave?: number; valor?: string };
   nombres?: string;
   primerApellido?: string;
-  segundoApellido?: string;
+  segundoApellido?: {
+    valor?: string;
+    sinSegundoApellido?: boolean;
+  };
   rfc?: string;
   curp?: string;
   genero?: {
@@ -419,13 +422,9 @@ export const ListS2Schemav2 = () => {
                 className={classes.body2}
                 align="left"
                 variant="body2">
-                {
-                  
-                  new Date(selectedRegistro.fechaCaptura).toLocaleDateString(
-                    "es-MX",
-                    
-                  )
-                }
+                {new Date(selectedRegistro.fechaCaptura).toLocaleDateString(
+                  "es-MX",
+                )}
               </Typography>
             </Grid>
 
@@ -468,8 +467,9 @@ export const ListS2Schemav2 = () => {
                 className={classes.body2}
                 align="left"
                 variant="body2">
-                {selectedRegistro.segundoApellido ? (
-                  selectedRegistro.segundoApellido
+                {selectedRegistro.segundoApellido &&
+                selectedRegistro.segundoApellido.sinSegundoApellido === false ? (
+                  selectedRegistro.segundoApellido.valor
                 ) : (
                   <Nota />
                 )}
@@ -945,7 +945,10 @@ export const ListS2Schemav2 = () => {
                       <StyledTableCell style={{ width: "25%" }} align="left">
                         {schema.nombres && schema.nombres + " "}
                         {schema.primerApellido && schema.primerApellido + " "}
-                        {schema.segundoApellido.sinSegundoApellido && schema.segundoApellido.sinSegundoApellido === true ? "" : schema.segundoApellido.valor}
+                        {schema.segundoApellido &&
+                        schema.segundoApellido.sinSegundoApellido === true
+                          ? ""
+                          : schema.segundoApellido.valor}
                         {/* {schema.segundoApellido && schema.segundoApellido} */}
                       </StyledTableCell>
                       {schema.entePublico && (
@@ -983,7 +986,6 @@ export const ListS2Schemav2 = () => {
                             </Button>
                           </Button>
                         </Tooltip>
-
                       </StyledTableCell>
                     </TableRow>
                   </TableBody>
