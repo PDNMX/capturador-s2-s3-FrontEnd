@@ -1985,6 +1985,4 @@ let data = {
   },
 };
 
-let data2 = {};
-
 export default data;
