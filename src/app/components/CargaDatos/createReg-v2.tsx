@@ -142,6 +142,7 @@ function MyForm(props: MyFormProps) {
         <Divider />
         <CardContent>
           <Grid container>
+          <Grid item xs={12}>
             <Form
               schema={schema}
               validator={validator}
@@ -156,6 +157,7 @@ function MyForm(props: MyFormProps) {
               noHtml5Validate={true}
               showErrorList={false}
             />
+            </Grid>
           </Grid>
         </CardContent>
       </Card>

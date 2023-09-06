@@ -54,15 +54,16 @@ function Proveedor(props: MyFormProps) {
       },
       sistemas: {
         type: "array",
-        title: "Selecciona el sistema",
+        title: "Sistemas del proveedor",
+        description: "Selecciona los sistemas que se podrán usar con el proveedor",
         uniqueItems: true,
         items: {
           type: "string",
           enum: ["S2", "S3S", "S3P"],
           enumNames: [
-            "Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación",
-            "Sistema de los Servidores Públicos Sancionados",
-            "Sistema de los Particulares Sancionados",
+            "Servidores Públicos que Intervienen en Procedimientos de Contratación (S2)",
+            "Servidores Públicos Sancionados (S3)",
+            "Particulares Sancionados (S3)",
           ],
         },
       },
@@ -113,6 +114,7 @@ function Proveedor(props: MyFormProps) {
           <Divider />
           <CardContent>
             <Grid container>
+            <Grid item xs={12}>
               {loaderDisplay == false && (
                 <Form
                   schema={schema}
@@ -126,6 +128,7 @@ function Proveedor(props: MyFormProps) {
                   showErrorList={false}
                 />
               )}
+              </Grid>
             </Grid>
           </CardContent>
         </Card>

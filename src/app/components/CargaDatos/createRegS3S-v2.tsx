@@ -88,7 +88,7 @@ function MyForm(props: MyFormProps) {
     }; */
 
     // yes, this can even be async!
-    async function handleSubmit({ formData, e } : { formData: any | object, e: any }) {
+    const handleSubmit = ({ formData }: ISubmitEvent<FormData>) => {
         /* console.log(formData); */
         if (id != undefined) {
             dispatch(S3SActions.requestCreationS3S({ ...formData, _id: id }));
@@ -102,29 +102,19 @@ function MyForm(props: MyFormProps) {
     const uiSchema: UiSchema = uiS3v2;
     //console.log(initialValues);
     const log = (type: any) => console.log.bind(console, type);
-    const handleChange = ({ formData, e }: { formData: any | object, e: any  }) => console.log(formData);
+    const handleChange = ({ formData}: any) => console.log(formData);
 
     return (
         <Grid item xs={12}>
             <Card>
                 <CardHeader
                     title="Servidores públicos de la Administración Pública Federal que intervienen en procedimientos de contrataciones públicas"
-                    /* subheader="September 14, 2016" */
+                    subheader={id != undefined ? "Edición" : "Nuevo registro"}
                 />
-                {/* <Grid item xs={12}>
-                    <Typography noWrap variant="h6" className={cla.fontblack}>
-                        <b>{id != undefined ? "Edición" : "Captura"}</b>
-                    </Typography>
-                </Grid> */}
-                {/* <CardMedia
-                    component="img"
-                    height="194"
-                    image="/static/images/cards/paella.jpg"
-                    alt="Paella dish"
-                /> */}
                 <Divider />
             <CardContent>
-                <Grid container columns={50}>
+                <Grid container>
+                <Grid item xs={12}>
                 <Form
                     schema={schema}
                     validator={validator}
@@ -137,6 +127,7 @@ function MyForm(props: MyFormProps) {
                     liveOmit={true}
                     /* liveValidate={true} */
                 />
+                </Grid>
                 </Grid>
             </CardContent>       
             </Card>
