@@ -94,9 +94,17 @@ let data = {
       items: {
         clave: {
           "ui:widget": "RadioWidget",
-          /* "ui:options": {
+          "ui:options": {
             inline: true
-          }, */
+          }, 
+        },
+        amonestacionPublicaPrivada: {
+          tipoAmonestacion: {
+            "ui:widget": "RadioWidget",
+            "ui:options": {
+              inline: true
+          },
+          }
         },
       },
     },
@@ -201,9 +209,9 @@ let data = {
       items: {
         clave: {
           "ui:widget": "RadioWidget",
-          /* "ui:options": {
+          "ui:options": {
             inline: true
-          }, */
+          },
         },
       },
     },
