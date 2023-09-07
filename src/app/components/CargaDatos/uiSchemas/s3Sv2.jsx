@@ -103,10 +103,20 @@ let data = {
         "ui:widget": "textarea",
         "ui:options": {
           rows: 10,
-          label: "4. OBSERVACIONES",
+          label: "6. OBSERVACIONES",
         },
         "ui:placeholder": "..."
       },
+      "ui:submitButtonOptions": {
+        submitText: "Guardar",
+        norender: false,
+        props: {
+          disabled: false,
+          color: "primary",
+          size: "large",
+        },
+      },
+    
     },
   },
   faltaGrave: {
@@ -199,10 +209,20 @@ let data = {
         "ui:widget": "textarea",
         "ui:options": {
           rows: 10,
-          label: "4. OBSERVACIONES",
+          label: ". OBSERVACIONES",
         },
         "ui:placeholder": "..."
       },
+      "ui:submitButtonOptions": {
+        submitText: "Guardar",
+        norender: false,
+        props: {
+          disabled: false,
+          color: "primary",
+          size: "large",
+        },
+      },
+    
     },
   },
 };
