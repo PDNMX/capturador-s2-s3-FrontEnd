@@ -67,16 +67,6 @@ let data = {
       "ui:description":
         "Escribir los primeros diez caracteres básicos y los tres correspondientes a la homoclave. En caso de no contar con este dato, podrá consultarlo en la página del <a target='_blank' href='https://www.sat.gob.mx/aplicacion/operacion/31274/consulta-tu-clave-de-rfc-mediante-curp'>Servicio de Administración Tributaria</a>.",
     },
-    "ui:submitButtonOptions": {
-      submitText: "Guardar",
-      norender: false,
-      props: {
-        disabled: false,
-        color: "primary",
-        size: "large",
-      },
-    },
-  
     entePublico: {
       nombre: {
         "ui:placeholder": "Ejemplo: Secretaría de Hacienda y Crédito Público",
@@ -99,27 +89,37 @@ let data = {
           inline: true,
         },
       },
-      observaciones: {
-        "ui:widget": "textarea",
-        "ui:options": {
-          rows: 10,
-          label: "6. OBSERVACIONES",
-        },
-        "ui:placeholder": "..."
-      },
-      "ui:submitButtonOptions": {
-        submitText: "Guardar",
-        norender: false,
-        props: {
-          disabled: false,
-          color: "primary",
-          size: "large",
+    },
+    tipoSancion: {
+      items: {
+        clave: {
+          "ui:widget": "RadioWidget",
+          /* "ui:options": {
+            inline: true
+          }, */
         },
       },
-    
+    },
+    observaciones: {
+      "ui:widget": "textarea",
+      "ui:options": {
+        rows: 10,
+        label: "4. OBSERVACIONES",
+      },
+      "ui:placeholder": "..."
+    },
+    "ui:submitButtonOptions": {
+      submitText: "Guardar",
+      norender: false,
+      props: {
+        disabled: false,
+        color: "primary",
+        size: "large",
+      },
     },
   },
   faltaGrave: {
+    
     expediente: {
       "ui:placeholder": "Ejemplo: 123456789",
     },
@@ -174,15 +174,6 @@ let data = {
       "ui:description":
         "Escribir los primeros diez caracteres básicos y los tres correspondientes a la homoclave. En caso de no contar con este dato, podrá consultarlo en la página del <a target='_blank' href='https://www.sat.gob.mx/aplicacion/operacion/31274/consulta-tu-clave-de-rfc-mediante-curp'>Servicio de Administración Tributaria</a>.",
     },
-    "ui:submitButtonOptions": {
-      submitText: "Guardar",
-      norender: false,
-      props: {
-        disabled: false,
-        color: "primary",
-        size: "large",
-      },
-    },
     entePublico: {
       nombre: {
         "ui:placeholder": "Ejemplo: Secretaría de Hacienda y Crédito Público",
@@ -205,24 +196,33 @@ let data = {
           inline: true,
         },
       },
-      observaciones: {
-        "ui:widget": "textarea",
-        "ui:options": {
-          rows: 10,
-          label: ". OBSERVACIONES",
-        },
-        "ui:placeholder": "..."
-      },
-      "ui:submitButtonOptions": {
-        submitText: "Guardar",
-        norender: false,
-        props: {
-          disabled: false,
-          color: "primary",
-          size: "large",
+    },
+    tipoSancion: {
+      items: {
+        clave: {
+          "ui:widget": "RadioWidget",
+          /* "ui:options": {
+            inline: true
+          }, */
         },
       },
-    
+    },
+    observaciones: {
+      "ui:widget": "textarea",
+      "ui:options": {
+        rows: 10,
+        label: "4. OBSERVACIONES",
+      },
+      "ui:placeholder": "..."
+    },
+    "ui:submitButtonOptions": {
+      submitText: "Guardar",
+      norender: false,
+      props: {
+        disabled: false,
+        color: "primary",
+        size: "large",
+      },
     },
   },
 };
