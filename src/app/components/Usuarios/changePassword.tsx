@@ -89,14 +89,6 @@ function MyForm(props: MyFormProps) {
   const validate = makeValidate(schema);
   //const required = makeRequired(schema)
 
-  const redirectToRoute = () => {
-    const rol = localStorage.getItem("rol");
-    if (rol == "1") {
-      history.push("/usuarios");
-    } else {
-      history.push("/captura/S2v2");
-    }
-  };
 
   const changepassword = () => {
     history.push("/usuario/cambiarcontrasena");
@@ -180,14 +172,6 @@ function MyForm(props: MyFormProps) {
                             type="submit"
                             disabled={submitting}>
                             Guardar
-                          </Button>
-                        </Grid>
-                        <Grid item sx={{ ml:1, mb:2 }}>
-                          <Button
-                            onClick={() => redirectToRoute()}
-                            variant="contained"
-                            type="submit">
-                            Cancelar
                           </Button>
                         </Grid>
                       </Grid>
