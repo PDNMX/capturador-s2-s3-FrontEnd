@@ -1893,7 +1893,7 @@ export function* fillUpdateRegS2() {
 		let payload = jwt_decode(token);
 		query['idUser'] = payload.idUser;
 
-		const respuestaArray = yield axios.post(url_api + `/listSchemaS2`, query, {
+		const respuestaArray = yield axios.post(url_api + `/listS2v2`, query, {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
