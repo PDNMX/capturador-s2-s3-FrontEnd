@@ -48,6 +48,8 @@ import {ListS2Schema} from "../CargaDatos/listSchemaS2";
 
 import {ListS2Schemav2} from "../CargaDatos/listSchemaS2-v2";
 import {ListS3SSchemav2} from "../CargaDatos/listSchemaS3S-v2";
+import {ListS3PSchemav2} from "../CargaDatos/listSchemaS3P-v2";
+
 
 import {ConnectedConsultarBitacora} from "../Bitacora/ConsultarBitacora";
 import {ListBitacora} from "../Bitacora/ListBitacora";
@@ -424,7 +426,7 @@ export const MenuV =({ vistaRender, match , closeSession }) => {
                             item==="S3P" &&
                                 <Collapse in={checkedAdminDatosS3P} key="S3P">
                                     <Tooltip title="Particulares Sancionados" disablePadding>
-                                        <ListItem onClick={ () => redirectToRoute("/consulta/S3P")} key={'m1s3p'}>
+                                        <ListItem onClick={ () => redirectToRoute("/consulta/S3Pv2")} key={'m1s3pv2'}>
                                             <ListItemButton sx={{ pl: 3.5 }}>
                                                 <ListItemIcon>
                                                     <CircleIcon sx={{maxHeight: '8px'}}/>
@@ -589,6 +591,7 @@ export const MenuV =({ vistaRender, match , closeSession }) => {
 
                         {vistaRender === "S2Schemav2" && <ListS2Schemav2/> }
                         {vistaRender === "S3SSchemav2" && <ListS3SSchemav2/> }
+                        {vistaRender === "S3PSchemav2" && <ListS3PSchemav2/> }
                         {/* ----------- NUEVAS VERSIONES - FIN ----------- */}
 
                         {vistaRender === "createRegS3S" && <ConnectedCreateRegS3S/> }

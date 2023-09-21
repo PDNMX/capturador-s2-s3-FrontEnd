@@ -902,7 +902,7 @@ export const ListS2Schemav2 = () => {
 
       <Grid item xs={12}>
         <Card>
-          <CardHeader title="Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación" />
+          <CardHeader title="Sistema de Servidores Públicos que Intervienen en Procedimientos de Contratación" subheader="Información Registrada" />
           <Divider />
           <CardContent>
             <TableContainer component={Paper}>
