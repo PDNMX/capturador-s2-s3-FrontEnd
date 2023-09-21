@@ -9,8 +9,8 @@ const useStyles = makeStyles({
 export default function Nota() {
     const classes = useStyles();
     return(
-        <div className={classes.nota}>
+        <span className={classes.nota}>
             (DNC)
-        </div>
+        </span>
     );
 }

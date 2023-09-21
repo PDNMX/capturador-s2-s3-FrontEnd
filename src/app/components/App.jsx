@@ -19,9 +19,8 @@ import { ResetPasswordV } from "./Login/ResetPassword";
 
 export const App = () => (
   <Router history={history}>
-    <>
       <Provider store={storeValidate}>
-        <>
+        
           <Route
             exact
             path="/"
@@ -939,8 +938,7 @@ export const App = () => (
               }
             }}
           />
-        </>
+
       </Provider>
-    </>
   </Router>
 );

@@ -4,7 +4,10 @@ import validator from "@rjsf/validator-ajv8";
 import Form from "@rjsf/mui";
 import { useDispatch, connect } from "react-redux";
 
-import { requestCreationProvider, requestEditProvider, } from "../../store/mutations";
+import {
+  requestCreationProvider,
+  requestEditProvider,
+} from "../../store/mutations";
 import { history } from "../../store/history";
 import {
   DialogContent,
@@ -19,7 +22,11 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 
-const CreateProvider = ({ id, provider, alert, }: {
+const CreateProvider = ({
+  id,
+  provider,
+  alert,
+}: {
   id: string;
   provider: object;
   alert: any;
@@ -43,6 +50,7 @@ interface MyFormProps {
 function Proveedor(props: MyFormProps) {
   let { initialValues, id, alerta } = props;
   const alert = alerta;
+  alert.status = false;
   const [loaderDisplay, setLoaderDisplay] = React.useState(false);
   const schema: RJSFSchema = {
     type: "object",
@@ -55,7 +63,8 @@ function Proveedor(props: MyFormProps) {
       sistemas: {
         type: "array",
         title: "Sistemas del proveedor",
-        description: "Selecciona los sistemas que se podrán usar con el proveedor",
+        description:
+          "Selecciona los sistemas que se podrán usar con el proveedor",
         uniqueItems: true,
         items: {
           type: "string",
@@ -75,14 +84,14 @@ function Proveedor(props: MyFormProps) {
       submitText: "Guardar",
       props: {
         className: "btn btn-info",
-        size: "large"
+        size: "large",
       },
     },
     dependencia: {
       "ui:autofocus": true,
       props: {
         fullWidth: true,
-      }
+      },
     },
     sistemas: {
       "ui:widget": "checkboxes",
@@ -105,7 +114,7 @@ function Proveedor(props: MyFormProps) {
 
   return (
     <>
-      <Grid item xs={12} >
+      <Grid item xs={12}>
         <Card>
           <CardHeader
             title="PROVEEDOR DE DATOS"
@@ -114,20 +123,20 @@ function Proveedor(props: MyFormProps) {
           <Divider />
           <CardContent>
             <Grid container>
-            <Grid item xs={12}>
-              {loaderDisplay == false && (
-                <Form
-                  schema={schema}
-                  validator={validator}
-                  /* onChange={log('changed')} */
-                  onSubmit={handleSubmit}
-                  /* onError={log("errors")} */
-                  uiSchema={uiSchema}
-                  formData={initialValues}
-                  liveOmit={true}
-                  showErrorList={false}
-                />
-              )}
+              <Grid item xs={12}>
+                {loaderDisplay == false && (
+                  <Form
+                    schema={schema}
+                    validator={validator}
+                    /* onChange={log('changed')} */
+                    onSubmit={handleSubmit}
+                    /* onError={log("errors")} */
+                    uiSchema={uiSchema}
+                    formData={initialValues}
+                    liveOmit={true}
+                    showErrorList={false}
+                  />
+                )}
               </Grid>
             </Grid>
           </CardContent>
