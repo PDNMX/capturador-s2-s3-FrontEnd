@@ -9,10 +9,5 @@ export default defineConfig({
       global: {},
       stream: {},
       process: {},
-    },
-  resolve: {
-    alias: {
-      inherits: './inherits.js',
-    },
-  },
+    }
 })
