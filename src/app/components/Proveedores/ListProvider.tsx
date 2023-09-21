@@ -458,30 +458,21 @@ export const ListProvider = () => {
                             </TableCell>
                             <TableCell style={{ width: 230 }} align="center">
                               <Tooltip title="Más información" placement="top">
-                                <Button
-                                  onClick={() =>
-                                    handleOpenModalProviderInfo(provider)
-                                  }>
                                   <IconButton
+                                  onClick={() => handleOpenModalProviderInfo(provider) }
                                     style={{ color: "#34b3eb" }}
                                     aria-label="expand row"
                                     size="small">
                                     <VisibilityIcon />
                                   </IconButton>
-                                </Button>
                               </Tooltip>
                               <Tooltip title="Editar proveedor" placement="top">
-                                <Button
-                                  onClick={() =>
-                                    redirectToRoute(
-                                      `/proveedor/editar/${provider._id}`,
-                                    )
-                                  }
-                                  style={{ color: "gray" }}>
-                                  <EditOutlinedIcon
-                                    style={{ color: "#ffe01b" }}
-                                  />
-                                </Button>
+                                <IconButton
+                                  onClick={() => redirectToRoute( `/proveedor/editar/${provider._id}`, ) }
+                                  style={{ color: "#ffe01b" }}
+                                 >
+                                  <EditOutlinedIcon />
+                                </IconButton>
                               </Tooltip>
                               {/* <Tooltip
                                 title="Eliminar proveedor"

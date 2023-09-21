@@ -30,12 +30,13 @@ import { ConnectedCreateProvider } from "../Proveedores/CreateProvider";
 import { history } from "../../store/history";
 import Collapse from "@mui/material/Collapse";
 import Tooltip from "@mui/material/Tooltip";
-import { LoadFileV } from "../UploadFile/LoadFileV";
+/* import { LoadFileV } from "../UploadFile/LoadFileV"; */
 import { connect } from "react-redux";
 import { ConnectedCreateUser } from "../Usuarios/createUser";
+import { ConnectedChangePassword } from "../Usuarios/changePassword";
 import { ListUser } from "../Usuarios/listUser";
 import { ListProvider } from "../Proveedores/ListProvider";
-import { ConnectedCreateReg } from "../CargaDatos/createReg";
+
 
 import { ConnectedCreateRegv2 } from "../CargaDatos/createReg-v2";
 import { ConnectedCreateRegS3Sv2 } from "../CargaDatos/createRegS3S-v2";
@@ -44,21 +45,23 @@ import { ConnectedCreateRegS3Pv2 } from "../CargaDatos/createRegS3P-v2";
 import { useLocation } from "react-router-dom";
 import { userActions } from "../../_actions/user.action";
 
-import { ListS2Schema } from "../CargaDatos/listSchemaS2";
-
 import { ListS2Schemav2 } from "../CargaDatos/listSchemaS2-v2";
 import { ListS3SSchemav2 } from "../CargaDatos/listSchemaS3S-v2";
 import { ListS3PSchemav2 } from "../CargaDatos/listSchemaS3P-v2";
 
-import { ConnectedConsultarBitacora } from "../Bitacora/ConsultarBitacora";
-import { ListBitacora } from "../Bitacora/ListBitacora";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+/* import { ConnectedConsultarBitacora } from "../Bitacora/ConsultarBitacora";
+import { ListBitacora } from "../Bitacora/ListBitacora"; */
+/* import { ListS2Schema } from "../CargaDatos/listSchemaS2";
 import { ListS3SSchema } from "../CargaDatos/listSchemaS3S";
-import { ListS3PSchema } from "../CargaDatos/listSchemaS3P";
+import { ListS3PSchema } from "../CargaDatos/listSchemaS3P"; */
+
+/* import { ConnectedCreateReg } from "../CargaDatos/createReg";
 import { ConnectedCreateRegS3S } from "../CargaDatos/createRegS3S";
-import { ConnectedChangePassword } from "../Usuarios/changePassword";
+import { ConnectedCreateRegS3P } from "../CargaDatos/createRegS3P"; */
+
 import { useSelector } from "react-redux";
-import { ConnectedCreateRegS3P } from "../CargaDatos/createRegS3P";
+
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import FolderIcon from "@mui/icons-material/Folder";
 import KeyboardIcon from "@mui/icons-material/Keyboard";
 import PublishIcon from "@mui/icons-material/Publish";
@@ -68,7 +71,7 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import ListIcon from "@mui/icons-material/List";
 import CircleIcon from "@mui/icons-material/Circle";
 
-export const MenuV = ({ vistaRender, match, closeSession }) => {
+const MenuV = ({ vistaRender, match, closeSession }) => {
   const { vigencia, permisos } = useSelector((state) => ({
     vigencia: state.vigencia,
     permisos: state.permisos,
@@ -635,54 +638,43 @@ export const MenuV = ({ vistaRender, match, closeSession }) => {
           direction="row"
           justifyContent="center"
           alignItems="center">
-          {vistaRender === "cargamasiva" && <LoadFileV />}
+          {/* {vistaRender === "cargamasiva" && <LoadFileV />} */}
           {vistaRender === "createuser" && <ConnectedCreateUser />}
           {vistaRender === "edituser" && <ConnectedCreateUser match={match} />}
           {vistaRender === "users" && <ListUser />}
+          {vistaRender === "cambiarcontrasena" && <ConnectedChangePassword />}
           {vistaRender === "createprovider" && <ConnectedCreateProvider />}
-          {vistaRender === "editprovider" && (
-            <ConnectedCreateProvider match={match} />
-          )}
+          {vistaRender === "editprovider" && ( <ConnectedCreateProvider match={match} /> )}
           {vistaRender === "providers" && <ListProvider />}
-          {vistaRender === "createReg" && <ConnectedCreateReg />}
 
           {/* ----------- NUEVAS VERSIONES - INICIO ----------- */}
           {vistaRender === "createRegv2" && <ConnectedCreateRegv2 />}
           {vistaRender === "createRegS3Sv2" && <ConnectedCreateRegS3Sv2 />}
           {vistaRender === "createRegS3Pv2" && <ConnectedCreateRegS3Pv2 />}
 
-          {vistaRender === "editRegS3Sv2" && (
-            <ConnectedCreateRegS3Sv2 match={match} />
-          )}
-          {vistaRender === "editRegS2v2" && (
-            <ConnectedCreateRegv2 match={match} />
-          )}
+          {vistaRender === "editRegS3Sv2" && ( <ConnectedCreateRegS3Sv2 match={match} /> )}
+          {vistaRender === "editRegS2v2" && ( <ConnectedCreateRegv2 match={match} /> )}
 
           {vistaRender === "S2Schemav2" && <ListS2Schemav2 />}
           {vistaRender === "S3SSchemav2" && <ListS3SSchemav2 />}
           {vistaRender === "S3PSchemav2" && <ListS3PSchemav2 />}
           {/* ----------- NUEVAS VERSIONES - FIN ----------- */}
 
+          {/* {vistaRender === "createReg" && <ConnectedCreateReg />}
           {vistaRender === "createRegS3S" && <ConnectedCreateRegS3S />}
           {vistaRender === "createRegS3P" && <ConnectedCreateRegS3P />}
 
           {vistaRender === "editRegS2" && <ConnectedCreateReg match={match} />}
-          {vistaRender === "editRegS3S" && (
-            <ConnectedCreateRegS3S match={match} />
-          )}
-          {vistaRender === "editRegS3P" && (
-            <ConnectedCreateRegS3P match={match} />
-          )}
-
+          {vistaRender === "editRegS3S" && ( <ConnectedCreateRegS3S match={match} /> )}
+          {vistaRender === "editRegS3P" && ( <ConnectedCreateRegS3P match={match} /> )}
           {vistaRender === "S2Schema" && <ListS2Schema />}
           {vistaRender === "S3SSchema" && <ListS3SSchema />}
-          {vistaRender === "S3PSchema" && <ListS3PSchema />}
+          {vistaRender === "S3PSchema" && <ListS3PSchema />} */}
 
-          {vistaRender === "consultarbitacora" && (
+          {/* {vistaRender === "consultarbitacora" && (
             <ConnectedConsultarBitacora />
-          )}
-          {vistaRender === "reportebitacora" && <ListBitacora />}
-          {vistaRender === "cambiarcontrasena" && <ConnectedChangePassword />}
+          )} */}
+          {/* {vistaRender === "reportebitacora" && <ListBitacora />} */}
         </Grid>
       </Box>
     </div>
