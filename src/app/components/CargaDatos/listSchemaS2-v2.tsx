@@ -936,8 +936,8 @@ export const ListS2Schemav2 = () => {
                     </StyledTableCell>
                   </TableRow>
                 </TableHead>
+                <TableBody>
                 {S2List.map((schema: any) => (
-                  <TableBody>
                     <TableRow key={schema._id}>
                       <StyledTableCell style={{ width: "15%" }} align="left">
                         {schema.ejercicio}
@@ -964,32 +964,28 @@ export const ListS2Schemav2 = () => {
 
                       <StyledTableCell style={{ width: "15%" }} align="center">
                         <Tooltip title="Más información" placement="top">
-                          <Button
-                            style={{ padding: "0px" }}
-                            onClick={() => handleOpenModalUserInfo(schema)}>
+                          
                             <IconButton
+                              onClick={() => handleOpenModalUserInfo(schema)}
                               style={{ color: "#34b3eb" }}
                               aria-label="expand row"
                               size="small">
                               <VisibilityIcon />
                             </IconButton>
-                          </Button>
                         </Tooltip>
                         <Tooltip title="Editar registro" placement="top">
-                          <Button
-                            style={{ padding: "0px" }}
-                            onClick={() =>
-                              redirectToRoute(`/editar/S2v2/${schema._id}`)
-                            }>
-                            <Button style={{ color: "#ffe01b" }}>
+                            <IconButton 
+                            onClick={() => redirectToRoute(`/editar/S2v2/${schema._id}`) }
+                            style={{ color: "#ffe01b" }}
+                            >
                               <EditOutlinedIcon />
-                            </Button>
-                          </Button>
+                          </IconButton>
                         </Tooltip>
                       </StyledTableCell>
                     </TableRow>
-                  </TableBody>
                 ))}
+                </TableBody>
+                
 
                 <TableFooter>
                   <TableRow>

@@ -1128,30 +1128,23 @@ export const ListS3SSchemav2 = () => {
                       </StyledTableCell>
 
                       <StyledTableCell style={{ width: "20%" }} align="center">
-                        <Button
-                          style={{ padding: "0px" }}
-                          onClick={() => handleOpenModalUserInfo(schema)}>
+                        
                           <Tooltip title="Ver registro" placement="top">
-                            <Button
+                            <IconButton
+                              onClick={() => handleOpenModalUserInfo(schema)}
                               style={{ color: "#34b3eb" }}
                               aria-label="expand row"
                               size="small">
                               <VisibilityIcon />
-                            </Button>
+                            </IconButton>
                           </Tooltip>
-                        </Button>
-
-                        <Button
-                          style={{ padding: "0px" }}
-                          onClick={() =>
-                            redirectToRoute(`/editar/S3S/${schema._id}`)
-                          }>
                           <Tooltip title="Editar registro" placement="top">
-                            <Button style={{ color: "#ffe01b" }}>
+                            <IconButton 
+                            onClick={() => redirectToRoute(`/editar/S3S/${schema._id}`) }
+                            style={{ color: "#ffe01b" }}>
                               <EditOutlinedIcon />
-                            </Button>
+                            </IconButton>
                           </Tooltip>
-                        </Button>
 
                         {/* <Tooltip title="Eliminar registro" placement="top">
                                                 <Button style={{color: '#f44336'}}

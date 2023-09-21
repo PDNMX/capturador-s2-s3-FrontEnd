@@ -1895,30 +1895,24 @@ export const ListS3PSchemav2 = () => {
                   </StyledTableCell>
 
                   <StyledTableCell style={{ width: 260 }} align="center">
-                    <Button
-                      style={{ padding: "0px" }}
-                      onClick={() => handleOpenModalUserInfo(schema)}>
+
                       <Tooltip title="Más información" placement="left">
                         <IconButton
+                          onClick={() => handleOpenModalUserInfo(schema)}
                           style={{ color: "#34b3eb" }}
                           aria-label="expand row"
                           size="small">
                           <KeyboardArrowDownIcon />
                         </IconButton>
                       </Tooltip>
-                    </Button>
-                    <Button
-                      style={{ padding: "0px" }}
-                      onClick={() =>
-                        redirectToRoute(`/editar/S3P/${schema._id}`)
-                      }>
                       <Tooltip title="Editar registro" placement="top">
-                        <Button style={{ color: "#ffe01b" }}>
+                        <IconButton 
+                        onClick={() => redirectToRoute(`/editar/S3P/${schema._id}`) }
+                        style={{ color: "#ffe01b" }}>
                           <EditOutlinedIcon />
-                        </Button>
+                        </IconButton>
                       </Tooltip>
-                    </Button>
-                    <Tooltip title="Eliminar registro" placement="right">
+                    {/* <Tooltip title="Eliminar registro" placement="right">
                       <Button
                         style={{ color: "#f44336", padding: "0px" }}
                         onClick={() => {
@@ -1926,7 +1920,7 @@ export const ListS3PSchemav2 = () => {
                         }}>
                         <DeleteOutlineOutlinedIcon />
                       </Button>
-                    </Tooltip>
+                    </Tooltip> */}
                   </StyledTableCell>
                 </TableRow>
               </TableBody>
