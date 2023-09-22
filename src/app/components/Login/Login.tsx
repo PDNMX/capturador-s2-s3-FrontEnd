@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import CssBaseline from "@mui/material/CssBaseline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import makeStyles from "@mui/styles/makeStyles";
@@ -118,7 +118,7 @@ function MyForm(props: MyFormProps) {
     },
   }));
 
-  const { alerta } = useSelector((state) => ({
+  const { alerta } = useSelector((state: RootStateOrAny) => ({
     alerta: state.alert,
   }));
 
@@ -128,7 +128,7 @@ function MyForm(props: MyFormProps) {
     dispatch(alertActions.clear());
   };
 
-  const { alert } = useSelector((state) => ({
+  const { alert } = useSelector((state: RootStateOrAny) => ({
     alert: state.alert,
   }));
 
@@ -146,7 +146,7 @@ function MyForm(props: MyFormProps) {
     dispatch(requestTokenAuth(values));
   }
 
-  const redirectToRoute = (path) => {
+  const redirectToRoute = (path: any) => {
     history.push(path);
   };
 

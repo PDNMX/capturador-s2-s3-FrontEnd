@@ -1,13 +1,13 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import CssBaseline from '@mui/material/CssBaseline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import makeStyles from '@mui/styles/makeStyles';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import {Form} from "react-final-form";
+import {Form} from "react-final-form"
 import {requestResetPassword} from "../../store/mutations";
 import {TextField , makeValidate} from "mui-rff";
 import { Link } from "@mui/material";
@@ -132,7 +132,7 @@ function MyForm(props: MyFormProps ) {
         },
     }));
 
-    const {alerta} = useSelector(state => ({
+    const {alerta} = useSelector((state: RootStateOrAny) => ({
         alerta : state.alert,
     }));
 
@@ -142,11 +142,11 @@ function MyForm(props: MyFormProps ) {
         dispatch(alertActions.clear());
     };
 
-    const redirectToRoute = (path) =>{
+    const redirectToRoute = (path: any) =>{
         history.push(path);
     }
 
-    const {alert} = useSelector(state => ({
+    const {alert} = useSelector((state: RootStateOrAny) => ({
         alert : state.alert
     }));
 
@@ -203,7 +203,7 @@ function MyForm(props: MyFormProps ) {
                         render={({ handleSubmit, submitting   }) => (
                             <form  onSubmit={handleSubmit} noValidate>
                                 <Grid className={classes.gridpadding} spacing={3} container >
-                                    <Grid item xs={12} md={12} spacing={3}>
+                                    <Grid item xs={12} md={12}>
                                         <TextField label="Correo electrónico" name="correo" required={true} />
                                     </Grid>
                                     <Grid item xs={12} md={12} container direction="row" justifyContent="center" alignItems="center">

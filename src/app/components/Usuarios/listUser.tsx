@@ -597,11 +597,11 @@ export const ListUser = () => {
                                 </IconButton>
                               </Tooltip>
                               <Tooltip title="Editar usuario" placement="top">
-                                <Button 
+                                <IconButton
                                 onClick={() => redirectToRoute(`/usuario/editar/${user._id}`) }
                                 style={{ color: "#ffe01b" }}>
                                   <EditOutlinedIcon />
-                                </Button>
+                                </IconButton>
                               </Tooltip>
                               <Tooltip
                                 title="Reestablecer contraseña"
@@ -614,22 +614,6 @@ export const ListUser = () => {
                                   <EnhancedEncryptionIcon />
                                 </IconButton>
                               </Tooltip>
-                            {/* <Tooltip
-                                title="Eliminar usuario"
-                                placement="right">
-                                <Button
-                                  style={{ color: "#f44336", padding: "0px" }}
-                                  onClick={() => {
-                                    handleClickOpen(
-                                      user._id,
-                                      user.nombre,
-                                      user.apellidoUno,
-                                      user.apellidoDos,
-                                    );
-                                  }}>
-                                  <DeleteOutlineOutlinedIcon />
-                                </Button>
-                              </Tooltip> */}
                           </TableCell>
                         </TableRow>
                       ))}
