@@ -21,6 +21,7 @@ import Button from "@mui/material/Button";
 
 import esquemaS3Sv2 from "./jsonschemas-rjsf/s2v2";
 import uiS2v2 from "./uiSchemas/s2v2";
+import formats from "./customFormats";
 
 import { RJSFSchema, UiSchema } from "@rjsf/utils";
 //import validator from '@rjsf/validator-ajv8';
@@ -106,7 +107,6 @@ function MyForm(props: MyFormProps) {
 
   console.log(initialValues)
 
-  const validator = customizeValidator({}, spanishLocalizer);
   //const validate = makeValidate(schema);
   //const required = makeRequired(schema)
 
@@ -127,6 +127,9 @@ function MyForm(props: MyFormProps) {
 
   const schema: RJSFSchema = esquemaS3Sv2;
   const uiSchema: UiSchema = uiS2v2;
+  const customFormats = formats;
+
+const validator = customizeValidator({ customFormats }, spanishLocalizer);
 
   const handleChange = ({ formData } : { formData: any }) => {
         console.log(formData);

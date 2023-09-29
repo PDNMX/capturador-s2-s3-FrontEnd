@@ -33,6 +33,7 @@ let data = {
     ejercicio: {
       type: "integer",
       title: "Ejercicio",
+      format: "año",
       description:
         "Capturar el ejercicio fiscal que corresponde al registro de la información.",
       //example: "2018",
@@ -40,6 +41,7 @@ let data = {
     nombres: {
       type: "string",
       title: "Nombre (s)",
+      format: 'soloTexto',
       description:
         "Escribir el o los nombres de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
       //example: "Juan",
