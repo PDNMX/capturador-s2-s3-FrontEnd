@@ -22,13 +22,12 @@ import esquemaS3Sv2 from "./jsonschemas-rjsf/s2v2";
 import uiS2v2 from "./uiSchemas/s2v2";
 import formats from "./customFormats";
 
-import { RJSFSchema, UiSchema } from "@rjsf/utils";
 //import validator from '@rjsf/validator-ajv8';
 import Form from "@rjsf/mui";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import spanishLocalizer from "ajv-i18n/localize/es";
 
-const CreateReg = ({ id, alert, catalogos, registry }: any) => {
+const CreateReg = ({ id, alert, catalogos, registry }) => {
   return (
     <MyForm
       initialValues={registry}
@@ -39,71 +38,8 @@ const CreateReg = ({ id, alert, catalogos, registry }: any) => {
   );
 };
 
-interface FormDataEsquemaS2 {
-  id: string;
-  fechaCaptura: string;
-  ejercicio: number;
-  nombres: string;
-  primerApellido: string;
-  segundoApellido: string;
-  curp: string;
-  rfc: string;
-  sexo: string;
-  entePublico: {
-    entidadFederativa: {
-      clave: string;
-      valor: string;
-    };
-    ambitoGobierno: {
-      clave: string;
-      valor: string;
-    };
-    poderOrganoGobierno: string;
-    nombre: string;
-    siglas: string;
-  };
-  empleoCargoComision: {
-    areaAdscripcion: string;
-    nivel: string;
-    nombre: string;
-  };
-  tipoArea: Array<{
-    bienesServicios: {
-      clave: string;
-      valor: string;
-    };
-    obraPublica: {
-      clave: string;
-      valor: string;
-    };
-  }>;
-  procedimientos: Array<{
-    tipo: string;
-    nivelesresponsabilidad: Array<{
-      ambito: string;
-      nivel: string;
-      identificadorObjeto: number;
-    }>;
-  }>;
-  observaciones: string;
-}
 
-interface MyFormProps {
-  initialValues: FormDataEsquemaS2;
-  alerta: { status: boolean; message: "" };
-  catalogos: {
-    estados: [];
-    genero: [];
-    ramo: [];
-    puesto: [];
-    tipoArea: [];
-    nivelResponsabilidad: [];
-    tipoProcedimiento: [];
-  };
-  id: string;
-}
-
-function MyForm(props: MyFormProps) {
+function MyForm(props) {
   const { initialValues, alerta, id } = props;
   const alert = alerta;
   const dispatch = useDispatch();
@@ -114,12 +50,12 @@ function MyForm(props: MyFormProps) {
   //const validate = makeValidate(schema);
   //const required = makeRequired(schema)
 
-  const redirectToRoute = (path: any) => {
+  const redirectToRoute = (path) => {
     history.push(path);
     dispatch(alertActions.clear());
   };
 
-  const onSubmit = ({ formData }: ISubmitEvent<FormData>) => {
+  const onSubmit = (formData) => {
     console.log("Data submitted: ", formData);
     if (id != undefined) {
       dispatch(S2Actions.requestEditDo({ ...formData, _id: id }));
@@ -129,13 +65,13 @@ function MyForm(props: MyFormProps) {
     setOpen(true);
   };
 
-  const schema: RJSFSchema = esquemaS3Sv2;
-  const uiSchema: UiSchema = uiS2v2;
+  const schema = esquemaS3Sv2;
+  const uiSchema = uiS2v2;
   const customFormats = formats;
 
   const validator = customizeValidator({ customFormats }, spanishLocalizer);
 
-  const handleChange = ({ formData }: { formData: any }) => {
+  const handleChange = (formData) => {
     console.log(formData);
   };
 
@@ -206,7 +142,7 @@ function MyForm(props: MyFormProps) {
   );
 }
 
-function mapStateToProps(state: any, ownProps: any) {
+function mapStateToProps(state, ownProps) {
   const alert = state.alert;
   const catalogos = state.catalogs;
   if (ownProps.match != undefined) {
