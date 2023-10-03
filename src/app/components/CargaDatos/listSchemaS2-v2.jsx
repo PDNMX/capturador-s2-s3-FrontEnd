@@ -16,7 +16,6 @@ import {
   Divider,
   Tooltip,
   useTheme,
-  DialogProps,
   Card,
   CardContent,
   CardHeader,
@@ -28,7 +27,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Alert } from "@mui/material";
-import { Theme } from "@mui/material/styles";
 import createStyles from "@mui/styles/createStyles";
 import { alertActions } from "../../_actions/alert.actions";
 import { history } from "../../store/history";
@@ -51,7 +49,7 @@ export const ListS2Schemav2 = () => {
   const [openModalUserInfo, setOpenModalUserInfo] = React.useState(false);
   const [selectedRegistro, setSelectedRegistro] = React.useState({});
 
-  const [maxWidth, _] = React.useState<DialogProps["maxWidth"]>("md");
+  const [maxWidth, _] = React.useState("md");
 
   const handleOpenModalUserInfo = (user) => {
         
@@ -330,7 +328,7 @@ export const ListS2Schemav2 = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {S2List.map((schema: any) => (
+                  {S2List.map((schema) => (
                     <TableRow key={schema._id}>
                       <TableCell style={{ width: "15%" }} align="left">
                         {schema.ejercicio}
