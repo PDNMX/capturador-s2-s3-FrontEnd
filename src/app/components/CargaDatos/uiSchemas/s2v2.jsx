@@ -125,7 +125,6 @@ let data = {
     },
     nivelesResponsabilidad: {
       idObj1: {
-        /* 'ui:enumDisabled': ["ELABORAR"], */
         "ui:widget": "checkboxes",
         "ui:options": {
           inline: true,
@@ -167,11 +166,7 @@ let data = {
           inline: true,
         },
       },
-    },
-      responsabilidad: {
-        'ui:enumDisabled': ["ELABORAR"]
-      }
-    
+    }
   },
 };
 

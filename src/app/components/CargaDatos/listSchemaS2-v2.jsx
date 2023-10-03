@@ -40,69 +40,27 @@ import CloseIcon from "@mui/icons-material/Close";
 import Nota from "../Common/Nota";
 import TablePaginationActions from "../Common/TablePaginationActionsProps";
 
-interface FormDataEsquemaS2 {
-  entePublico: Object,
-  fechaCaptura?: string;
-  ejercicioFiscal?: string;
-  ramo?: { clave?: number; valor?: string };
-  nombres?: string;
-  primerApellido?: string;
-  segundoApellido?: {
-    valor?: string;
-    sinSegundoApellido?: boolean;
-  };
-  rfc?: string;
-  curp?: string;
-  genero?: {
-    clave: string;
-    valor: string;
-  };
-  institucionDependencia?: {
-    nombre: string;
-    clave: string;
-    siglas: string;
-  };
-  puesto?: {
-    nombre: string;
-    nivel: string;
-  };
-  tipoArea?: [{ clave: string; valor: string }];
-  tipoProcedimiento?: [{ clave: string; valor: string }];
-  nivelResponsabilidad?: [{ clave: string; valor: string }];
-  superiorInmediato?: {
-    nombres: string;
-    primerApellido: string;
-    segundoApellido: string;
-    curp: string;
-    rfc: string;
-    puesto: {
-      nombre: string;
-      nivel: string;
-    };
-  };
-  observaciones?: string;
-}
-
 export const ListS2Schemav2 = () => {
   const { S2List, alerta, paginationSuper } = useSelector((state) => ({
     S2List: state.S2,
     alerta: state.alert,
     paginationSuper: state.pagination,
   }));
-
   const dispatch = useDispatch();
   const [query, setQuery] = React.useState({});
   const [openModalUserInfo, setOpenModalUserInfo] = React.useState(false);
-  const [selectedRegistro, setSelectedRegistro] = React.useState<FormDataEsquemaS2>({});
+  const [selectedRegistro, setSelectedRegistro] = React.useState({});
 
   const [maxWidth, _] = React.useState<DialogProps["maxWidth"]>("md");
 
-  const handleOpenModalUserInfo = (user: Object) => {
-    setOpenModalUserInfo(true);
-    console.log(user);
+  const handleOpenModalUserInfo = (user) => {
+        
+    //setSelectedRegistro(user);
+    setSelectedRegistro(() => {
+      setOpenModalUserInfo(true);
+      return user;
+    }); 
     
-    setSelectedRegistro(user);
-    console.log(selectedRegistro.sexo);
   };
 
   const handleCloseModalUserInfo = () => {
@@ -113,7 +71,7 @@ export const ListS2Schemav2 = () => {
     dispatch(alertActions.clear());
   };
 
-  const handleChangePage = (_: any, newPage: any) => {
+  const handleChangePage = (_, newPage) => {
     dispatch(
       S2Actions.requestListS2({
         query: query,
@@ -123,7 +81,7 @@ export const ListS2Schemav2 = () => {
     );
   };
 
-  const handleChangeRowsPerPage = (event: any) => {
+  const handleChangeRowsPerPage = (event) => {
     const newSize = parseInt(event.target.value, 10);
     if (paginationSuper.page * newSize > paginationSuper.totalRows) {
       dispatch(
@@ -144,11 +102,11 @@ export const ListS2Schemav2 = () => {
     }
   };
 
-  const redirectToRoute = (path: any) => {
+  const redirectToRoute = (path) => {
     history.push(path);
   };
 
-  const useStyles = makeStyles((theme: Theme) =>
+  const useStyles = makeStyles((theme) =>
     createStyles({
       actions: {
         color: theme.palette.text.secondary,
@@ -279,7 +237,7 @@ export const ListS2Schemav2 = () => {
                 align="left">
                 <b>Segundo Apellido:</b> {selectedRegistro.segundoApellido ? ( selectedRegistro.segundoApellido ) : ( <Nota /> )}
               </Typography>
-            </Grid> */}
+            </Grid>  */}
 
             <Grid item md={6} xs={12}>
               <Typography

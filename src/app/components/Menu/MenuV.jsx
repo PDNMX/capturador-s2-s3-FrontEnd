@@ -38,7 +38,7 @@ import { ListUser } from "../Usuarios/listUser";
 import { ListProvider } from "../Proveedores/ListProvider";
 
 
-import { ConnectedCreateRegv2 } from "../CargaDatos/createReg-v2";
+import { ConnectedCreateRegv2 } from "../CargaDatos/createRegS2-v2";
 import { ConnectedCreateRegS3Sv2 } from "../CargaDatos/createRegS3S-v2";
 import { ConnectedCreateRegS3Pv2 } from "../CargaDatos/createRegS3P-v2";
 

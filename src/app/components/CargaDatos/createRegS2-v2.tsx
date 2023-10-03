@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import { Grid } from "@mui/material";
 import { S2Actions } from "../../_actions/s2.action";
 import Typography from "@mui/material/Typography";
@@ -29,9 +28,14 @@ import Form from "@rjsf/mui";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import spanishLocalizer from "ajv-i18n/localize/es";
 
-const CreateReg = ({ id, alert, catalogos, registry } : any) => {
+const CreateReg = ({ id, alert, catalogos, registry }: any) => {
   return (
-    <MyForm initialValues={registry} catalogos={catalogos} alerta={alert} id={id} />
+    <MyForm
+      initialValues={registry}
+      catalogos={catalogos}
+      alerta={alert}
+      id={id}
+    />
   );
 };
 
@@ -105,15 +109,15 @@ function MyForm(props: MyFormProps) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
-  console.log(initialValues)
+  console.log(initialValues);
 
   //const validate = makeValidate(schema);
   //const required = makeRequired(schema)
 
   const redirectToRoute = (path: any) => {
-      history.push(path);
-      dispatch(alertActions.clear());
-  }
+    history.push(path);
+    dispatch(alertActions.clear());
+  };
 
   const onSubmit = ({ formData }: ISubmitEvent<FormData>) => {
     console.log("Data submitted: ", formData);
@@ -129,10 +133,19 @@ function MyForm(props: MyFormProps) {
   const uiSchema: UiSchema = uiS2v2;
   const customFormats = formats;
 
-const validator = customizeValidator({ customFormats }, spanishLocalizer);
+  const validator = customizeValidator({ customFormats }, spanishLocalizer);
 
-  const handleChange = ({ formData } : { formData: any }) => {
-        console.log(formData);
+  const handleChange = ({ formData }: { formData: any }) => {
+    console.log(formData);
+  };
+
+  function transformErrors(errors) {
+    return errors.map((error) => {
+      if (error.property === '.procedimientos.tipoArea.areas') {
+        error.message = 'Error en tipo Áreas';
+      }
+      return error;
+    });
   }
 
   return (
@@ -145,21 +158,22 @@ const validator = customizeValidator({ customFormats }, spanishLocalizer);
         <Divider />
         <CardContent>
           <Grid container>
-          <Grid item xs={12}>
-            <Form
-              schema={schema}
-              validator={validator}
-              onChange={handleChange}
-              onSubmit={onSubmit}
-              /* onError={log("errors")} */
-              uiSchema={uiSchema}
-              formData={initialValues}
-              omitExtraData={false}
-              liveOmit={true}
-              liveValidate={false}
-              noHtml5Validate={true}
-              showErrorList={false}
-            />
+            <Grid item xs={12}>
+              <Form
+                schema={schema}
+                validator={validator}
+                onChange={handleChange}
+                onSubmit={onSubmit}
+                /* onError={log("errors")} */
+                uiSchema={uiSchema}
+                formData={initialValues}
+                omitExtraData={false}
+                liveOmit={true}
+                liveValidate={false}
+                noHtml5Validate={true}
+                showErrorList={false}
+                transformErrors={transformErrors}
+              />
             </Grid>
           </Grid>
         </CardContent>
@@ -169,8 +183,7 @@ const validator = customizeValidator({ customFormats }, spanishLocalizer);
         open={open}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        maxWidth={"xs"}
-        >
+        maxWidth={"xs"}>
         {/* <DialogTitle id="alert-dialog-title">{"Resultado"}</DialogTitle> */}
         <DialogContent>
           <DialogContent id="alert-dialog-description">
