@@ -13,7 +13,6 @@ import {Grid, Card, CardContent, CardHeader, Divider} from '@mui/material';
 import esquemaS3Sv2 from './jsonschemas-rjsf/s3Sv2';
 import uiS3v2 from './uiSchemas/s3Sv2';
 
-import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/mui';
 
@@ -29,51 +28,7 @@ const CreateReg = ({ id, alert, catalogos, registry }) => {
     );
 };
 
-interface FormDataEsquemaS3S {
-    fechaCaptura?: string;
-    expediente?: string;
-    idnombre?: string;
-    idsiglas?: string;
-    idclave?: string;
-    SPSnombres?: string;
-    SPSprimerApellido?: string;
-    SPSsegundoApellido?: string;
-    SPSgenero?: object;
-    SPSpuesto?: string;
-    SPSnivel?: string;
-    autoridadSancionadora?: string;
-    tipoFalta?: { clave: string; valor: string; descripcion?: string };
-    tpfdescripcion?: string;
-    tipoSancionArray?: [{ clave: string; valor: string; descripcion?: string }];
-    tipoSancionElement?: { clave: string; valor: string; descripcion?: string };
-    tsdescripcion?: string;
-    causaMotivoHechos?: string;
-    resolucionURL?: string;
-    resolucionFecha?: string;
-    multa?: {
-        monto: number;
-        moneda?: {
-            clave: string;
-            valor: string;
-        };
-    };
-    inhabilitacionPlazo?: string;
-    inhabilitacionFechaInicial?: string;
-    inhabilitacionFechaFinal?: string;
-    observaciones?: string;
-    documents?: [{ id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: object }];
-    documentElement?: { id: string; titulo: string; descripcion: string; url: string; fecha: string; tipo: object };
-}
-
-interface MyFormProps {
-    initialValues: FormDataEsquemaS3S;
-    alerta: { status: boolean; message: '' };
-    catalogos: { genero: []; tipoFalta: []; tipoSancion: []; moneda: []; tipoDoc: [] };
-    id: string;
-}
-
-
-function MyForm(props: MyFormProps) {
+function MyForm(props) {
     const { initialValues, alerta: alert, catalogos, id } = props;
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
@@ -88,7 +43,7 @@ function MyForm(props: MyFormProps) {
     }; */
 
     // yes, this can even be async!
-    const handleSubmit = ({ formData }: ISubmitEvent<FormData>) => {
+    const handleSubmit = ({ formData }) => {
         /* console.log(formData); */
         if (id != undefined) {
             dispatch(S3SActions.requestCreationS3S({ ...formData, _id: id }));
@@ -98,11 +53,11 @@ function MyForm(props: MyFormProps) {
         setOpen(true);
     }
 
-    const schema: RJSFSchema = esquemaS3Sv2;
-    const uiSchema: UiSchema = uiS3v2;
+    const schema = esquemaS3Sv2;
+    const uiSchema = uiS3v2;
     //console.log(initialValues);
-    const log = (type: any) => console.log.bind(console, type);
-    const handleChange = ({ formData}: any) => console.log(formData);
+    const log = (type) => console.log.bind(console, type);
+    const handleChange = ({ formData}) => console.log(formData);
 
     return (
         <Grid item xs={12}>
@@ -136,12 +91,12 @@ function MyForm(props: MyFormProps) {
     );
 }
 
-function mapStateToProps(state: any, ownProps: any) {
+function mapStateToProps(state, ownProps) {
     const alert = state.alert;
     const catalogos = state.catalogs;
     if (ownProps.match != undefined) {
         const id = ownProps.match.params.id;
-        const registry = state.S3S.find((reg: any) => reg._id === id);
+        const registry = state.S3S.find((reg) => reg._id === id);
         return {
             id,
             registry,

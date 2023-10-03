@@ -16,7 +16,6 @@ import axios from "axios";
 
 import esquemaS3Pv2 from "./jsonschemas-rjsf/s3Pv2";
 import uiS3Pv2 from "./uiSchemas/s3Pv2";
-import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/mui';
 import { customizeValidator } from "@rjsf/validator-ajv8";
@@ -33,115 +32,7 @@ const CreateReg = ({ id, alert, catalogos, registry, flagOnlyRead }) => {
         catalogos={catalogos} alerta={alert} id={id} flagOnlyRead={flagOnlyRead} />;
 }
 
-interface FormDataEsquemaS3P {
-    domicilio?: string,
-    particularSancionado?: {
-        domicilioMexico: {
-            pais: {
-                valor: string,
-                clave: string
-            },
-            entidadFederativa: {
-                valor: string,
-                clave: string
-            },
-            muncipio: {
-                valor: string,
-                clave: string
-            },
-            localidad: {
-                valor: string,
-                clave: string
-            },
-            vialidad: {
-                valor: string,
-                clave: string
-            },
-            codigoPostal: string,
-            numeroExterior: string,
-            numeroInterior: string
-        },
-        domicilioExtranjero: {
-            pais: {
-                valor: string,
-                clave: string
-            },
-            calle: string,
-            ciudadLocalidad: string,
-            estadoProvincia: string,
-            codigoPostal: string,
-            numeroExterior: string,
-            numeroInterior: string
-        },
-        nombreRazonSocial: string,
-        objetoSocial: string,
-        rfc: string,
-        tipoPersona: string,
-        telefono: string
-    },
-    multa?: {
-        monto: number,
-        moneda: {
-            clave: string,
-            valor: string
-        }
-    },
-    fechaCaptura?: string,
-    expediente?: string,
-    institucionDependencia?: {
-        nombre: string,
-        clave: string,
-        siglas: string
-    },
-    directorGeneral?: {
-        nombres: string,
-        primerApellido: string,
-        segundoApellido: string,
-        curp: string
-    },
-    apoderadoLegal?: {
-        nombres: string,
-        primerApellido: string,
-        segundoApellido: string,
-        curp: string
-    },
-    objetoContrato?: string,
-    autoridadSancionadora?: string,
-    tipoFalta?: string,
-    tipoSancion?: [{ clave: string, valor: string, descripcion: string }],
-    tipoSancionElement?: { clave: string, valor: string, descripcion: string },
-    causaMotivoHechos?: string,
-    acto?: string,
-    responsableSancion?: {
-        nombres: string,
-        primerApellido: string,
-        segundoApellido: string,
-        curp: string
-    },
-    resolucion?: {
-        sentido: string,
-        url: string,
-        fechaNotificacion: string
-    },
-    inhabilitacion?: {
-        plazo: string,
-        fechaInicial: string,
-        fechaFinal: string
-    },
-    documentos?: [{ id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string }],
-    documentElement?: { id: string, tipo: string, titulo: string, descripcion: string, url: string, fecha: string },
-    observaciones?: string
-}
-
-interface MyFormProps {
-    initialValues: FormDataEsquemaS3P;
-    alerta: { status: boolean, message: "" };
-    catalogos: { tipoPersona: [], paises: [], estados: [], municipios: [], localidades: [], vialidades: [], tipoSancion: [], moneda: [], tipoDoc: [] };
-    id: string;
-    flagOnlyRead: boolean;
-}
-
-function MyForm(props: MyFormProps) {
+function MyForm(props) {
     const { initialValues, alerta, catalogos, id, flagOnlyRead } = props;
     const alert = alerta;
     const dispatch = useDispatch();
@@ -279,13 +170,13 @@ function MyForm(props: MyFormProps) {
 
     }
 
-    const schema: RJSFSchema = esquemaS3Pv2;
-    const uiSchema: UiSchema = uiS3Pv2;
-    const handleChange = ({ formData } : { formData: any }) => {
+    const schema = esquemaS3Pv2;
+    const uiSchema = uiS3Pv2;
+    const handleChange = ({ formData }) => {
         console.log(formData);
     }
     // yes, this can even be async!
-    async function onSubmit(values: FormDataEsquemaS3P) {
+    async function onSubmit(values) {
 
         delete values.documentElement;
         delete values.tipoSancionElement;
@@ -356,13 +247,13 @@ function MyForm(props: MyFormProps) {
       );
 }
 
-function mapStateToProps(state: any, ownProps: any) {
+function mapStateToProps(state, ownProps) {
     const alert = state.alert;
     const catalogos = state.catalogs;
     if (ownProps.match != undefined) {
         const id = ownProps.match.params.id;
         const flagOnlyRead = ownProps.match.params.flagOnlyRead;
-        const registry = state.S3P.find((reg: any) => reg._id === id);
+        const registry = state.S3P.find((reg) => reg._id === id);
         return {
             id,
             registry,
