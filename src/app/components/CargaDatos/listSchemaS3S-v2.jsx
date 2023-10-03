@@ -18,7 +18,6 @@ import {
   Tooltip,
   Toolbar,
   Paper,
-  DialogProps,
   Card,
   CardContent,
   CardHeader,
@@ -31,7 +30,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Alert } from "@mui/material";
-import { Theme } from "@mui/material/styles";
+
 import createStyles from "@mui/styles/createStyles";
 import withStyles from "@mui/styles/withStyles";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -56,64 +55,6 @@ import TablePaginationActions from "../Common/TablePaginationActionsProps";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-interface FormDataEsquemaS3S {
-  fechaCaptura?: string;
-  expediente?: string;
-  institucionDependencia?: {
-    nombre: string;
-    clave: string;
-    siglas: string;
-  };
-  servidorPublicoSancionado?: {
-    rfc: string;
-    curp: string;
-    nombres: string;
-    primerApellido: string;
-    segundoApellido: string;
-    genero: {
-      clave: string;
-      valor: string;
-    };
-    puesto: string;
-    nivel: string;
-  };
-  autoridadSancionadora?: string;
-  tipoFalta?: {
-    clave: string;
-    valor: string;
-    descripcion: string;
-  };
-  tipoSancion?: [{ clave: string; valor: string; descripcion: string }];
-  causaMotivoHechos?: string;
-  resolucion?: {
-    url: string;
-    fechaResolucion: string;
-  };
-  multa?: {
-    monto: number;
-    moneda: {
-      clave: string;
-      valor: string;
-    };
-  };
-  inhabilitacion?: {
-    plazo: string;
-    fechaInicial: string;
-    fechaFinal: string;
-  };
-  documentos?: [
-    {
-      id: string;
-      tipo: string;
-      titulo: string;
-      descripcion: string;
-      url: string;
-      fecha: string;
-    },
-  ];
-  observaciones?: string;
-}
-
 export const ListS3SSchemav2 = () => {
   const { S3SList, alerta, paginationSuper, catalogos, providerUser } =
     useSelector((state) => ({
@@ -132,9 +73,9 @@ export const ListS3SSchemav2 = () => {
   const [query, setQuery] = React.useState({});
   const [openModalUserInfo, setOpenModalUserInfo] = React.useState(false);
   const [selectedRegistro, setSelectedRegistro] =
-    React.useState<FormDataEsquemaS3S>({});
+    React.useState({});
   //const [match, setMatch] = React.useState({params: {id: ""}});
-  const [maxWidth, setMaxWidth] = React.useState<DialogProps["maxWidth"]>("md");
+  const [maxWidth, setMaxWidth] = React.useState("md");
   const optionsDate = {
     year: "numeric",
     month: "long",
@@ -379,7 +320,7 @@ export const ListS3SSchemav2 = () => {
     history.push(path);
   };
 
-  const useStyles = makeStyles((theme: Theme) =>
+  const useStyles = makeStyles((theme) =>
     createStyles({
       root: {
         "&$checked": {
