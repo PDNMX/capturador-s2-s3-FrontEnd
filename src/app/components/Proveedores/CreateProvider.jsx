@@ -1,5 +1,4 @@
 import React from "react";
-import { RJSFSchema, UiSchema } from "@rjsf/utils";
 import validator from "@rjsf/validator-ajv8";
 import Form from "@rjsf/mui";
 import { useDispatch, connect } from "react-redux";
@@ -26,33 +25,16 @@ const CreateProvider = ({
   id,
   provider,
   alert,
-}: {
-  id: string;
-  provider: object;
-  alert: any;
 }) => {
   return <Proveedor initialValues={provider} id={id} alerta={alert} />;
 };
 
-interface FormProvider {
-  dependencia?: string;
-  sistemas?: string[];
-  estatus?: boolean;
-  fechaAlta?: string;
-}
-
-interface MyFormProps {
-  initialValues: FormProvider;
-  id: string;
-  alerta: { status: boolean; message: string };
-}
-
-function Proveedor(props: MyFormProps) {
+function Proveedor(props) {
   const { initialValues, id, alerta } = props;
   const alert = alerta;
   alert.status = false;
   const [loaderDisplay, setLoaderDisplay] = React.useState(false);
-  const schema: RJSFSchema = {
+  const schema = {
     type: "object",
     required: ["dependencia", "sistemas"],
     properties: {
@@ -79,7 +61,7 @@ function Proveedor(props: MyFormProps) {
     },
   };
 
-  const uiSchema: UiSchema = {
+  const uiSchema = {
     "ui:submitButtonOptions": {
       submitText: "Guardar",
       props: {
@@ -99,11 +81,11 @@ function Proveedor(props: MyFormProps) {
   };
 
   const dispatch = useDispatch();
-  const redirectToRoute = (path: any) => {
+  const redirectToRoute = (path) => {
     history.push(path);
   };
 
-  const handleSubmit = ({ formData }: any) => {
+  const handleSubmit = ({ formData }) => {
     if (id != undefined) {
       dispatch(requestEditProvider({ ...formData, _id: id }));
     } else {
@@ -168,11 +150,11 @@ function Proveedor(props: MyFormProps) {
   );
 }
 
-function mapStateToProps(state: any, ownProps: any) {
+function mapStateToProps(state, ownProps) {
   const alert = state.alert;
   if (ownProps.match != undefined) {
     const id = ownProps.match.params.id;
-    const provider = state.providers.find((provider: any) => provider._id === id);
+    const provider = state.providers.find((provider) => provider._id === id);
     return {
       id,
       provider,
