@@ -18,10 +18,10 @@ import esquemaS3Pv2 from "./jsonschemas-rjsf/s3Pv2";
 import uiS3Pv2 from "./uiSchemas/s3Pv2";
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/mui';
-import { customizeValidator } from "@rjsf/validator-ajv8";
-import spanishLocalizer from "ajv-i18n/localize/es";
+/* import { customizeValidator } from "@rjsf/validator-ajv8";
+import spanishLocalizer from "ajv-i18n/localize/es"; */
 
-const url_api= import.meta.env.VITE_URL_API;
+const url_api= import.meta.env.VITE_URL_API || process.env.VITE_URL_API;
 
 const CreateReg = ({ id, alert, catalogos, registry, flagOnlyRead }) => {
     
