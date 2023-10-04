@@ -16,7 +16,6 @@ import {
   IconButton,
   Typography,
   Toolbar,
-  DialogProps,
   useTheme,
   Card,
   CardContent,
@@ -32,7 +31,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Theme } from "@mui/material/styles";
 import createStyles from "@mui/styles/createStyles";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { history } from "../../store/history";
@@ -76,7 +74,7 @@ export const ListUser = () => {
 
   const [openPassword, setOpenPassword] = React.useState(false);
   const [usuarioCorreo, setUsuarioCorreo] = React.useState("");
-  const [maxWidth, setMaxWidth] = React.useState<DialogProps["maxWidth"]>("md");
+  const [maxWidth, setMaxWidth] = React.useState("md");
   const optionsDate = {
     year: "numeric",
     month: "long",
@@ -175,7 +173,7 @@ export const ListUser = () => {
     setUsuarioCorreo(correoElectronico);
   };
 
-  const useStyles = makeStyles((theme: Theme) =>
+  const useStyles = makeStyles((theme) =>
     createStyles({
       titlegridModal: {
         color: "#666666",
@@ -567,7 +565,7 @@ export const ListUser = () => {
                         pagination.page * pagination.pageSize +
                           pagination.pageSize,
                       )
-                      .map((user: any) => (
+                      .map((user) => (
                         <TableRow key={user._id}>
                           <TableCell className={classes.fontblack} align="left">
                             {user.nombre + " " + user.apellidoUno}

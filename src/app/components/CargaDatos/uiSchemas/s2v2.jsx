@@ -11,9 +11,7 @@ let data = {
   primerApellido: {
     "ui:placeholder": "Ejemplo: Rodríguez",
   },
-  segundoApellido: {
-    "ui:placeholder": "Ejemplo: Gómez",
-  },
+
   empleoCargoComision: {
     "ui:options": {
       title: false,
@@ -30,7 +28,7 @@ let data = {
   },
 
   segundoApellido: {
-    "ui:widget": "textarea",
+    "ui:placeholder": "Ejemplo: Gómez",
     "ui:order": [
       "valor",
       "sinSegundoApellido",

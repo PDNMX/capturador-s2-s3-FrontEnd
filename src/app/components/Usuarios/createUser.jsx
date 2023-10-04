@@ -35,40 +35,14 @@ const CreateUser = ({ id, user, alert, providers }) => {
   );
 };
 
-interface FormDataUser {
-  nombre?: string;
-  apellidoUno?: string;
-  apellidoDos?: string;
-  cargo?: string;
-  correoElectronico?: string;
-  telefono?: string;
-  extension?: string;
-  usuario?: string;
-  constrasena?: string;
-  sistemas?: string[];
-  proveedorDatos?: string;
-  estatus?: boolean;
-}
 
-interface MyFormProps {
-  initialValues: FormDataUser;
-  id: string;
-  alerta: { status: boolean; message: string };
-  providers: [];
-}
-/* const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`; */
-
-function MyForm(props: MyFormProps) {
+function MyForm(props) {
   const { initialValues, id, alerta, providers } = props;
   const alert = alerta;
   const dispatch = useDispatch();
 
   // yes, this can even be async!
-  async function onSubmit(values: FormDataUser) {
+  async function onSubmit(values) {
     alert.status = false;
     if (id != undefined) {
       /*let arrsistemas: string[] = [];
@@ -192,7 +166,7 @@ function MyForm(props: MyFormProps) {
 
   const cla = styles();
 
-  let sistemasData: Array = [];
+  let sistemasData = [];
   let sistemaspro = [];
   for (const pro of providers) {
     if (initialValues != undefined) {
@@ -339,10 +313,10 @@ function MyForm(props: MyFormProps) {
                               defaultValue={""}></Select>
                             <OnChange name="proveedorDatos">
                               {(value, previous) => {
-                                const sistemasDataNew: [] = [];
-                                let sistemasDisponibles: string[] = [];
+                                const sistemasDataNew = [];
+                                let sistemasDisponibles = [];
                                 for (const prov of providers) {
-                                  const obj: { value: string; sistemas: [] } =
+                                  const obj =
                                     prov;
                                   if (value == obj.value) {
                                     sistemasDisponibles = obj.sistemas;
