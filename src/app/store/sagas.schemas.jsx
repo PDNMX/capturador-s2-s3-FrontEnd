@@ -26,13 +26,13 @@ import jwt_decode from "jwt-decode";
 
 import _ from "underscore"
 import { formatISO } from 'date-fns';
-import { forEach } from 'underscore';
+
 import momento from 'moment-timezone';
 
-const url_oauth2 = import.meta.env.VITE_URL_OAUTH;
-const url_api = import.meta.env.VITE_URL_API;
-const client_id = import.meta.env.VITE_CLIENT_ID;
-const client_secret = import.meta.env.VITE_CLIENT_SECRET;
+const url_oauth2 = import.meta.env.VITE_URL_OAUTH || process.env.VITE_URL_OAUTH;
+const url_api = import.meta.env.VITE_URL_API || process.env.VITE_URL_API;
+const client_id = import.meta.env.VITE_CLIENT_ID || process.env.VITE_CLIENT_ID;
+const client_secret = import.meta.env.VITE_CLIENT_SECRET || process.env.VITE_CLIENT_SECRET;
 
 export function* validationErrors() {
 	while (true) {
