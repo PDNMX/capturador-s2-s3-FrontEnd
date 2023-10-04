@@ -16,7 +16,6 @@ import {
     IconButton,
     Typography,
     Snackbar,
-    DialogProps,
     useTheme,
     Toolbar,
     Card,
@@ -35,7 +34,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Alert } from '@mui/material';
 import {history} from "../../store/history";
-import VisibilityIcon from "@mui/icons-material/Visibility";import { Theme } from "@mui/material/styles";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+//import { Theme } from "@mui/material/styles";
 import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import {alertActions} from "../../_actions/alert.actions";
@@ -73,7 +73,7 @@ export const ListProvider = () => {
         hour: 'numeric',
         minute: 'numeric'
     };
-    const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('md');
+    const [maxWidth, setMaxWidth] = React.useState('md');
 
     const handleOpenModalProviderInfo = (provider) => {
         setOpenModalProviderInfo(true);
@@ -134,7 +134,7 @@ export const ListProvider = () => {
         history.push(path);
     }
 
-    const StyledTableRow = withStyles((theme: Theme) =>
+    const StyledTableRow = withStyles((theme) =>
         createStyles({
             root: {
                 '&:nth-of-type(odd)': {
@@ -145,7 +145,7 @@ export const ListProvider = () => {
     )(TableRow);
 
 
-    const useStyles = makeStyles((theme: Theme) =>
+    const useStyles = makeStyles((theme) =>
         createStyles({
             titlegridModal: {
                 color: '#666666'

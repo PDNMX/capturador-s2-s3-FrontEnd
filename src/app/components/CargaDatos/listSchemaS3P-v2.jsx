@@ -19,7 +19,6 @@ import {
   Tooltip,
   Toolbar,
   useTheme,
-  DialogProps,
   Card,
   CardContent,
   CardHeader,
@@ -33,7 +32,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Alert } from "@mui/material";
-import { Theme } from "@mui/material/styles";
 import createStyles from "@mui/styles/createStyles";
 import withStyles from "@mui/styles/withStyles";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -58,111 +56,6 @@ import TablePaginationActions from "../Common/TablePaginationActionsProps";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-interface FormDataEsquemaS3P {
-  particularSancionado?: {
-    domicilioMexico: {
-      pais: {
-        valor: string;
-        clave: string;
-      };
-      entidadFederativa: {
-        valor: string;
-        clave: string;
-      };
-      municipio: {
-        valor: string;
-        clave: string;
-      };
-      localidad: {
-        valor: string;
-        clave: string;
-      };
-      vialidad: {
-        valor: string;
-        clave: string;
-      };
-      codigoPostal: string;
-      numeroExterior: string;
-      numeroInterior: string;
-    };
-    domicilioExtranjero: {
-      pais: {
-        valor: string;
-        clave: string;
-      };
-      calle: string;
-      ciudadLocalidad: string;
-      estadoProvincia: string;
-      codigoPostal: string;
-      numeroExterior: string;
-      numeroInterior: string;
-    };
-    nombreRazonSocial: string;
-    objetoSocial: string;
-    rfc: string;
-    tipoPersona: string;
-    telefono: string;
-    directorGeneral?: {
-      nombres: string;
-      primerApellido: string;
-      segundoApellido: string;
-      curp: string;
-    };
-    apoderadoLegal?: {
-      nombres: string;
-      primerApellido: string;
-      segundoApellido: string;
-      curp: string;
-    };
-  };
-  multa?: {
-    monto: number;
-    moneda: {
-      clave: string;
-      valor: string;
-    };
-  };
-  fechaCaptura?: string;
-  expediente?: string;
-  institucionDependencia?: {
-    nombre: string;
-    clave: string;
-    siglas: string;
-  };
-  objetoContrato?: string;
-  autoridadSancionadora?: string;
-  tipoFalta?: string;
-  tipoSancion?: [{ clave: string; valor: string; descripcion: string }];
-  causaMotivoHechos?: string;
-  acto?: string;
-  responsableSancion?: {
-    nombres: string;
-    primerApellido: string;
-    segundoApellido: string;
-    curp: string;
-  };
-  resolucion?: {
-    sentido: string;
-    url: string;
-    fechaNotificacion: string;
-  };
-  inhabilitacion?: {
-    plazo: string;
-    fechaInicial: string;
-    fechaFinal: string;
-  };
-  documentos?: [
-    {
-      id: string;
-      tipo: string;
-      titulo: string;
-      descripcion: string;
-      url: string;
-      fecha: string;
-    },
-  ];
-  observaciones?: string;
-}
 
 export const ListS3PSchemav2 = () => {
   const {
@@ -189,9 +82,9 @@ export const ListS3PSchemav2 = () => {
   const [query, setQuery] = React.useState({});
   const [openModalUserInfo, setOpenModalUserInfo] = React.useState(false);
   const [selectedRegistro, setSelectedRegistro] =
-    React.useState<FormDataEsquemaS3P>({});
+    React.useState({});
   const [match, setMatch] = React.useState({ params: { id: "" } });
-  const [maxWidth, setMaxWidth] = React.useState<DialogProps["maxWidth"]>("md");
+  const [maxWidth, setMaxWidth] = React.useState("md");
   const optionsDate = {
     year: "numeric",
     month: "long",
@@ -363,15 +256,6 @@ export const ListS3PSchemav2 = () => {
       .replace(/U/g, "[u,ü,ú,ù]");
   }
 
-  interface FormFiltersEsquemaS3P {
-    ejercicioFiscal: string;
-    nombres?: string;
-    primerApellido?: string;
-    segundoApellido?: string;
-    idnombre?: string;
-    puestoNombre?: string;
-  }
-
   const schema = Yup.object().shape({
     expediente: Yup.string()
       .matches(
@@ -410,7 +294,7 @@ export const ListS3PSchemav2 = () => {
   //const required = makeRequired(schema)
 
   // yes, this can even be async!
-  async function onSubmit(values: FormDataEsquemaS3P) {
+  async function onSubmit(values) {
     const newQuery = {};
     for (const [key, value] of Object.entries(values)) {
       if (key === "expediente" && value !== null && value !== "") {
@@ -490,7 +374,7 @@ export const ListS3PSchemav2 = () => {
     history.push(path);
   };
 
-  const useStyles = makeStyles((theme: Theme) =>
+  const useStyles = makeStyles((theme) =>
     createStyles({
       root: {
         "&$checked": {

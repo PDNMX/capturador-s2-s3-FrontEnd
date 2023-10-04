@@ -2,7 +2,7 @@ import { take, put, select } from 'redux-saga/effects';
 //import uuid from 'uuid';
 import axios from 'axios';
 import * as mutations from './mutations';
-import path from 'path';
+/* import path from 'path'; */
 import moment from 'moment';
 import { alertActions } from '../_actions/alert.actions';
 import { history } from './history';

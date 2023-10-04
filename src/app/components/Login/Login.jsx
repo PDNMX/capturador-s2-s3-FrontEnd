@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CssBaseline from "@mui/material/CssBaseline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import makeStyles from "@mui/styles/makeStyles";
@@ -21,16 +21,7 @@ export const LoginV = () => {
   return <MyForm initialValues={{ username: "", password: "" }} />;
 };
 
-interface FormDataLoginUser {
-  username?: string;
-  password?: string;
-}
-
-interface MyFormProps {
-  initialValues: FormDataLoginUser;
-}
-
-function MyForm(props: MyFormProps) {
+function MyForm(props) {
   const { initialValues } = props;
 
   const style = makeStyles((theme) => ({
@@ -118,7 +109,7 @@ function MyForm(props: MyFormProps) {
     },
   }));
 
-  const { alerta } = useSelector((state: RootStateOrAny) => ({
+  const { alerta } = useSelector((state) => ({
     alerta: state.alert,
   }));
 
@@ -128,7 +119,7 @@ function MyForm(props: MyFormProps) {
     dispatch(alertActions.clear());
   };
 
-  const { alert } = useSelector((state: RootStateOrAny) => ({
+  const { alert } = useSelector((state) => ({
     alert: state.alert,
   }));
 
@@ -141,12 +132,12 @@ function MyForm(props: MyFormProps) {
   //const required = makeRequired(schema)
 
   // yes, this can even be async!
-  async function onSubmit(values: FormDataLoginUser) {
+  async function onSubmit(values) {
     alert.status = false;
     dispatch(requestTokenAuth(values));
   }
 
-  const redirectToRoute = (path: any) => {
+  const redirectToRoute = (path) => {
     history.push(path);
   };
 

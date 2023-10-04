@@ -29,15 +29,6 @@ const ChangePassword = ({ id, user, alert }) => {
   return <MyForm initialValues={user} id={id} alerta={alert} />;
 };
 
-interface FormDataUser {
-  constrasena?: string;
-}
-
-interface MyFormProps {
-  initialValues: FormDataUser;
-  id: string;
-  alerta: { status: boolean };
-}
 
 /* const override = css`
   display: block;
@@ -45,7 +36,7 @@ interface MyFormProps {
   border-color: red;
 `; */
 
-function MyForm(props: MyFormProps) {
+function MyForm(props) {
   const { initialValues, id } = props;
 
   const { alerta } = useSelector((state) => ({
@@ -55,7 +46,7 @@ function MyForm(props: MyFormProps) {
   const dispatch = useDispatch();
 
   // yes, this can even be async!
-  async function onSubmit(values: FormDataUser) {
+  async function onSubmit(values) {
     alerta.status = false;
     if (id != undefined) {
       dispatch(requestEditUser({ ...values, _id: id }));
@@ -93,12 +84,6 @@ function MyForm(props: MyFormProps) {
   const changepassword = () => {
     history.push("/usuario/cambiarcontrasena");
   };
-
-  /* const buttonSubmittProps = { // make sure all required component's inputs/Props keys&types match
-        variant:"contained",
-        color:"primary",
-        type:"submit"
-    } */
 
   return (
     <>

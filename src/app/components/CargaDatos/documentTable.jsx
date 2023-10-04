@@ -1,4 +1,3 @@
-import { Theme } from '@mui/material/styles';
 import withStyles from '@mui/styles/withStyles';
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
@@ -10,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const StyledTableCell = withStyles((theme: Theme) =>
+const StyledTableCell = withStyles((theme) =>
     createStyles({
         head: {
             backgroundColor: '#ffe01b',
@@ -22,7 +21,7 @@ const StyledTableCell = withStyles((theme: Theme) =>
     }),
 )(TableCell);
 
-const StyledTableRow = withStyles((theme: Theme) =>
+const StyledTableRow = withStyles((theme) =>
     createStyles({
         root: {
             '&:nth-of-type(odd)': {
@@ -32,7 +31,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
     }),
 )(TableRow);
 
-function createData(id: string, tipo: string, titulo: string, url: string, fecha: string, descripcion: string) {
+function createData(id, tipo, titulo, url, fecha, descripcion) {
     return { id, tipo, titulo, url, fecha, descripcion};
 }
 
