@@ -79,8 +79,10 @@ function MyForm(props) {
                     uiSchema={uiSchema}
                     formData={initialValues}
                     omitExtraData={true}
-                    liveOmit={true}
-                    /* liveValidate={true} */
+                    liveOmit={false}
+                    liveValidate={false}
+                    noHtml5Validate={true}
+                    showErrorList={false}
                 />
                 </Grid>
                 </Grid>
