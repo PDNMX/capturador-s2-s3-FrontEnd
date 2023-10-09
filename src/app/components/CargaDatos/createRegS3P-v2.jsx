@@ -208,8 +208,8 @@ function MyForm(props) {
                   /* onError={log("errors")} */
                   uiSchema={uiSchema}
                   formData={initialValues}
-                  omitExtraData={false}
-                  liveOmit={true}
+                  omitExtraData={true}
+                  liveOmit={false}
                   liveValidate={false}
                   noHtml5Validate={true}
                   showErrorList={false}
