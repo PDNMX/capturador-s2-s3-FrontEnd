@@ -75,7 +75,7 @@ function MyForm(props) {
                     validator={validator}
                     onChange={handleChange}
                     onSubmit={handleSubmit}
-                    onError={log('errors')}
+                    /* onError={log('errors')} */
                     uiSchema={uiSchema}
                     formData={initialValues}
                     omitExtraData={true}
