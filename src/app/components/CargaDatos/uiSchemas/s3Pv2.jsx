@@ -1,28 +1,15 @@
 let data = {
   definitions: {
-    ambito: {
-      ambitoGobierno: {
+    domicilio: {
+      domicilioExtranjero: {
         "ui:options": { label: false },
-        clave: {
-          "ui:widget": "RadioWidget",
-          "ui:options": {
-            inline: true,
-          },
+        vialidad: {
+          clave: {
+            "ui:placeholder": "Ejemplo: Calle",
+          }
         },
       },
-      nombre: {
-        "ui:placeholder": "Ejemplo: Secretaría de Hacienda y Crédito Público",
-      },
-      siglas: {
-        "ui:placeholder": "Ejemplo: SHCP",
-      },
-      poderOrganoGobierno: {
-        "ui:widget": "RadioWidget",
-        "ui:options": {
-          inline: true,
-        },
-      },
-    }
+    },
   },
   expediente: {
     "ui:placeholder": "Ejemplo: 123456789",
@@ -50,10 +37,7 @@ let data = {
     segundoApellido: {
       "ui:placeholder": "Ejemplo: Gómez",
       "ui:widget": "textarea",
-      "ui:order": [
-        "valor",
-        "sinSegundoApellido",
-      ],
+      "ui:order": ["valor", "sinSegundoApellido"],
       "ui:options": {
         title: false,
       },
@@ -72,6 +56,12 @@ let data = {
       "ui:enableMarkdownInDescription": true,
       "ui:description":
         "Escribir los primeros diez caracteres básicos y los tres correspondientes a la homoclave. En caso de no contar con este dato, podrá consultarlo en la página del <a target='_blank' href='https://www.sat.gob.mx/aplicacion/operacion/31274/consulta-tu-clave-de-rfc-mediante-curp'>Servicio de Administración Tributaria</a>.",
+    },
+    telefono: {
+      "ui:placeholder": "Ejemplo: 5500000000",
+      "ui:enableMarkdownInDescription": true,
+      "ui:description":
+        "Escribir el número de teléfono de la persona física estandarizado <a target='_blank' href='http://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164D-2009-PDF-S.pdf'> ITU </a>",
     },
     entePublico: {
       nombre: {
@@ -101,16 +91,16 @@ let data = {
         clave: {
           "ui:widget": "RadioWidget",
           "ui:options": {
-            inline: true
-          }, 
+            inline: true,
+          },
         },
         amonestacionPublicaPrivada: {
           tipoAmonestacion: {
             "ui:widget": "RadioWidget",
             "ui:options": {
-              inline: true
+              inline: true,
+            },
           },
-          }
         },
       },
     },
@@ -120,7 +110,7 @@ let data = {
         rows: 10,
         label: "4. OBSERVACIONES",
       },
-      "ui:placeholder": "..."
+      "ui:placeholder": "...",
     },
     "ui:submitButtonOptions": {
       submitText: "Guardar",
@@ -142,10 +132,7 @@ let data = {
     segundoApellido: {
       "ui:placeholder": "Ejemplo: Gómez",
       "ui:widget": "textarea",
-      "ui:order": [
-        "valor",
-        "sinSegundoApellido",
-      ],
+      "ui:order": ["valor", "sinSegundoApellido"],
       "ui:options": {
         title: false,
       },
@@ -193,7 +180,7 @@ let data = {
         clave: {
           "ui:widget": "RadioWidget",
           "ui:options": {
-            inline: true
+            inline: true,
           },
         },
       },
@@ -204,7 +191,7 @@ let data = {
         rows: 10,
         label: "4. OBSERVACIONES",
       },
-      "ui:placeholder": "..."
+      "ui:placeholder": "...",
     },
     "ui:submitButtonOptions": {
       submitText: "Guardar",

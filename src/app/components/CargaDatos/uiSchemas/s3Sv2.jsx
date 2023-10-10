@@ -1,4 +1,7 @@
 let data = {
+  expediente: {
+    "ui:placeholder": "Ejemplo: 123456789",
+  },
   tipoDeFalta: {
     "ui:widget": "RadioWidget",
     "ui:autofocus": true,
@@ -13,12 +16,6 @@ let data = {
     },
   },
   faltaNoGrave: {
-    expediente: {
-      "ui:placeholder": "Ejemplo: 123456789",
-    },
-    ejercicio: {
-      "ui:placeholder": "Ejemplo: 2018",
-    },
     nombres: {
       "ui:placeholder": "Ejemplo: Juan",
     },
@@ -28,10 +25,7 @@ let data = {
     segundoApellido: {
       "ui:placeholder": "Ejemplo: Gómez",
       "ui:widget": "textarea",
-      "ui:order": [
-        "valor",
-        "sinSegundoApellido",
-      ],
+      "ui:order": ["valor", "sinSegundoApellido"],
       "ui:options": {
         title: false,
       },
@@ -90,21 +84,26 @@ let data = {
         },
       },
     },
+    origenInvestigacion: {
+      faltaCometida: {
+        nombreNormatividadInfringida: {
+          "ui:placeholder":
+            "Ejemplo: Ley General de Responsabilidades Administrativas",
+        },
+      },
+    },
     tipoSancion: {
       items: {
         clave: {
           "ui:widget": "RadioWidget",
-          "ui:options": {
-            inline: true
-          }, 
         },
         amonestacionPublicaPrivada: {
           tipoAmonestacion: {
             "ui:widget": "RadioWidget",
             "ui:options": {
-              inline: true
+              inline: true,
+            },
           },
-          }
         },
       },
     },
@@ -114,7 +113,7 @@ let data = {
         rows: 10,
         label: "4. OBSERVACIONES",
       },
-      "ui:placeholder": "..."
+      "ui:placeholder": "...",
     },
     "ui:submitButtonOptions": {
       submitText: "Guardar",
@@ -127,13 +126,6 @@ let data = {
     },
   },
   faltaGrave: {
-    
-    expediente: {
-      "ui:placeholder": "Ejemplo: 123456789",
-    },
-    ejercicio: {
-      "ui:placeholder": "Ejemplo: 2018",
-    },
     nombres: {
       "ui:placeholder": "Ejemplo: Juan",
     },
@@ -143,10 +135,7 @@ let data = {
     segundoApellido: {
       "ui:placeholder": "Ejemplo: Gómez",
       "ui:widget": "textarea",
-      "ui:order": [
-        "valor",
-        "sinSegundoApellido",
-      ],
+      "ui:order": ["valor", "sinSegundoApellido"],
       "ui:options": {
         title: false,
       },
@@ -209,9 +198,6 @@ let data = {
       items: {
         clave: {
           "ui:widget": "RadioWidget",
-          "ui:options": {
-            inline: true
-          },
         },
       },
     },
@@ -221,7 +207,7 @@ let data = {
         rows: 10,
         label: "4. OBSERVACIONES",
       },
-      "ui:placeholder": "..."
+      "ui:placeholder": "...",
     },
     "ui:submitButtonOptions": {
       submitText: "Guardar",
