@@ -55,7 +55,7 @@ function MyForm(props) {
     dispatch(alertActions.clear());
   };
 
-  const onSubmit = (formData) => {
+  const onSubmit = ({formData}) => {
     console.log("Data submitted: ", formData);
     if (id != undefined) {
       dispatch(S2Actions.requestEditDo({ ...formData, _id: id }));
@@ -103,8 +103,8 @@ function MyForm(props) {
                 /* onError={log("errors")} */
                 uiSchema={uiSchema}
                 formData={initialValues}
-                omitExtraData={false}
-                liveOmit={true}
+                omitExtraData={true}
+                liveOmit={false}
                 liveValidate={false}
                 noHtml5Validate={true}
                 showErrorList={false}
