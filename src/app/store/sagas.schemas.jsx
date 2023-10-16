@@ -589,7 +589,7 @@ export function* creationS3PSchema() {
 		yield put(userActions.setUserInSession(payload.idUser));
 		let usuario = payload.idUser;
 
-		if (values.domicilio === 'mex') {
+		/* if (values.domicilio === 'mex') {
 			delete values.particularSancionado.domicilioExtranjero;
 		} else if (values.domicilio === 'ext') {
 			delete values.particularSancionado.domicilioMexico;
@@ -696,13 +696,13 @@ export function* creationS3PSchema() {
 					values.particularSancionado.domicilioExtranjero.pais = paisDomExt;
 				}
 			}
-		}
+		} */
 
 		delete values.__v;
 		if (values._id) {
 			values['_id'] = values._id;
 			const { status } = yield axios.post(
-				url_api + `/updateS3PSchema`,
+				url_api + `/updateS3Pv2`,
 				{ ...values, usuario: usuario },
 				{
 					headers: {
@@ -722,7 +722,7 @@ export function* creationS3PSchema() {
 			}
 		} else {
 			const { status, data } = yield axios.post(
-				url_api + `/insertS3PSchema`,
+				url_api + `/insertS3Pv2`,
 				{ ...values, usuario: usuario },
 				{
 					headers: {
@@ -755,7 +755,7 @@ export function* creationS3SSchema() {
 		let usuario = payload.idUser;
 
 		let docSend = {};
-		if (values.expediente) {
+		/* if (values.expediente) {
 			docSend['expediente'] = values.expediente;
 		}
 
@@ -902,13 +902,13 @@ export function* creationS3SSchema() {
 				}
 			}
 		}
-		docSend['documentos'] = values.documents;
+		docSend['documentos'] = values.documents; */
 
 		if (values._id) {
 			docSend['_id'] = values._id;
 			const { status } = yield axios.post(
-				url_api + `/updateS3SSchema`,
-				{ ...docSend, usuario: usuario },
+				url_api + `/updateS3Sv2`,
+				{ ...values, usuario: usuario },
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -927,8 +927,8 @@ export function* creationS3SSchema() {
 			}
 		} else {
 			const { status, data } = yield axios.post(
-				url_api + `/insertS3SSchema`,
-				{ ...docSend, usuario: usuario },
+				url_api + `/insertS3Sv2`,
+				{ ...values, usuario: usuario },
 				{
 					headers: {
 						'Content-Type': 'application/json',
