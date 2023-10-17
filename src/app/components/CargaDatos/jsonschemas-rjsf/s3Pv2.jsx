@@ -72,6 +72,7 @@ let data = {
     },
     poder: {
       enum: ["EJECUTIVO", "LEGISLATIVO", "JUDICIAL", "ORGANO_AUTONOMO"],
+      enumNames:["Ejecutivo","Legislativo","Judicial","Organo autonomo"],
     },
     domicilio: {
       type: "object",
@@ -224,13 +225,13 @@ let data = {
             "OTRO",
           ],
           enumNames: [
-            "AUDITORÍA SUPERIOR DE LA FEDERACIÓN O ENTIDADES DE FISCALIZACIÓN SUPERIOR DE LAS ENTIDADES FEDERATIVAS",
-            "AUDITORÍA DEL ÓRGANO INTERNO DE CONTROL DEL ENTE PÚBLICO",
-            "QUEJA CIUDADANA",
-            "DENUNCIA CIUDADANA",
-            "DENUNCIA DE SERVIDOR PÚBLICO",
-            "OFICIO",
-            "OTRO",
+            "Auditoría Superior de la Federación o Entidades de Fiscalización Superior de las Entidades Federativas",
+            "Auditoría del Órgano Interno de Control del Ente Público",
+            "Queja Ciudadana",
+            "Denuncia Ciudadana",
+            "Denuncia de Servidor Público",
+            "Oficio",
+            "Otro",
           ],
         },
       },
@@ -269,7 +270,7 @@ let data = {
         },
       },
     },
-    resolucion: {
+    resoluciones: {
       type: "object",
       description: "Indicar la resolución de la falta cometida.",
       required: [
@@ -288,21 +289,21 @@ let data = {
         },
         fechaResolucion: {
           type: "string",
-          format: "date-time",
+          format: "date",
           title: "Fecha de resolución",
           description:
             "Registrar la echa en la que se emite la resolución sancionatoria de la persona servidora pública sancionada en formato dd-mm-aaaa.",
         },
         fechaNotificacion: {
           type: "string",
-          format: "date-time",
+          format: "date",
           title: "Fecha de notificación",
           description:
             "Registrar la fecha en la que se le notifica al servidor público su sentencia en formato dd-mm-aaaa",
         },
         fechaResolucionFirme: {
           type: "string",
-          format: "date-time",
+          format: "date",
           title: "Fecha de resolución firme",
           description:
             "Registrar la fecha en que quedó firme la  sentencia de la persona servidora pública en formato dd-mm-aaaa.",
@@ -318,26 +319,46 @@ let data = {
     constancias: {
       type: "object",
       title: "Constancia",
-      required: ["titulo", "fecha", "url"],
       properties: {
-        titulo: {
-          type: "string",
-          title: "Título de la constancia de la sanción",
-          description:
-            "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
+        sinConstancia: {
+          type: "boolean",
+          default: false,
+          title: "No existe constancia",
         },
-        fecha: {
-          type: "string",
-          format: "date-time",
-          title: "Fecha de la constancia de la sanción",
-          description:
-            "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-        },
-        url: {
-          type: "string",
-          title: "URL del documento digital",
-          description:
-            "Colocar el enlace o link del documento digital de la constancia.",
+      },
+      dependencies: {
+        sinConstancia: {
+          oneOf: [
+            {
+              properties: {
+                sinConstancia: { const: false },
+                titulo: {
+                  type: "string",
+                  title: "Título de la constancia de la sanción",
+                  description:
+                    "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
+                },
+                fecha: {
+                  type: "string",
+                  format: "date",
+                  title: "Fecha de la constancia de la sanción",
+                  description:
+                    "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
+                },
+                url: {
+                  type: "string",
+                  title: "URL del documento digital",
+                  description:
+                    "Colocar el enlace o link del documento digital de la constancia.",
+                },
+              },
+            },
+            {
+              properties: {
+                sinConstaancia: { const: true },
+              },
+            },
+          ],
         },
       },
     },
@@ -418,8 +439,8 @@ let data = {
       example: "EXP-2023-456",
     },
     tipoPersona: {
-      title: "Tipo de Falta",
-      description: "Selecciona el tipo de falta a registrar.",
+      title: "Tipo de persona",
+      description: "Selecciona el tipo de persona a registrar.",
       type: "string",
       enumNames: ["Persona Física", "Persona Moral"],
       enum: ["FISICA", "MORAL"],
@@ -438,7 +459,7 @@ let data = {
               type: "object",
               title: "1. DATOS GENERALES DE LA PERSONA FÍSICA SANCIONADA",
               description:
-                "Indicar los datos generales de la persona servidora pública sancionados.",
+                "Indicar los datos generales de la persona física sancionada.",
               required: [
                 "nombres",
                 "primerApellido",
@@ -655,15 +676,15 @@ let data = {
                           "OTRO",
                         ],
                         enumNames: [
-                          "SOBORNO",
-                          "PARTICIPACIÓN ILÍCITA",
-                          "TRÁFICO DE INFLUENCIAS",
-                          "UTILIZACIÓN DE INFORMACIÓN FALSA",
-                          "COLUSION",
-                          "OBSTRUCCIÓN DE FACULTADES",
-                          "CONTRATACIÓN INDEBIDA",
-                          "USO INDEBIDO DE RECURSOS PÚBLICOS",
-                          "OTRO",
+                          "Soborno",
+                          "Participación ilícita",
+                          "Tráfico de influencias",
+                          "Utilización de información falsa",
+                          "Colusión",
+                          "Obstrucción de facultades",
+                          "Contratación indebida",
+                          "Uso indebido de recursos públicos",
+                          "Otro"
                         ],
                       },
                       nombreNormatividadInfringida: {
@@ -734,7 +755,7 @@ let data = {
                 },
                 resolucion: {
                   title: "5. TIPO DE SANCIÓN APLICADA A LA PERSONA FÍSICA",
-                  $ref: "#/definitions/resolucion",
+                  $ref: "#/definitions/resoluciones",
                 },
                 autoridadSancionadora: {
                   type: "string",
@@ -769,10 +790,10 @@ let data = {
                           "OTRO",
                         ],
                         enumNames: [
-                          "INHABILITADO",
-                          "INDEMNIZACIÓN",
-                          "SANCIÓN ECONÓMICA",
-                          "OTRO",
+                          "Inhabilitado",
+                          "Indemnización",
+                          "Sanción económica",
+                          "Otro"
                         ],
                       },
                     },
@@ -803,14 +824,14 @@ let data = {
                                   },
                                   fechaInicial: {
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     title: "Fecha inicial de la suspensión",
                                     description:
                                       "Registrar la fecha en la que inició la inhabilitación de la persona física en formato dd-mm-aaaa.",
                                   },
                                   fechaFinal: {
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     title: "Fecha final de la suspensión",
                                     description:
                                       "Indicar la fecha en la que se concluyó la inhabilitación de la persona física en formato dd-mm-aaaa.",
@@ -894,14 +915,14 @@ let data = {
                                       },
                                       fecha: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha de cobreo de la sanción",
                                         description:
                                           "Registrar la fecha en que se realizó el cobro de la indemnizacion en formato dd-mm-aaaa.",
                                       },
                                       fechaPagoSancion: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title:
                                           "Fecha en la que se realizo el pago total de la sanción",
                                         description:
@@ -988,14 +1009,14 @@ let data = {
                                       },
                                       fecha: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha de cobreo de la sanción",
                                         description:
                                           "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
                                       },
                                       fechaPagoSancion: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title:
                                           "Fecha en la que se realizo el pago total de la sanción",
                                         description:
@@ -1035,7 +1056,6 @@ let data = {
                                   nombre: {
                                     title: "Nombre de la sanción",
                                     type: "string",
-                                    format: "date-time",
                                     description:
                                       "Escribir el título de la constancia de la sanción impuesta.",
                                   },
@@ -1056,7 +1076,7 @@ let data = {
                   },
                 },
                 observaciones: {
-                  title: "6. OBSERVACIONES",
+                  title: "7. OBSERVACIONES",
                   type: "string",
                   description:
                     "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",
@@ -1263,15 +1283,15 @@ let data = {
                           "OTRO",
                         ],
                         enumNames: [
-                          "SOBORNO",
-                          "PARTICIPACIÓN ILÍCITA",
-                          "TRÁFICO DE INFLUENCIAS",
-                          "UTILIZACIÓN DE INFORMACIÓN FALSA",
-                          "COLUSION",
-                          "OBSTRUCCIÓN DE FACULTADES",
-                          "CONTRATACIÓN INDEBIDA",
-                          "USO INDEBIDO DE RECURSOS PÚBLICOS",
-                          "OTRO",
+                          "Soborno",
+                          "Participación ilícita",
+                          "Tráfico de influencias",
+                          "Utilización de información falsa",
+                          "Colusión",
+                          "Obstrucción de facultades",
+                          "Contratación indebida",
+                          "Uso indebido de recursos públicos",
+                          "Otro"
                         ],
                       },
                       nombreNormatividadInfringida: {
@@ -1338,7 +1358,7 @@ let data = {
                 },
                 resolucion: {
                   title: "6. TIPO DE SANCIÓN APLICADA A LA PERSONA MORAL",
-                  $ref: "#/definitions/resolucion",
+                  $ref: "#/definitions/resoluciones",
                 },
                 autoridadSancionadora: {
                   type: "string",
@@ -1375,12 +1395,12 @@ let data = {
                           "OTRO",
                         ],
                         enumNames: [
-                          "INHABILITADO",
-                          "INDEMNIZACIÓN",
-                          "SANCIÓN ECONÓMICA",
-                          "SUSPENSIÓN DE ACTIVIDADES",
-                          "DISOLUCIÓN DE LA SOCIEDAD",
-                          "OTRO",
+                          "Inhabilitado",
+                          "Indemnización",
+                          "Sanción económica",
+                          "Suspensión de actividades",
+                          "Disolución de la sociedad",
+                          "Otro"
                         ],
                       },
                     },
@@ -1421,14 +1441,14 @@ let data = {
                                       dia: { title: "Día", type: "integer" },
                                       fechaInicial: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha inicial de la suspensión",
                                         description:
                                           "Registrar la fecha en la que inició la inhabilitación de la persona moral en formato dd-mm-aaaa.",
                                       },
                                       fechaFinal: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha final de la suspensión",
                                         description:
                                           "Indicar la fecha en la que se concluyó la inhabilitación de la persona moral en formato dd-mm-aaaa.",
@@ -1514,14 +1534,14 @@ let data = {
                                       },
                                       fecha: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha de cobreo de la sanción",
                                         description:
                                           "Registrar la fecha en que se realizó el cobro de la indemnizacion en formato dd-mm-aaaa.",
                                       },
                                       fechaPagoSancion: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title:
                                           "Fecha en la que se realizo el pago total de la sanción",
                                         description:
@@ -1608,14 +1628,14 @@ let data = {
                                       },
                                       fecha: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha de cobreo de la sanción",
                                         description:
                                           "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
                                       },
                                       fechaPagoSancion: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title:
                                           "Fecha en la que se realizo el pago total de la sanción",
                                         description:
@@ -1651,14 +1671,14 @@ let data = {
                                   fechaInicial: {
                                     title: "Fecha inicial",
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     description:
                                       "Registrar la fecha en la que inició la suspensión de actividades de la persona moral en formato dd-mm-aaaa.",
                                   },
                                   fechaFinal: {
                                     title: "Fecha final",
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     description:
                                       "Indicar la fecha en la que se concluyó la suspensión de actividades de la persona moral en formato dd-mm-aaaa.",
                                   },
@@ -1693,7 +1713,7 @@ let data = {
                                   fechaDisolucion: {
                                     title: "Fecha inicial",
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     description:
                                       "Indicar la fecha a partir de la cual se disuleve la sociedad en formato dd-mm-aaaa.",
                                   },
@@ -1732,7 +1752,6 @@ let data = {
                                   nombre: {
                                     title: "Nombre de la sanción",
                                     type: "string",
-                                    format: "date-time",
                                     description:
                                       "Escribir el título de la constancia de la sanción impuesta.",
                                   },
@@ -1753,7 +1772,7 @@ let data = {
                   },
                 },
                 observaciones: {
-                  title: "6. OBSERVACIONES",
+                  title: "8. OBSERVACIONES",
                   type: "string",
                   description:
                     "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",

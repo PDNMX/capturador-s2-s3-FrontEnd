@@ -72,12 +72,65 @@ let data = {
     },
     poder: {
       enum: ["EJECUTIVO", "LEGISLATIVO", "JUDICIAL", "ORGANO_AUTONOMO"],
+      enumNames: ["Ejecutivo", "Legislativo", "Judicial", "Órgano autónomo"],
+    },
+    constancias: {
+      type: "object",
+      title: "Constancia",
+      properties: {
+        sinConstancia: {
+          type: "boolean",
+          default: false,
+          title: "No existe constancia",
+        },
+      },
+      dependencies: {
+        sinConstancia: {
+          oneOf: [
+            {
+              properties: {
+                sinConstancia: { const: false },
+                titulo: {
+                  type: "string",
+                  title: "Título de la constancia de la sanción",
+                  description:
+                    "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
+                },
+                fecha: {
+                  type: "string",
+                  format: "date",
+                  title: "Fecha de la constancia de la sanción",
+                  description:
+                    "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
+                },
+                url: {
+                  type: "string",
+                  title: "URL del documento digital",
+                  description:
+                    "Colocar el enlace o link del documento digital de la constancia.",
+                },
+              },
+            },
+            {
+              properties: {
+                sinConstaancia: { const: true },
+              },
+            },
+          ],
+        },
+      },
     },
   },
   type: "object",
   title: "SISTEMA DE SERVIDORES PÚBLICOS SANCIONADOS",
   description: "Nuevo registro",
   properties: {
+    expediente: {
+      type: "string",
+      title: "Expediente",
+      description:
+        "Capturar el número que refiere al procedimiento único que da inicio en materia de responsabilidades administrativas.",
+    },
     tipoDeFalta: {
       title: "Tipo de Falta",
       description: "Selecciona el tipo de falta a registrar.",
@@ -86,7 +139,7 @@ let data = {
       enum: ["NO_GRAVE", "GRAVE"],
     },
   },
-  required: ["tipoDeFalta"],
+  required: ["tipoDeFalta", "expediente"],
   dependencies: {
     tipoDeFalta: {
       oneOf: [
@@ -102,7 +155,6 @@ let data = {
                 "Indicar los datos generales de la persona servidora pública sancionados.",
               type: "object",
               required: [
-                "expediente",
                 "nombres",
                 "primerApellido",
                 "segundoApellido",
@@ -119,12 +171,6 @@ let data = {
                 "observaciones",
               ],
               properties: {
-                expediente: {
-                  type: "string",
-                  title: "Expediente",
-                  description:
-                    "Capturar el número que refiere al procedimiento único que da inicio en materia de responsabilidades administrativas.",
-                },
                 nombres: {
                   type: "string",
                   title: "Nombre (s)",
@@ -153,15 +199,6 @@ let data = {
                         {
                           properties: {
                             sinSegundoApellido: { const: true },
-                            /* valor: {
-                              readOnly: true,
-                              type: "string",
-                              default: null,
-                              const: null,
-                              title: "Segundo Apellido",
-                              description:
-                                "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
-                            }, */
                           },
                           required: ["sinSegundoApellido"],
                         },
@@ -196,6 +233,7 @@ let data = {
                 sexo: {
                   type: "string",
                   enum: ["FEMENINO", "MASCULINO"],
+                  enumNames: ["Femenino", "Masculino"],
                   title: "Sexo",
                   description: "Seleccionar la opción que corresponda.",
                 },
@@ -295,7 +333,7 @@ let data = {
                 },
                 empleoCargoComision: {
                   type: "object",
-                  required: ["nombre", "nivel", "areaAdscripcion"],
+                  required: ["nom~    bre", "nivel", "areaAdscripcion"],
                   properties: {
                     nombre: {
                       type: "object",
@@ -319,17 +357,17 @@ let data = {
                             "OTRO",
                           ],
                           enumNames: [
-                            "OPERATIVO U HOMÓLOGO",
-                            "ENLACE U HOMÓLOGO",
-                            "JEFATURA DE DEPARTAMENTO U HOMÓLOGO",
-                            "SUBDIRECCIÓN DE ÁREA U HOMÓLOGO",
-                            "COORDINACIÓN DIRECCIÓN DE ÁREA U HOMÓLOGO",
-                            "DIRECCIÓN GENERAL ADJUNTA U HOMÓLOGO",
-                            "DIRECCIÓN GENERAL U HOMÓLOGO",
-                            "JEFATURA DE UNIDAD U HOMÓLOGO",
-                            "SUBSECRETARÍA DE ESTADO OFICIALÍA MAYOR U HOMÓLOGO",
-                            "SECRETARÍA DE ESTADO U HOMÓLOGO",
-                            "OTRO",
+                            "Operativo u homologo",
+                            "Enlace u homologo",
+                            "Jefatura de departamento u homologo",
+                            "Subdireccion de area u homologo",
+                            "Coordinacion direccon de area u homologo",
+                            "Direccion general adjunta u homologo",
+                            "Direccion general u homologo",
+                            "Jefatura de unidad u homologo",
+                            "Ssubsecretaria de estado oficialia mayor MAYOR u homologo",
+                            "Secretaria de esatdo u homologo",
+                            "Otro",
                           ],
                         },
                       },
@@ -407,13 +445,13 @@ let data = {
                         "OTRO",
                       ],
                       enumNames: [
-                        "AUDITORÍA SUPERIOR DE LA FEDERACIÓN O ENTIDADES DE FISCALIZACIÓN SUPERIOR DE LAS ENTIDADES FEDERATIVAS",
-                        "AUDITORÍA DEL ÓRGANO INTERNO DE CONTROL DEL ENTE PÚBLICO",
-                        "QUEJA CIUDADANA",
-                        "DENUNCIA CIUDADANA",
-                        "DENUNCIA DE SERVIDOR PÚBLICO",
-                        "OFICIO",
-                        "OTRO",
+                        "Auditoria superior de la federacion o entidades de fiscalizacion superior de la entidades federativas",
+                        "Auditoria del organo interno de control del ente publico",
+                        "Queja ciudadana",
+                        "Denuncia ciudadana",
+                        "Denuncia de servidor publico",
+                        "Oficio",
+                        "Otro",
                       ],
                     },
                   },
@@ -458,6 +496,7 @@ let data = {
                   items: {
                     type: "object",
                     title: "Falta cometida",
+                    description: "Por actos u omisiones que incumplan o transgredan las siguientes obligaciones:",                    
                     required: [
                       "clave",
                       "nombreNormatividadInfringida",
@@ -467,33 +506,27 @@ let data = {
                     properties: {
                       clave: {
                         title: "Falta cometida",
-                        description:
-                          "Seleccionar el tipo de falta cometida por parte de la persona servidora pública sancionada.",
                         enum: [
-                          "INCUMPLIMIENTO",
-                          "NO_DENUNCIE",
-                          "NO_ATENDER",
-                          "NO_PRESENTAR_DECLARACIONES",
-                          "NO_DOCUMENTAR",
-                          "NO_SUPERVISAR",
-                          "NO_RENDIR_CUENTAS",
-                          "NO_CERCIORARSE",
-                          "NO_REVISAR_CONSTITUCION",
-                          "NO_ABSTENERSE",
+                          "CUMPLIMIENTO",
+                          "DENUNCIE",
+                          "ATENDER",
+                          "PRESENTAR_DECLARACIONES",
+                          "DOCUMENTAR",
+                          "SUPERVISAR",
+                          "RENDIR_CUENTAS",
+                          "CERCIORARSE",
                           "OTRO",
                         ],
                         enumNames: [
-                          "Incumpliento de funciones, atribuciones y comisiones encomendadas.",
-                          "No denuncie actos u omisiones que en ejercicio de sus funciones puedan constituir Faltas administrativas.",
-                          "No atender las instrucciones de sus superiores.",
-                          "No presentar en tiempo y forma las declaraciones de situación patrimonial y de intereses.",
-                          "No registrar, integrar, custodiar y cuidar la documentación e información que tenga bajo su responsabilidad, e impedir o evitar su uso, divulgación, sustracción, destrucción, ocultamiento o inutilización indebidos.",
-                          "No supervisar la actuación de las personas servidoras públicas.",
-                          "No rendir cuentas sobre el ejercicio de las funciones. - No colaborar en los procedimientos judiciales y administrativos.",
-                          "No cerciorarse, antes de la celebración de contratos que el particular manifieste bajo protesta de decir verdad que no desempeña empleo, cargo o comisión en el servicio público o, en su caso, que, a pesar de desempeñarlo, con la formalización del contrato correspondiente no se actualiza un Conflicto de Interés.previo a realizar cualquier acto jurídico que involucre el ejercicio de recursos públicos con personas jurídicas.",
-                          "No revisar su constitución y, en su caso, sus modificaciones con el fin de verificar que sus socios, integrantes de los consejos de administración o accionistas que ejerzan control no incurran en Conflicto de Interés.",
-                          "No Abstenerse de realizar Propaganda gubernamental con recursos públicos que incluyanombres, imágenes, voces o símbolos que impliquen promoción personalizada decualquier servidor público.",
-                          "OTRO",
+                          "Cumplir con las funciones, atribuciones y comisiones encomendadas, observando en su desempeño disciplina y respeto, tanto a los demás Servidores Públicos como a los particulares con los que llegare a tratar, en los términos que se establezcan en el código de ética;",
+                          "Denunciar los actos u omisiones que en ejercicio de sus funciones llegare a advertir, que puedan constituir Faltas administrativas;",
+                          "Atender las instrucciones de sus superiores, siempre que éstas sean acordes con las disposiciones relacionadas con el servicio público. En caso de recibir instrucción o encomienda contraria a dichas disposiciones, deberá denunciar esta circunstancia;",
+                          "Presentar en tiempo y forma las declaraciones de situación patrimonial y de intereses;",
+                          "Registrar, integrar, custodiar y cuidar la documentación e información que por razón de su empleo, cargo o comisión, tenga bajo su responsabilidad, e impedir o evitar su uso, divulgación, sustracción, destrucción, ocultamiento o inutilización indebidos;",
+                          "Supervisar que los Servidores Públicos sujetos a su dirección, cumplan con las disposiciones de este artículo;",
+                          "Rendir cuentas sobre el ejercicio de las funciones, en términos de las normas aplicables;",
+                          "Colaborar en los procedimientos judiciales y administrativos en los que sea parte;",
+                          "Otro",
                         ],
                       },
                       nombreNormatividadInfringida: {
@@ -506,7 +539,8 @@ let data = {
                         type: "array",
                         title: "Articulo(s) de la normatividad infringida",
                         items: {
-                          type: "number",
+                          title: "Arituclo",
+                          type: "string",
                           description:
                             "Escribir el artículo(s) infringido de la normatividad infringida.",
                         },
@@ -515,7 +549,8 @@ let data = {
                         type: "array",
                         title: "Fracción(es) de la normatividad infringida",
                         items: {
-                          type: "number",
+                          title: "Fraccion",
+                          type: "string",
                           description:
                             "Escribir la fracción(es) infringida de la normatividad infringida.",
                         },
@@ -542,16 +577,15 @@ let data = {
                               clave: {
                                 enum: [
                                   "INCUMPLIMIENTO",
-                                  "NO_DENUNCIE",
-                                  "NO_ATENDER",
-                                  "NO_PRESENTAR_DECLARACIONES",
-                                  "NO_DOCUMENTAR",
-                                  "NO_SUPERVISAR",
-                                  "NO_RENDIR_CUENTAS",
-                                  "NO_CERCIORARSE",
-                                  "NO_REVISAR_CONSTITUCION",
-                                  "NO_ABSTENERSE",
-                                  "OTRO",
+                                  "DENUNCIE",
+                                  "ATENDER",
+                                  "PRESENTAR_DECLARACIONES",
+                                  "DOCUMENTAR",
+                                  "SUPERVISAR",
+                                  "RENDIR_CUENTAS",
+                                  "CERCIORARSE",
+                                  "REVISAR_CONSTITUCION",
+                                  "ABSTENERSE",
                                 ],
                               },
                             },
@@ -582,21 +616,21 @@ let data = {
                     },
                     fechaResolucion: {
                       type: "string",
-                      format: "date-time",
+                      format: "date",
                       title: "Fecha de resolución",
                       description:
                         "Registrar la echa en la que se emite la resolución sancionatoria de la persona servidora pública sancionada en formato dd-mm-aaaa.",
                     },
                     fechaNotificacion: {
                       type: "string",
-                      format: "date-time",
+                      format: "date",
                       title: "Fecha de notificación",
                       description:
                         "Registrar la fecha en la que se le notifica al servidor público su sentencia en formato dd-mm-aaaa",
                     },
                     fechaResolucionFirme: {
                       type: "string",
-                      format: "date-time",
+                      format: "date",
                       title: "Fecha de resolución firme",
                       description:
                         "Registrar la fecha en que quedó firme la  sentencia de la persona servidora pública en formato dd-mm-aaaa.",
@@ -632,17 +666,17 @@ let data = {
                           "Elegir una o varias sanciones que fueron dictaminadas en la resolución, conforme a la o las elecciones del catálogo, es como deberá llenarse el resto del formato. Se podrán elegir de las siguientes opciones:",
                         enum: [
                           "AMONESTACION",
-                          "SUPENSION",
+                          "SUSPENSION",
                           "DESTITUCION",
                           "INHABILITACION",
                           "OTRO",
                         ],
                         enumNames: [
-                          "AMONESTACIÓN PÚBLICA O PRIVADA",
-                          "SUSPENSIÓN DEL EMPLEO CARGO O COMISIÓN",
-                          "DESTITUCIÓN DE SU EMPLEO CARGO O COMISIÓN",
-                          "INHABILITACIÓN TEMPORAL PARA DESEMPEÑAR EMPLEOS CARGOS O COMISIONES EN EL SERVICIO PÚBLICO Y PARA PARTICIPAR EN ADQUISICIONES ARRENDAMIENTOS SERVICIOS U OBRAS PÚBLICAS",
-                          "OTRO",
+                          "Amonestacion publica o privada",
+                          "Suspension del empleo cargo o comision",
+                          "Destitucion de su empleo cargo o comision",
+                          "Inhabilitacion temporal para desempenar empleos cargos o comisiones en el servicio publico y para participar en adquisiciones arrendamientos servicios u obras publicas",
+                          "Otro",
                         ],
                       },
                     },
@@ -670,34 +704,10 @@ let data = {
                                     description:
                                       "Seleccionar el tipo de amonestación correspondiente a la amonestación si es: PÚBLICA o PRIVADA",
                                     enum: ["PUBLICO", "PRIVADO"],
+                                    enumNames: ["Publico", "Privado"],
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -710,7 +720,7 @@ let data = {
                           {
                             properties: {
                               clave: {
-                                enum: ["SUPENSION"],
+                                enum: ["SUSPENSION"],
                               },
                               descripcion: {
                                 type: "string",
@@ -741,14 +751,14 @@ let data = {
                                       dia: { title: "Día", type: "integer" },
                                       fechaInicial: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha inicial de la suspensión",
                                         description:
                                           "Indicar la fecha en la que inició la suspensión de la persona servidora pública en formato dd-mm-aaaa.",
                                       },
                                       fechaFinal: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha final de la suspensión",
                                         description:
                                           "Indicar la fecha en la que se concluyó la suspensión de la persona servidora pública en formato dd-mm-aaaa.",
@@ -756,32 +766,7 @@ let data = {
                                     },
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -811,37 +796,12 @@ let data = {
                                   fechaDestitución: {
                                     title: "Fecha de destitución",
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     description:
                                       "Registar la fecha a partir de la cual el servidor público queda destituido de su empleo, cargo o comisión.",
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -886,14 +846,14 @@ let data = {
                                       dia: { title: "Día", type: "integer" },
                                       fechaInicial: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha inicial de la suspensión",
                                         description:
                                           "Registrar la fecha en la que inició la inhabilitación de la persona servidora pública en formato dd-mm-aaaa.",
                                       },
                                       fechaFinal: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha final de la suspensión",
                                         description:
                                           "Indicar la fecha en la que se concluyó la inhabilitación de la persona servidora pública en formato dd-mm-aaaa.",
@@ -901,32 +861,7 @@ let data = {
                                     },
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -957,7 +892,6 @@ let data = {
                                   nombre: {
                                     title: "Nombre de la sanción",
                                     type: "string",
-                                    format: "date-time",
                                     description:
                                       "Escribir el título de la constancia de la sanción impuesta.",
                                   },
@@ -1000,7 +934,6 @@ let data = {
                 "Indicar los datos generales de la persona servidora pública sancionados.",
               type: "object",
               required: [
-                "expediente",
                 "nombres",
                 "primerApellido",
                 "segundoApellido",
@@ -1018,12 +951,6 @@ let data = {
                 "observaciones",
               ],
               properties: {
-                expediente: {
-                  type: "string",
-                  title: "Expediente",
-                  description:
-                    "Capturar el número que refiere al procedimiento único que da inicio en materia de responsabilidades administrativas.",
-                },
                 nombres: {
                   type: "string",
                   title: "Nombre (s)",
@@ -1052,15 +979,6 @@ let data = {
                         {
                           properties: {
                             sinSegundoApellido: { const: true },
-                            /* valor: {
-                              readOnly: true,
-                              type: "string",
-                              default: null,
-                              const: null,
-                              title: "Segundo Apellido",
-                              description:
-                                "Escribir el segundo apellido de la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema, sin abreviaturas.",
-                            }, */
                           },
                           required: ["sinSegundoApellido"],
                         },
@@ -1095,6 +1013,7 @@ let data = {
                 sexo: {
                   type: "string",
                   enum: ["FEMENINO", "MASCULINO"],
+                  enumNames: ["Femenino", "Masculino"],
                   title: "Sexo",
                   description: "Seleccionar la opción que corresponda.",
                 },
@@ -1218,17 +1137,17 @@ let data = {
                             "OTRO",
                           ],
                           enumNames: [
-                            "OPERATIVO U HOMÓLOGO",
-                            "ENLACE U HOMÓLOGO",
-                            "JEFATURA DE DEPARTAMENTO U HOMÓLOGO",
-                            "SUBDIRECCIÓN DE ÁREA U HOMÓLOGO",
-                            "COORDINACIÓN DIRECCIÓN DE ÁREA U HOMÓLOGO",
-                            "DIRECCIÓN GENERAL ADJUNTA U HOMÓLOGO",
-                            "DIRECCIÓN GENERAL U HOMÓLOGO",
-                            "JEFATURA DE UNIDAD U HOMÓLOGO",
-                            "SUBSECRETARÍA DE ESTADO OFICIALÍA MAYOR U HOMÓLOGO",
-                            "SECRETARÍA DE ESTADO U HOMÓLOGO",
-                            "OTRO",
+                            "Operativo u homologo",
+                            "Enlace u homologo",
+                            "Jefatura de departamento u homologo",
+                            "Subdireccion de area u homologo",
+                            "Coordinacion direccon de area u homologo",
+                            "Direccion general adjunta u homologo",
+                            "Direccion general u homologo",
+                            "Jefatura de unidad u homologo",
+                            "Ssubsecretaria de estado oficialia mayor MAYOR u homologo",
+                            "Secretaria de esatdo u homologo",
+                            "Otro",
                           ],
                         },
                       },
@@ -1306,13 +1225,13 @@ let data = {
                         "OTRO",
                       ],
                       enumNames: [
-                        "AUDITORÍA SUPERIOR DE LA FEDERACIÓN O ENTIDADES DE FISCALIZACIÓN SUPERIOR DE LAS ENTIDADES FEDERATIVAS",
-                        "AUDITORÍA DEL ÓRGANO INTERNO DE CONTROL DEL ENTE PÚBLICO",
-                        "QUEJA CIUDADANA",
-                        "DENUNCIA CIUDADANA",
-                        "DENUNCIA DE SERVIDOR PÚBLICO",
-                        "OFICIO",
-                        "OTRO",
+                        "Auditoria superior de la federacion o entidades de fiscalizacion superior de la entidades federativas",
+                        "Auditoria del organo interno de control del ente publico",
+                        "Queja ciudadana",
+                        "Denuncia ciudadana",
+                        "Denuncia de servidor publico",
+                        "Oficio",
+                        "Otro",
                       ],
                     },
                   },
@@ -1493,21 +1412,21 @@ let data = {
                     },
                     fechaResolucion: {
                       type: "string",
-                      format: "date-time",
+                      format: "date",
                       title: "Fecha de resolución",
                       description:
                         "Registrar la echa en la que se emite la resolución sancionatoria de la persona servidora pública sancionada en formato dd-mm-aaaa.",
                     },
                     fechaNotificacion: {
                       type: "string",
-                      format: "date-time",
+                      format: "date",
                       title: "Fecha de notificación",
                       description:
                         "Registrar la fecha en la que se le notifica al servidor público su sentencia en formato dd-mm-aaaa",
                     },
                     fechaResolucionFirme: {
                       type: "string",
-                      format: "date-time",
+                      format: "date",
                       title: "Fecha de resolución firme",
                       description:
                         "Registrar la fecha en que quedó firme la  sentencia de la persona servidora pública en formato dd-mm-aaaa.",
@@ -1569,7 +1488,7 @@ let data = {
                           {
                             properties: {
                               clave: {
-                                enum: ["SUPENSION"],
+                                enum: ["SUSPENSION"],
                               },
                               descripcion: {
                                 type: "string",
@@ -1577,7 +1496,7 @@ let data = {
                                 description:
                                   "Descripción o nota aclaratoria del tipo de sanción infringida.",
                               },
-                              suspensionEmpleoCargoComisión: {
+                              EmpleoCargoComisión: {
                                 type: "object",
                                 title: "SUSPENSIÓN DEL EMPLEO CARGO O COMISIÓN",
                                 required: ["plazo", "constancia"],
@@ -1600,14 +1519,14 @@ let data = {
                                       dia: { title: "Día", type: "integer" },
                                       fechaInicial: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha inicial de la suspensión",
                                         description:
                                           "Indicar la fecha en la que inició la suspensión de la persona servidora pública en formato dd-mm-aaaa.",
                                       },
                                       fechaFinal: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha final de la suspensión",
                                         description:
                                           "Indicar la fecha en la que se concluyó la suspensión de la persona servidora pública en formato dd-mm-aaaa.",
@@ -1615,32 +1534,7 @@ let data = {
                                     },
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -1670,37 +1564,12 @@ let data = {
                                   fechaDestitución: {
                                     title: "Fecha de destitución",
                                     type: "string",
-                                    format: "date-time",
+                                    format: "date",
                                     description:
                                       "Registar la fecha a partir de la cual el servidor público queda destituido de su empleo, cargo o comisión.",
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -1781,14 +1650,14 @@ let data = {
                                       },
                                       fecha: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha de cobreo de la sanción",
                                         description:
                                           "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
                                       },
                                       fechaPagoSancion: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title:
                                           "Fecha en la que se realizo el pago total de la sanción",
                                         description:
@@ -1797,32 +1666,7 @@ let data = {
                                     },
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -1864,14 +1708,14 @@ let data = {
                                       dia: { title: "Día", type: "integer" },
                                       fechaInicial: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha inicial de la suspensión",
                                         description:
                                           "Registrar la fecha en la que inició la inhabilitación de la persona servidora pública en formato dd-mm-aaaa.",
                                       },
                                       fechaFinal: {
                                         type: "string",
-                                        format: "date-time",
+                                        format: "date",
                                         title: "Fecha final de la suspensión",
                                         description:
                                           "Indicar la fecha en la que se concluyó la inhabilitación de la persona servidora pública en formato dd-mm-aaaa.",
@@ -1879,32 +1723,7 @@ let data = {
                                     },
                                   },
                                   constancia: {
-                                    type: "object",
-                                    title: "Constancia",
-                                    required: ["titulo", "fecha", "url"],
-                                    properties: {
-                                      titulo: {
-                                        type: "string",
-                                        title:
-                                          "Título de la constancia de la sanción",
-                                        description:
-                                          "Proporcionar el nombre del título de la constancia de la persona servidora pública.",
-                                      },
-                                      fecha: {
-                                        type: "string",
-                                        format: "date-time",
-                                        title:
-                                          "Fecha de la constancia de la sanción",
-                                        description:
-                                          "Indicar la fecha de expedición de la constancia de la persona servidora pública en formato dd-mm-aaaa.",
-                                      },
-                                      url: {
-                                        type: "string",
-                                        title: "URL del documento digital",
-                                        description:
-                                          "Colocar el enlace o link del documento digital de la constancia.",
-                                      },
-                                    },
+                                    $ref: "#/definitions/constancias",
                                   },
                                 },
                               },
@@ -1935,7 +1754,6 @@ let data = {
                                   nombre: {
                                     title: "Nombre de la sanción",
                                     type: "string",
-                                    format: "date-time",
                                     description:
                                       "Escribir el título de la constancia de la sanción impuesta.",
                                   },
