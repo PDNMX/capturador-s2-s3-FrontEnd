@@ -270,7 +270,7 @@ let data = {
         },
       },
     },
-    resolucion: {
+    resoluciones: {
       type: "object",
       description: "Indicar la resolución de la falta cometida.",
       required: [
@@ -755,7 +755,7 @@ let data = {
                 },
                 resolucion: {
                   title: "5. TIPO DE SANCIÓN APLICADA A LA PERSONA FÍSICA",
-                  $ref: "#/definitions/resolucion",
+                  $ref: "#/definitions/resoluciones",
                 },
                 autoridadSancionadora: {
                   type: "string",
@@ -1358,7 +1358,7 @@ let data = {
                 },
                 resolucion: {
                   title: "6. TIPO DE SANCIÓN APLICADA A LA PERSONA MORAL",
-                  $ref: "#/definitions/resolucion",
+                  $ref: "#/definitions/resoluciones",
                 },
                 autoridadSancionadora: {
                   type: "string",
