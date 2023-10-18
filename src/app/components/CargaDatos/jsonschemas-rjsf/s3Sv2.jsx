@@ -333,7 +333,7 @@ let data = {
                 },
                 empleoCargoComision: {
                   type: "object",
-                  required: ["nom~    bre", "nivel", "areaAdscripcion"],
+                  required: ["nombre", "nivel", "areaAdscripcion"],
                   properties: {
                     nombre: {
                       type: "object",
