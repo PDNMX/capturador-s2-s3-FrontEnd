@@ -5,10 +5,9 @@ MAINTAINER Sergio Rodríguez <sergio.rdzsg@gmail.com>
 ADD . /capturador
 WORKDIR /capturador
 
-RUN npm install --loglevel error \
-&& npm -g install serve \
-&& npm run build
+RUN npm install \
+&& npm cache clean --force 
 
 EXPOSE 5173
 
-CMD ["serve", "-n", "-s", "dist", "-l", "5173"]
+CMD ["npm", "run", "dev", "--", "--host"]
