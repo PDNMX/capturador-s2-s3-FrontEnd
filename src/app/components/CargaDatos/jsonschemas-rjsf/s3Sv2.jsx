@@ -476,7 +476,7 @@ let data = {
                           properties: {
                             clave: {
                               enum: [
-                                "AUDITORIO_SUPERIOR",
+                                "AUDITORIA_SUPERIOR",
                                 "AUDITORIA_OIC",
                                 "QUEJA",
                                 "DENUNCIA_CIUDADADA",
@@ -1256,7 +1256,7 @@ let data = {
                           properties: {
                             clave: {
                               enum: [
-                                "AUDITORIO_SUPERIOR",
+                                "AUDITORIA_SUPERIOR",
                                 "AUDITORIA_OIC",
                                 "QUEJA",
                                 "DENUNCIA_CIUDADADA",
