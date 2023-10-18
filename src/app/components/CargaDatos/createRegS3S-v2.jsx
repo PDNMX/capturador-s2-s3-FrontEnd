@@ -45,10 +45,8 @@ function MyForm(props) {
     // yes, this can even be async!
     const handleSubmit = ({ formData }) => {
         /* console.log(formData); */
-        console.log("padrino alan");
-        console.log(formData);
         if (id != undefined) {
-            
+            console.log(formData);
             dispatch(S3SActions.requestCreationS3S({ ...formData, _id: id }));
         } else {
             dispatch(S3SActions.requestCreationS3S(formData));
@@ -62,7 +60,8 @@ function MyForm(props) {
     const log = (type) => console.log.bind(console, type);
     const handleChange = ({ formData}) => console.log(formData);
 
-    const dataPrueba = {"faltaNoGrave":{"segundoApellido":{"sinSegundoApellido":true},"entePublico":{"ambitoGobierno":{"clave":"MUNICIPAL_ALCALDIA"},"poderOrganoGobierno":"JUDICIAL","nombre":"aaaaa","siglas":"aaaa","entidadFederativa":{"clave":"06","valor":"Colima"}},"empleoCargoComision":{"nombre":{"clave":"COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO"},"nivel":"aaaa","areaAdscripcion":"aaaaa"},"origenInvestigacion":{"clave":"AUDITORIA_OIC"},"faltaCometida":[{"articuloNormatividadInfringida":["2"],"fraccionNormatividadInfringida":["3"],"clave":"ATENDER","nombreNormatividadInfringida":"aaaaa"}],"resolucion":{"documentoResolucion":"aaa","fechaResolucion":"1900-12-12","fechaNotificacion":"1900-12-12","fechaResolucionFirme":"1900-12-12","url":"aaaaaa"},"tipoSancion":[{"amonestacionPublicaPrivada":{"constancia":{"sinConstancia":true},"tipoAmonestacion":"PUBLICO"},"clave":"AMONESTACION","descripcion":"aaaaa"}],"nombres":"aaaa","primerApellido":"aaaa","curp":"aaaa","rfc":"aaaa","sexo":"FEMENINO","autoridadSancionadora":"aaaaa","observaciones":"aaaaaa"},"expediente":"123","tipoDeFalta":"NO_GRAVE"};
+    const dataPrueba = {"expediente":"123","tipoDeFalta":"NO_GRAVE","faltaNoGrave":{"nombres":"aaaa","primerApellido":"aaaa","segundoApellido":{"sinSegundoApellido":true},"curp":"aaaa","rfc":"aaaa","sexo":"FEMENINO","entePublico":{"ambitoGobierno":{"clave":"MUNICIPAL_ALCALDIA"},"poderOrganoGobierno":"JUDICIAL","nombre":"aaaaa","siglas":"aaaa"},"empleoCargoComision":{"nombre":{"clave":"COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO"},"nivel":"aaaa","areaAdscripcion":"aaaaa"},"origenInvestigacion":{"clave":"AUDITORIA_OIC"},"faltaCometida":[{"clave":"ATENDER","nombreNormatividadInfringida":"aaaaa","articuloNormatividadInfringida":["2"],"fraccionNormatividadInfringida":["3"]}],"resolucion":{"documentoResolucion":"aaa","fechaResolucion":"1900-12-12","fechaNotificacion":"1900-12-12","fechaResolucionFirme":"1900-12-12","url":"aaaaaa"},"autoridadSancionadora":"aaaaa","tipoSancion":[{"clave":"AMONESTACION","descripcion":"aaaaa","amonestacionPublicaPrivada":{"tipoAmonestacion":"PUBLICO","constancia":{"sinConstancia":true}}}],"observaciones":"aaaaaa"}}
+
     return (
         <Grid item xs={12}>
             <Card>
@@ -81,9 +80,9 @@ function MyForm(props) {
                     onSubmit={handleSubmit}
                     /* onError={log('errors')} */
                     uiSchema={uiSchema}
-                    formData={dataPrueba}
-                    omitExtraData={false}
-                    liveOmit={true}
+                    formData={initialValues}
+                    omitExtraData={true}
+                    liveOmit={false}
                     liveValidate={false}
                     noHtml5Validate={true}
                     showErrorList={false}
