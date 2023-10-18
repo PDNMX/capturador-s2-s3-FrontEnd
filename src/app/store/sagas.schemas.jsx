@@ -722,7 +722,7 @@ export function* creationS3PSchema() {
 			}
 		} else {
 			const { status, data } = yield axios.post(
-				url_api + `/insertS3PSchema`,
+				url_api + `/insertS3Pv2`,
 				{ ...values, usuario: usuario },
 				{
 					headers: {
@@ -927,7 +927,7 @@ export function* creationS3SSchema() {
 			}
 		} else {
 			const { status, data } = yield axios.post(
-				url_api + `/insertS3SSchema`,
+				url_api + `/insertS3Sv2`,
 				{ ...docSend, usuario: usuario },
 				{
 					headers: {
