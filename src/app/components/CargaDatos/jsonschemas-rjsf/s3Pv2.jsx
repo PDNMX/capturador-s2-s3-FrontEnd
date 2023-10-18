@@ -281,7 +281,7 @@ let data = {
         "url",
       ],
       properties: {
-        documentoResolución: {
+        documentoResolucion: {
           type: "string",
           title: "Titulo del documento",
           description:
