@@ -754,161 +754,13 @@ export function* creationS3SSchema() {
 		yield put(userActions.setUserInSession(payload.idUser));
 		let usuario = payload.idUser;
 
-		let docSend = {};
-		if (values.expediente) {
-			docSend['expediente'] = values.expediente;
-		}
-
-		//-----------------INSTITUCION DEPENDENCIA
-		let ObjInstitucionDepe = {};
-		if (values.idnombre) {
-			ObjInstitucionDepe = { ...ObjInstitucionDepe, nombre: values.idnombre };
-		}
-		if (values.idclave) {
-			ObjInstitucionDepe = { ...ObjInstitucionDepe, clave: values.idclave };
-		}
-		if (values.idsiglas) {
-			ObjInstitucionDepe = { ...ObjInstitucionDepe, siglas: values.idsiglas };
-		}
-		docSend['institucionDependencia'] = ObjInstitucionDepe;
-
-		//----------------SERVIDOR PUBLICO SANCIONADO
-
-		let ObjServidorSancionado = {};
-		if (values.SPrfc) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, rfc: values.SPrfc };
-		}
-		if (values.SPcurp) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, curp: values.SPcurp };
-		}
-		if (values.SPSnombres) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, nombres: values.SPSnombres };
-		}
-		if (values.SPSprimerApellido) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, primerApellido: values.SPSprimerApellido };
-		}
-		if (values.SPSsegundoApellido) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, segundoApellido: values.SPSsegundoApellido };
-		}
-		if (values.SPSgenero && Object.keys(values.SPSgenero).length > 0) {
-			let genero = JSON.parse(values.SPSgenero);
-			ObjServidorSancionado = { ...ObjServidorSancionado, genero: { clave: genero.clave, valor: genero.valor } };
-		}
-		if (values.SPSpuesto) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, puesto: values.SPSpuesto };
-		}
-		if (values.SPSnivel) {
-			ObjServidorSancionado = { ...ObjServidorSancionado, nivel: values.SPSnivel };
-		}
-
-		docSend['servidorPublicoSancionado'] = ObjServidorSancionado;
-
-		//-----------------
-
-		if (values.autoridadSancionadora) {
-			docSend['autoridadSancionadora'] = values.autoridadSancionadora;
-		}
-
-		//----------------- TIPO FALTA
-
-		let ofalta = {};
-		if (values.tipoFalta) {
-			let falta = JSON.parse(values.tipoFalta);
-			ofalta = { clave: falta.clave, valor: falta.valor };
-			if (values.tpfdescripcion) {
-				ofalta['descripcion'] = values.tpfdescripcion;
-			}
-		}
-		docSend['tipoFalta'] = ofalta;
-
-		let arrayObjTipoSancion = [];
-		if (values.tipoSancionArray) {
-			for (let sancion of values.tipoSancionArray) {
-				// let tipoSancion = JSON.parse(sancion.tipoSancion);
-				let { clave, valor } = sancion;
-				arrayObjTipoSancion.push({
-					clave,
-					valor,
-					descripcion: sancion.descripcion ? sancion.descripcion : ''
-				});
-			}
-		}
-		docSend['tipoSancion'] = arrayObjTipoSancion;
-
-		if (values.causaMotivoHechos) {
-			docSend['causaMotivoHechos'] = values.causaMotivoHechos;
-		}
-
-		//-----------------RESOLUCION
-		let ObjResolucion = {};
-		if (values.resolucionURL) {
-			ObjResolucion = { ...ObjResolucion, url: values.resolucionURL };
-		}
-		if (values.resolucionFecha) {
-			let fecha = Date.parse(values.resolucionFecha);
-			fecha = formatISO(fecha, { representation: 'date' });
-			ObjResolucion = { ...ObjResolucion, fechaResolucion: fecha };
-		}
-		if (!_.isEmpty(ObjResolucion)) {
-			docSend['resolucion'] = ObjResolucion;
-		}
-
-		//-----------------MULTA
-		let ObjMulta = {};
-		if (values.multa && Object.keys(values.multa).length > 0) {
-			if (values.multa.monto) {
-				ObjMulta = { ...ObjMulta, monto: parseFloat(values.multa.monto) };
-			}
-			if (values.multa.moneda) {
-				let multaMoneda = JSON.parse(values.multa.moneda);
-				ObjMulta = { ...ObjMulta, moneda: { clave: multaMoneda.clave, valor: multaMoneda.valor } };
-			}
-			docSend['multa'] = ObjMulta;
-		}
-
-		//-------------------INHABILITACION
-		let ObjInhabilita = {};
-		if (values.inhabilitacionPlazo) {
-			ObjInhabilita = { ...ObjInhabilita, plazo: values.inhabilitacionPlazo };
-		}
-		if (values.inhabilitacionFechaInicial) {
-			let fecha = Date.parse(values.inhabilitacionFechaInicial);
-			fecha = formatISO(fecha, { representation: 'date' });
-			ObjInhabilita = { ...ObjInhabilita, fechaInicial: fecha };
-		}
-		if (values.inhabilitacionFechaFinal) {
-			let fecha = Date.parse(values.inhabilitacionFechaFinal);
-			fecha = formatISO(fecha, { representation: 'date' });
-			ObjInhabilita = { ...ObjInhabilita, fechaFinal: fecha };
-		}
-
-		docSend['inhabilitacion'] = ObjInhabilita;
-
-		//-------------------
-		if (values.observaciones) {
-			docSend['observaciones'] = values.observaciones;
-		}
-		//-------------------DOCUMENTOS
-
-		if (values.documents) {
-			if (Array.isArray(values.documents)) {
-				for (let i of values.documents) {
-					i.id = i.id.toString();
-					// if(i.tipo){
-					//     i.tipo = JSON.parse(i.tipo).clave;
-					// }
-					let fecha = Date.parse(i.fecha);
-					i.fecha = formatISO(fecha, { representation: 'date' });
-				}
-			}
-		}
-		docSend['documentos'] = values.documents;
+		//let docSend = {};
 
 		if (values._id) {
-			docSend['_id'] = values._id;
+			//docSend['_id'] = values._id;
 			const { status } = yield axios.post(
-				url_api + `/updateS3SSchema`,
-				{ ...docSend, usuario: usuario },
+				url_api + `/updateS3Sv2`,
+				{ ...values, usuario: usuario },
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -928,7 +780,7 @@ export function* creationS3SSchema() {
 		} else {
 			const { status, data } = yield axios.post(
 				url_api + `/insertS3Sv2`,
-				{ ...docSend, usuario: usuario },
+				{ ...values, usuario: usuario },
 				{
 					headers: {
 						'Content-Type': 'application/json',

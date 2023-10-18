@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { history } from '../../store/history';
+//import { history } from '../../store/history';
 import { useDispatch } from 'react-redux';
 import { alertActions } from '../../_actions/alert.actions';
 import { S3SActions } from '../../_actions/s3s.action';
@@ -45,7 +45,10 @@ function MyForm(props) {
     // yes, this can even be async!
     const handleSubmit = ({ formData }) => {
         /* console.log(formData); */
+        console.log("padrino alan");
+        console.log(formData);
         if (id != undefined) {
+            
             dispatch(S3SActions.requestCreationS3S({ ...formData, _id: id }));
         } else {
             dispatch(S3SActions.requestCreationS3S(formData));
@@ -59,6 +62,7 @@ function MyForm(props) {
     const log = (type) => console.log.bind(console, type);
     const handleChange = ({ formData}) => console.log(formData);
 
+    const dataPrueba = {"faltaNoGrave":{"segundoApellido":{"sinSegundoApellido":true},"entePublico":{"ambitoGobierno":{"clave":"MUNICIPAL_ALCALDIA"},"poderOrganoGobierno":"JUDICIAL","nombre":"aaaaa","siglas":"aaaa","entidadFederativa":{"clave":"06","valor":"Colima"}},"empleoCargoComision":{"nombre":{"clave":"COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO"},"nivel":"aaaa","areaAdscripcion":"aaaaa"},"origenInvestigacion":{"clave":"AUDITORIA_OIC"},"faltaCometida":[{"articuloNormatividadInfringida":["2"],"fraccionNormatividadInfringida":["3"],"clave":"ATENDER","nombreNormatividadInfringida":"aaaaa"}],"resolucion":{"documentoResolucion":"aaa","fechaResolucion":"1900-12-12","fechaNotificacion":"1900-12-12","fechaResolucionFirme":"1900-12-12","url":"aaaaaa"},"tipoSancion":[{"amonestacionPublicaPrivada":{"constancia":{"sinConstancia":true},"tipoAmonestacion":"PUBLICO"},"clave":"AMONESTACION","descripcion":"aaaaa"}],"nombres":"aaaa","primerApellido":"aaaa","curp":"aaaa","rfc":"aaaa","sexo":"FEMENINO","autoridadSancionadora":"aaaaa","observaciones":"aaaaaa"},"expediente":"123","tipoDeFalta":"NO_GRAVE"};
     return (
         <Grid item xs={12}>
             <Card>
@@ -77,9 +81,9 @@ function MyForm(props) {
                     onSubmit={handleSubmit}
                     /* onError={log('errors')} */
                     uiSchema={uiSchema}
-                    formData={initialValues}
-                    omitExtraData={true}
-                    liveOmit={false}
+                    formData={dataPrueba}
+                    omitExtraData={false}
+                    liveOmit={true}
                     liveValidate={false}
                     noHtml5Validate={true}
                     showErrorList={false}
