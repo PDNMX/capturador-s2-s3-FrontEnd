@@ -113,7 +113,7 @@ let data = {
             },
             {
               properties: {
-                sinConstaancia: { const: true },
+                sinConstancia: { const: true },
               },
             },
           ],
