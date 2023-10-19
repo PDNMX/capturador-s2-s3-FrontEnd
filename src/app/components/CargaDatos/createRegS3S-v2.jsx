@@ -80,7 +80,7 @@ function MyForm(props) {
                     onSubmit={handleSubmit}
                     /* onError={log('errors')} */
                     uiSchema={uiSchema}
-                    formData={initialValues}
+                    formData={dataPrueba}
                     omitExtraData={true}
                     liveOmit={false}
                     liveValidate={false}
