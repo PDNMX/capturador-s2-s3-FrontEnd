@@ -32,8 +32,9 @@ const CreateProvider = ({
 function Proveedor(props) {
   const { initialValues, id, alerta } = props;
   const alert = alerta;
-  alert.status = false;
-  const [loaderDisplay, setLoaderDisplay] = React.useState(false);
+  //alert.status = false;
+  //const [loaderDisplay, setLoaderDisplay] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const schema = {
     type: "object",
     required: ["dependencia", "sistemas"],
@@ -91,7 +92,8 @@ function Proveedor(props) {
     } else {
       dispatch(requestCreationProvider(formData));
     }
-    setLoaderDisplay(true);
+    setOpen(true)
+    //setLoaderDisplay(true);
   };
 
   return (
@@ -106,26 +108,24 @@ function Proveedor(props) {
           <CardContent>
             <Grid container>
               <Grid item xs={12}>
-                {loaderDisplay == false && (
-                  <Form
-                    schema={schema}
-                    validator={validator}
-                    /* onChange={log('changed')} */
-                    onSubmit={handleSubmit}
-                    /* onError={log("errors")} */
-                    uiSchema={uiSchema}
-                    formData={initialValues}
-                    liveOmit={true}
-                    showErrorList={false}
-                  />
-                )}
+                <Form
+                  schema={schema}
+                  validator={validator}
+                  /* onChange={log('changed')} */
+                  onSubmit={handleSubmit}
+                  /* onError={log("errors")} */
+                  uiSchema={uiSchema}
+                  formData={initialValues}
+                  liveOmit={true}
+                  showErrorList={false}
+                />
               </Grid>
             </Grid>
           </CardContent>
         </Card>
         <Dialog
           disableEscapeKeyDown
-          open={alert.status}
+          open={open}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description">
           <DialogContent>
