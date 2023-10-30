@@ -1051,7 +1051,7 @@ export const ListS3SSchemav2 = () => {
                           checked={selectedCheckBox.indexOf(schema._id) > -1}
                         />
                       </TableCell>
-                      {schema.faltaGrave && (
+                      {/* {schema.faltaGrave && (
                         <StyledTableCell style={{ width: "30%" }}>
                           {schema.faltaGrave.entePublico.nombre}
                         </StyledTableCell>
@@ -1062,7 +1062,7 @@ export const ListS3SSchemav2 = () => {
                           {schema.faltaGrave.primerApellido + " "}
                           {schema.faltaGrave.segundoApellido}
                         </StyledTableCell>
-                      )}
+                      )} */}
 
                       <StyledTableCell style={{ width: "20%" }}>
                         {schema.tipoDeFalta}

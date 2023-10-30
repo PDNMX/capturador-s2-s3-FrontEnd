@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -10,11 +9,7 @@ import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -25,7 +20,6 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import MenuItem from "@mui/material/MenuItem";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { ConnectedCreateProvider } from "../Proveedores/CreateProvider";
 import { history } from "../../store/history";
 import Collapse from "@mui/material/Collapse";
@@ -37,38 +31,36 @@ import { ConnectedChangePassword } from "../Usuarios/changePassword";
 import { ListUser } from "../Usuarios/listUser";
 import { ListProvider } from "../Proveedores/ListProvider";
 
-
 import { ConnectedCreateRegv2 } from "../CargaDatos/createRegS2-v2";
 import { ConnectedCreateRegS3Sv2 } from "../CargaDatos/createRegS3S-v2";
 import { ConnectedCreateRegS3Pv2 } from "../CargaDatos/createRegS3P-v2";
 
-import { useLocation } from "react-router-dom";
+/* S3 - 11 Forms */
+import {CreateRegForm1} from "../CargaDatos/s3/form1";
+import {CreateRegForm2} from "../CargaDatos/s3/form2";
+import {CreateRegForm3} from "../CargaDatos/s3/form3";
+import {CreateRegForm4} from "../CargaDatos/s3/form4";
+import {CreateRegForm5} from "../CargaDatos/s3/form5";
+import {CreateRegForm6} from "../CargaDatos/s3/form6";
+import {CreateRegForm7} from "../CargaDatos/s3/form7";
+import {CreateRegForm8} from "../CargaDatos/s3/form8";
+import {CreateRegForm9} from "../CargaDatos/s3/form9";
+import {CreateRegForm10} from "../CargaDatos/s3/form10";
+import {CreateRegForm11} from "../CargaDatos/s3/form11";
+
+//import { useLocation } from "react-router-dom";
 import { userActions } from "../../_actions/user.action";
 
 import { ListS2Schemav2 } from "../CargaDatos/listSchemaS2-v2";
 import { ListS3SSchemav2 } from "../CargaDatos/listSchemaS3S-v2";
 import { ListS3PSchemav2 } from "../CargaDatos/listSchemaS3P-v2";
 
-/* import { ConnectedConsultarBitacora } from "../Bitacora/ConsultarBitacora";
-import { ListBitacora } from "../Bitacora/ListBitacora"; */
-/* import { ListS2Schema } from "../CargaDatos/listSchemaS2";
-import { ListS3SSchema } from "../CargaDatos/listSchemaS3S";
-import { ListS3PSchema } from "../CargaDatos/listSchemaS3P"; */
-
-/* import { ConnectedCreateReg } from "../CargaDatos/createReg";
-import { ConnectedCreateRegS3S } from "../CargaDatos/createRegS3S";
-import { ConnectedCreateRegS3P } from "../CargaDatos/createRegS3P"; */
-
 import { useSelector } from "react-redux";
 
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import FolderIcon from "@mui/icons-material/Folder";
 import KeyboardIcon from "@mui/icons-material/Keyboard";
-import PublishIcon from "@mui/icons-material/Publish";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import ListIcon from "@mui/icons-material/List";
 import CircleIcon from "@mui/icons-material/Circle";
 
 const MenuV = ({ vistaRender, match, closeSession }) => {
@@ -77,25 +69,12 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
     permisos: state.permisos,
   }));
 
-  const location = useLocation();
-
   //MSubmenus
   const [submenuAdmonDatos, setsubmenuAdmonDatos] = useState(false);
   const [submenuUsuario, setsubMenuUsuario] = useState(false);
   const [submenuBitacora, setsubMenuBitacora] = useState(false);
   const [crearProovedor, setcrearProovedor] = useState(false);
-  const [submenuAdmonDatosS2, setsubmenuAdmonDatosS2] = useState(false);
-
-  const menuDatos = (e) => {
-    setsubmenuAdmonDatos(true);
-    setsubMenuUsuario(true);
-    setsubMenuBitacora(false);
-    setcrearProovedor(false);
-    setCheckedDatos((prev) => !prev);
-    setCheckedBitacora((prev) => false);
-    setCheckedUser((prev) => false);
-    setcrearProovedor(false);
-  };
+  //const [submenuAdmonDatosS2, setsubmenuAdmonDatosS2] = useState(false);
 
   const menuUser = (e) => {
     setsubmenuAdmonDatos(false);
@@ -130,25 +109,6 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
     setcheckedAdminDatosS3P((prev) => false);
   };
 
-  const menuBitacora = (e) => {
-    setsubmenuAdmonDatos(false);
-    setsubMenuBitacora(true);
-    setsubMenuUsuario(false);
-    setcrearProovedor(false);
-    setCheckedBitacora((prev) => !prev);
-    setCheckedUser((prev) => false);
-    setCheckedDatos((prev) => false);
-    setCheckedProveedor((prev) => false);
-    setcheckedDatos2((prev) => false);
-    setcheckedDatosS3S((prev) => false);
-    setcheckedDatosS3P((prev) => false);
-    setcheckedAdminDatos2((prev) => false);
-    setcheckedAdminDatosS3S((prev) => false);
-    setcheckedAdminDatosS3P((prev) => false);
-
-    history.push("/bitacora");
-  };
-
   const menuDatos2 = (e) => {
     setsubmenuAdmonDatos(true);
     setsubMenuBitacora(false);
@@ -181,10 +141,6 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
     setcheckedAdminDatos2((prev) => !prev);
     setcheckedAdminDatosS3S((prev) => !prev);
     setcheckedAdminDatosS3P((prev) => !prev);
-  };
-
-  const compCrearProovedor = (e) => {
-    setcrearProovedor(true);
   };
 
   const rol = localStorage.getItem("rol");
@@ -391,19 +347,214 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            {rol == "2" && (
-              <ListItem
-                onClick={(e) => menuAdminDatos2(e)}
-                key={"m1"}
-                disablePadding>
-                <ListItemButton sx={{ p: 2 }}>
-                  <ListItemIcon>
-                    <FolderIcon className={classes.itemOne} />
-                  </ListItemIcon>
-                  <ListItemText primary="Administrar Información" />
-                  {checkedAdminDatos2 ? <ExpandLess /> : <ExpandMore />}
+            {rol == 2 && (
+              <>
+                <ListItemButton disabled={true}>
+                  {/* <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon> */}
+                  <ListItemText primary="Faltas Administrativas de Servidores Públicos" />
+                  {/* {open ? <ExpandLess /> : <ExpandMore />} */}
                 </ListItemButton>
-              </ListItem>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/faltas-administrativas/graves")
+                      }
+                      key={"form1"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Graves" />
+                    </ListItemButton>
+                  </List>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/faltas-administrativas/no-graves")
+                      }
+                      key={"form2"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="No Graves" />
+                    </ListItemButton>
+                  </List>
+                </Collapse>
+
+                <ListItemButton disabled={true}>
+                  {/* <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon> */}
+                  <ListItemText primary="Actos de Particulares vinculados con Faltas Graves" />
+                  {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+                </ListItemButton>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/actos-particulares/personas-fisicas")
+                      }
+                      key={"form3"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Personas Físicas" />
+                    </ListItemButton>
+                  </List>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/actos-particulares/personas-morales")
+                      }
+                      key={"form4"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Personas Morales" />
+                    </ListItemButton>
+                  </List>
+                </Collapse>
+
+                <ListItemButton disabled={true}>
+                  {/* <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon> */}
+                  <ListItemText primary="Sanciones (Inhabilitaciones) por normas diversas a la LGRA" />
+                  {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+                </ListItemButton>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/inhabilitaciones/personas-fisicas")
+                      }
+                      key={"form5"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Personas Físicas" />
+                    </ListItemButton>
+                  </List>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/inhabilitaciones/personas-morales")
+                      }
+                      key={"form6"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Personas Morales" />
+                    </ListItemButton>
+                  </List>
+                </Collapse>
+
+                <ListItemButton disabled={true}>
+                  {/* <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon> */}
+                  <ListItemText primary="Hechos de Corrupción" />
+                  {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+                </ListItemButton>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/hechos-corrupcion/servidores-publicos")
+                      }
+                      key={"form7"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Servidores Públicos" />
+                    </ListItemButton>
+                  </List>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/hechos-corrupcion/personas-fisicas")
+                      }
+                      key={"form8"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Personas Físicas" />
+                    </ListItemButton>
+                  </List>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/hechos-corrupcion/personas-morales")
+                      }
+                      key={"form9"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Personas Morales" />
+                    </ListItemButton>
+                  </List>
+                </Collapse>
+
+                <ListItemButton disabled={true}>
+                  {/* <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon> */}
+                  <ListItemText primary="Abstenciones" />
+                  {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+                </ListItemButton>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/abstenciones/graves")
+                      }
+                      key={"form10"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="Graves" />
+                    </ListItemButton>
+                  </List>
+                  <List component="div" disablePadding>
+                    <ListItemButton
+                      onClick={() =>
+                        redirectToRoute("/captura/s3/abstenciones/no-graves")
+                      }
+                      key={"form11"}
+                      sx={{ pl: 3.5 }}>
+                      <ListItemIcon>
+                        <CircleIcon sx={{ maxHeight: "8px" }} />
+                      </ListItemIcon>
+                      <ListItemText secondary="No Graves" />
+                    </ListItemButton>
+                  </List>
+                </Collapse>
+
+                <ListItem
+                  onClick={(e) => menuAdminDatos2(e)}
+                  key={"m1"}
+                  disablePadding>
+                  <ListItemButton sx={{ p: 2 }}>
+                    <ListItemIcon>
+                      <FolderIcon className={classes.itemOne} />
+                    </ListItemIcon>
+                    <ListItemText primary="Administrar Información" />
+                    {checkedAdminDatos2 ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                </ListItem>
+              </>
             )}
             {permisos.map(
               (item) =>
@@ -461,7 +612,7 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
                 ),
             )}
 
-            {(rol == 2 || rol == "") && (
+            {rol == 2 && (
               <ListItem
                 onClick={(e) => menuDatos2(e)}
                 key={"m3"}
@@ -609,17 +760,6 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
                 </ListItem>
               </Collapse>
             )}
-
-            {/* 
-            { rol==1 &&
-                <ListItem onClick={e=>menuBitacora(e)} key={'mb'}>
-                    <ListItemIcon>
-                        <BookmarksIcon className={classes.itemThree}  />
-                    </ListItemIcon>
-                    <ListItemText primary="Bitácora" />
-                </ListItem>
-            } 
-            */}
           </List>
         </Box>
       </Drawer>
@@ -644,10 +784,32 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
           {vistaRender === "users" && <ListUser />}
           {vistaRender === "cambiarcontrasena" && <ConnectedChangePassword />}
           {vistaRender === "createprovider" && <ConnectedCreateProvider />}
-          {vistaRender === "editprovider" && ( <ConnectedCreateProvider match={match} /> )}
+          {vistaRender === "editprovider" && (
+            <ConnectedCreateProvider match={match} />
+          )}
           {vistaRender === "providers" && <ListProvider />}
 
           {/* ----------- NUEVAS VERSIONES - INICIO ----------- */}
+          {/* ----------- NUEVAS VERSIONES - s3: 11 Formatos ----------- */}
+
+          {/* Faltas Administrativas de Servidores Públicos */}
+          {vistaRender === "createReg-form1" && <CreateRegForm1 />}
+          {vistaRender === "createReg-form2" && <CreateRegForm2 />}
+          {/* Actos de Particulares vinculados con Faltas Graves */}
+          {vistaRender === "createReg-form3" && <CreateRegForm3 />}
+          {vistaRender === "createReg-form4" && <CreateRegForm4 />}
+          {/* Sanciones (Inhabilitaciones) por normas diversas a la LGRA */}
+          {vistaRender === "createReg-form5" && <CreateRegForm5 />}
+          {vistaRender === "createReg-form6" && <CreateRegForm6 />}
+          {/* Hechos de Corrupción */}
+          {vistaRender === "createReg-form7" && <CreateRegForm7 />}
+          {vistaRender === "createReg-form8" && <CreateRegForm8 />}
+          {vistaRender === "createReg-form9" && <CreateRegForm9 />}
+          {/* Abstenciones */}
+          {vistaRender === "createReg-form10" && <CreateRegForm10 />}
+          {vistaRender === "createReg-form11" && <CreateRegForm11 />}
+
+
           {vistaRender === "createRegv2" && <ConnectedCreateRegv2 />}
           {vistaRender === "createRegS3Sv2" && <ConnectedCreateRegS3Sv2 />}
           {vistaRender === "createRegS3Pv2" && <ConnectedCreateRegS3Pv2 />}
@@ -658,30 +820,15 @@ const MenuV = ({ vistaRender, match, closeSession }) => {
           {vistaRender === "S2Schemav2" && <ListS2Schemav2 />}
           {vistaRender === "S3SSchemav2" && <ListS3SSchemav2 />}
           {vistaRender === "S3PSchemav2" && <ListS3PSchemav2 />}
+
           {/* ----------- NUEVAS VERSIONES - FIN ----------- */}
-
-          {/* {vistaRender === "createReg" && <ConnectedCreateReg />}
-          {vistaRender === "createRegS3S" && <ConnectedCreateRegS3S />}
-          {vistaRender === "createRegS3P" && <ConnectedCreateRegS3P />}
-
-          {vistaRender === "editRegS2" && <ConnectedCreateReg match={match} />}
-          {vistaRender === "editRegS3S" && ( <ConnectedCreateRegS3S match={match} /> )}
-          {vistaRender === "editRegS3P" && ( <ConnectedCreateRegS3P match={match} /> )}
-          {vistaRender === "S2Schema" && <ListS2Schema />}
-          {vistaRender === "S3SSchema" && <ListS3SSchema />}
-          {vistaRender === "S3PSchema" && <ListS3PSchema />} */}
-
-          {/* {vistaRender === "consultarbitacora" && (
-            <ConnectedConsultarBitacora />
-          )} */}
-          {/* {vistaRender === "reportebitacora" && <ListBitacora />} */}
         </Grid>
       </Box>
     </div>
   );
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(_, ownProps) {
   let vistaRender = ownProps.propiedades.renderView;
   let match = ownProps.match;
   return { vistaRender, match };
