@@ -18,8 +18,8 @@ import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 
-import esquemaS3Sv2 from "./jsonschemas-rjsf/s2v2";
-import uiS2v2 from "./uiSchemas/s2v2";
+import esquemaS3m from "./jsonschemas-rjsf/s3m";
+import uiS3m from "./uiSchemas/UI_s3m";
 import formats from "../customFormats";
 
 //import validator from '@rjsf/validator-ajv8';
@@ -65,8 +65,8 @@ function MyForm(props) {
     setOpen(true);
   };
 
-  const schema = esquemaS3Sv2;
-  const uiSchema = uiS2v2;
+  const schema = esquemaS3m;
+  const uiSchema = uiS3m;
   const customFormats = formats;
 
   const validator = customizeValidator({ customFormats }, spanishLocalizer);
@@ -88,10 +88,12 @@ function MyForm(props) {
     <Grid item xs={12}>
       <Card>
         <CardHeader
-          title="SISTEMA DE SERVIDORES PÚBLICOS QUE INTERVENGAN EN PROCEDIMIENTOS DE CONTRATACIONES"
-          subheader={id != undefined ? "Edición" : "Nuevo registro"}
+          title="FORMATO QUE INDICA LOS DATOS QUE SE INSCRIBIRÁN EN EL SISTEMA NACIONAL DE SERVIDORES PÚBLICOS Y PARTICULARES SANCIONADOS DE LA PLATAFORMA DIGITAL NACIONAL RELACIONADOS CON LAS SANCIONES IMPUESTAS A LOS PARTICULARES (PERSONAS MORALES) QUE SE ENCUENTREN INHABILITADOS PARA CELEBRAR CONTRATOS CON LOS ENTES PÚBLICOS DERIVADO DE PROCEDIMIENTOS ADMINISTRATIVOS DIVERSOS A LOS PREVISTOS EN LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS."
         />
         <Divider />
+        <CardHeader
+          subheader={id != undefined ? "Edición" : "TODOS LOS CAMPOS SEÑALADOS CON UN * SON DE CARÁCTER OBLIGATORIOS."}
+        />
         <CardContent>
           <Grid container>
             <Grid item xs={12}>
