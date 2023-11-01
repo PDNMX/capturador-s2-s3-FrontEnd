@@ -17,9 +17,6 @@ import { S3SActions } from "../_actions/s3s.action";
 //import { S3PActions } from "../_actions/s3p.action";
 import { ResetPasswordV } from "./Login/ResetPassword";
 
-let base64Url = localStorage.token.split(".")[1];
-let payload = JSON.parse(window.atob(base64Url));
-
 const labelSesionExpirada =
   "La sesión ha expirado, favor de iniciar sesión de nuevo";
 const labelNoSeHaIniciado = "No se ha iniciado sesión";
@@ -48,7 +45,7 @@ export const App = () => (
         path="/captura/s3/faltas-administrativas/graves"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -79,7 +76,7 @@ export const App = () => (
         path="/captura/s3/faltas-administrativas/no-graves"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -110,7 +107,7 @@ export const App = () => (
         path="/captura/s3/actos-particulares/personas-fisicas"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -141,7 +138,7 @@ export const App = () => (
         path="/captura/s3/actos-particulares/personas-morales"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -172,7 +169,7 @@ export const App = () => (
         path="/captura/s3/inhabilitaciones/personas-fisicas"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -203,7 +200,7 @@ export const App = () => (
         path="/captura/s3/inhabilitaciones/personas-morales"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -234,7 +231,7 @@ export const App = () => (
         path="/captura/s3/hechos-corrupcion/servidores-publicos"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -265,7 +262,7 @@ export const App = () => (
         path="/captura/s3/hechos-corrupcion/personas-fisicas"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -296,7 +293,7 @@ export const App = () => (
         path="/captura/s3/hechos-corrupcion/personas-morales"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -327,7 +324,7 @@ export const App = () => (
         path="/captura/s3/abstenciones/graves"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -358,7 +355,7 @@ export const App = () => (
         path="/captura/s3/abstenciones/no-graves"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -389,7 +386,7 @@ export const App = () => (
         path="/captura/S2v2"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -443,7 +440,7 @@ export const App = () => (
         path="/captura/S3Sv2"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -493,7 +490,7 @@ export const App = () => (
         path="/captura/S3Pv2"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -550,7 +547,7 @@ export const App = () => (
         path="/consulta/S3Pv2"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -591,7 +588,7 @@ export const App = () => (
         path="/consulta/S3Sv2"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -632,7 +629,7 @@ export const App = () => (
         path="/consulta/S2v2"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -668,7 +665,7 @@ export const App = () => (
         path="/editar/S2v2/:id"
         render={({ match }) => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -730,7 +727,7 @@ export const App = () => (
         path="/usuario/crear"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -761,7 +758,7 @@ export const App = () => (
         path="/usuario/editar/:id"
         render={({ match }) => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -798,7 +795,7 @@ export const App = () => (
         path="/usuarios"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -828,7 +825,7 @@ export const App = () => (
         path="/proveedor/crear"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -859,7 +856,7 @@ export const App = () => (
         path="/proveedor/editar/:id"
         render={({ match }) => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -894,7 +891,7 @@ export const App = () => (
         path="/proveedores"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
@@ -925,7 +922,7 @@ export const App = () => (
         path="/usuario/cambiarcontrasena"
         render={() => {
           if (localStorage.token) {
-            if (payload.exp < (new Date().getTime() + 1) / 1000) {
+            if ((JSON.parse(window.atob(localStorage.token.split(".")[1]))) < (new Date().getTime() + 1) / 1000) {
               storeValidate.dispatch(alertActions.error(labelSesionExpirada));
               localStorage.clear();
               return <Redirect to="/ingresar" />;
