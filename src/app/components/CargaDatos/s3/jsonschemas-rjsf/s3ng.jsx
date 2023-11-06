@@ -49,6 +49,10 @@ let data = {
     },
   },
   type: "object",
+  title:
+    "FORMATO QUE INDICA LOS DATOS QUE SE INSCRIBIRÁN EN EL SISTEMA NACIONAL DE SERVIDORES PÚBLICOS Y PARTICULARES SANCIONADOS DE LA PLATAFORMA DIGITAL NACIONAL RELACIONADOS CON LAS SANCIONES QUE SE ENCUENTREN FIRMES IMPUESTAS A LAS PERSONAS SERVIDORAS PÚBLICAS POR LA COMISIÓN DE FALTAS ADMINISTRATIVAS NO GRAVES EN TÉRMINOS DE LA LEY GENERAL DE RESPONSABILIDADES ADMINISTRATIVAS.",
+  description:
+    "TODOS LOS CAMPOS SEÑALADOS CON UN * SON DE CARÁCTER OBLIGATORIO.",
   required: ["expediente", "noGrave"],
   properties: {
     expediente: {
@@ -60,7 +64,7 @@ let data = {
     noGrave: {
       title: "1. DATOS GENERALES DE LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
       description:
-        "Indicar los datos generales de la persona servidora pública sancionados.",
+        "En esta sección se registran los datos generales de la persona servidora pública sancionada.",
       type: "object",
       required: [
         "nombres",
@@ -82,13 +86,13 @@ let data = {
           type: "string",
           title: "Nombre (s)",
           description:
-            "Escribir el o los nombres de la persona servidora pública sancionada, sin abreviaturas, ni signos especiales.",
+            "Escribir el o los nombres de la persona servidora pública sancionada, sin abreviaturas.",
         },
         primerApellido: {
           type: "string",
           title: "Primer Apellido",
           description:
-            "Escribir el primer apellido de la persona servidora pública sancionada, sin abreviaturas, ni signos especiales.",
+            "Escribir el primer apellido de la persona servidora pública sancionada, sin abreviaturas.",
         },
         segundoApellido: {
           title: "Segundo Apellido",
@@ -116,7 +120,7 @@ let data = {
                       type: "string",
                       title: "Segundo Apellido",
                       description:
-                        "Escribir el segundo apellido de la persona servidora pública sancionada, sin abreviaturas, ni signos especiales.",
+                        "Escribir el segundo apellido de la persona servidora pública sancionada, sin abreviaturas.",
                     },
                   },
                   required: ["sinSegundoApellido", "valor"],
@@ -146,7 +150,7 @@ let data = {
         },
         entePublico: {
           type: "object",
-          title: "2. DATOS DEL EMPLEO, CARGO O COMISIÓN",
+          title: "2. DATOS DEL EMPLEO, CARGO O COMISIÓN DE LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
           description:
             "Indicar los datos de empleo, cargo o comisión conforme a los catálogos de cada sección.",
           required: [
@@ -291,7 +295,7 @@ let data = {
               type: "string",
               title: "Nombre del ente público",
               description:
-                "Escribir el nombre completo del ente público donde labora la persona servidora pública sancionada, sin abreviaturas, ni signos especiales.",
+                "Escribir el nombre completo del ente público donde labora la persona servidora pública sancionada, sin abreviaturas.",
             },
             siglas: {
               type: "string",
@@ -341,13 +345,13 @@ let data = {
               type: "string",
               title: "Nivel del empleo, cargo o comisión",
               description:
-                "Escribir los caracteres alfanuméricos de la clave o nivel del empleo, cargo o comisión que desempeña la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
+                "Escribir los caracteres alfanuméricos de la clave del empleo, cargo o comisión que desempeña la persona servidora pública sancionada.",
             },
             areaAdscripcion: {
               type: "string",
-              title: "Denominación del area de adscripción",
+              title: "Denominación del área de adscripción",
               description:
-                "Escribir el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
+                "Especificar el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública sancionada.",
             },
           },
           dependencies: {
@@ -391,14 +395,14 @@ let data = {
         origenFalta: {
           type: "object",
           title:
-            "3. ORIGEN Y TIPO DE FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
+            "3. ORIGEN DEL PROCEDIMIENTO Y TIPO DE FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
           description:
-            "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
+            "En esta sección se indicarán los datos relacionados con el origen del procedimiento y el tipo de falta cometida por la persona servidora pública.",
           properties: {
             clave: {
               title: "Origen de la falta administrativa",
               description:
-                "Seleccionar conforme al catálogo el origen de la falta administrativa:",
+                "Señalar el motivo que dio origen a la investigación por la comisión de la falta administrativa no grave.",
               enum: [
                 "AUDITORIA_SUPERIOR",
                 "AUDITORIA_OIC",
@@ -409,11 +413,11 @@ let data = {
                 "OTRO",
               ],
               enumNames: [
-                "Auditoria superior de la federacion o entidades de fiscalizacion superior de la entidades federativas",
-                "Auditoria del organo interno de control del ente publico",
+                "Auditoría Superior de la Federación o entidades de fiscalización superior de la entidades federativas",
+                "Auditoría del órgano interno de control del ente público",
                 "Queja ciudadana",
                 "Denuncia ciudadana",
-                "Denuncia de servidor publico",
+                "Denuncia de servidor público",
                 "Oficio",
                 "Otro",
               ],
@@ -460,6 +464,7 @@ let data = {
           items: {
             type: "object",
             title: "Falta cometida",
+            description: "Por actos u omisiones que incumplan o transgredan las siguientes obligaciones:",
             required: [
               "clave",
               "nombreNormatividadInfringida",
@@ -483,14 +488,14 @@ let data = {
                   "OTRO",
                 ],
                 enumNames: [
-                  "Cumplir con las funciones, atribuciones y comisiones encomendadas, observando en su desempeño disciplina y respeto, tanto a los demás Servidores Públicos como a los particulares con los que llegare a tratar, en los términos que se establezcan en el código de ética;",
-                  "Denunciar los actos u omisiones que en ejercicio de sus funciones llegare a advertir, que puedan constituir Faltas administrativas;",
-                  "Atender las instrucciones de sus superiores, siempre que éstas sean acordes con las disposiciones relacionadas con el servicio público. En caso de recibir instrucción o encomienda contraria a dichas disposiciones, deberá denunciar esta circunstancia;",
-                  "Presentar en tiempo y forma las declaraciones de situación patrimonial y de intereses;",
-                  "Registrar, integrar, custodiar y cuidar la documentación e información que por razón de su empleo, cargo o comisión, tenga bajo su responsabilidad, e impedir o evitar su uso, divulgación, sustracción, destrucción, ocultamiento o inutilización indebidos;",
-                  "Supervisar que los Servidores Públicos sujetos a su dirección, cumplan con las disposiciones de este artículo;",
-                  "Rendir cuentas sobre el ejercicio de las funciones, en términos de las normas aplicables;",
-                  "Colaborar en los procedimientos judiciales y administrativos en los que sea parte;",
+                  "Cumplir con las funciones, atribuciones y comisiones encomendadas, observando en su desempeño disciplina y respeto, tanto a los demás servidores públicos como a los particulares con los que llegare a tratar, en los términos que se establezcan en el código de ética",
+                  "Denunciar los actos u omisiones que en ejercicio de sus funciones llegare a advertir, que puedan constituir faltas administrativas",
+                  "Atender las instrucciones de sus superiores, siempre que éstas sean acordes con las disposiciones relacionadas con el servicio público. En caso de recibir instrucción o encomienda contraria a dichas disposiciones, deberá denunciar esta circunstancia",
+                  "Presentar en tiempo y forma las declaraciones de situación patrimonial y de intereses",
+                  "Registrar, integrar, custodiar y cuidar la documentación e información que por razón de su empleo, cargo o comisión, tenga bajo su responsabilidad, e impedir o evitar su uso, divulgación, sustracción, destrucción, ocultamiento o inutilización indebidos",
+                  "Supervisar que los servidores públicos sujetos a su dirección, cumplan con las disposiciones de este artículo",
+                  "Rendir cuentas sobre el ejercicio de las funciones, en términos de las normas aplicables",
+                  "Colaborar en los procedimientos judiciales y administrativos en los que sea parte",
                   "Otro",
                 ],
               },
@@ -562,7 +567,7 @@ let data = {
           type: "object",
           title:
             "4. RESOLUCIÓN DE LA FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
-          description: "Indicar la resolución de la falta cometida.",
+          description: "En esta sección se señalizarán los datos relativos a la resolución firme.",
           required: [
             "documentoResolucion",
             "fechaResolucion",
@@ -575,34 +580,34 @@ let data = {
               type: "string",
               title: "Titulo del documento",
               description:
-                "Escribir el nombre del documento de la sentencia definitiva que resuelve el procedimiento de responsabilidad administrativa y que ha quedado firme.",
+                "Escribir el nombre del documento de la resolución que da fin al procedimiento de responsabilidad administrativa y que ha quedado firme.",
             },
             fechaResolucion: {
               type: "string",
               format: "date",
               title: "Fecha de resolución",
               description:
-                "Registrar la echa en la que se emite la resolución sancionatoria de la persona servidora pública sancionada en formato dd-mm-aaaa.",
+                "Colocar la fecha en la que se emite la resolución firme en formato dd-mm-aaaa.",
             },
             fechaNotificacion: {
               type: "string",
               format: "date",
               title: "Fecha de notificación",
               description:
-                "Registrar la fecha en la que se le notifica al servidor público su sentencia en formato dd-mm-aaaa",
+                "Indicar la fecha en que se notifica la resolución firme al servidor público sancionado formato dd-mm-aaaa.",
             },
             fechaResolucionFirme: {
               type: "string",
               format: "date",
               title: "Fecha de resolución firme",
               description:
-                "Registrar la fecha en que quedó firme la  sentencia de la persona servidora pública en formato dd-mm-aaaa.",
+                "Colocar la fecha en que quedó firme la resolución de la persona servidora pública en formato dd-mm-aaaa.",
             },
             url: {
               type: "string",
               title: "URL del documento en formato digital",
               description:
-                "Colocar el enlace o link de la resolución emitida por la autoridad sancionadora a la que corresponde la sanción en su versión pública.",
+                "Colocar el enlace o link de la resolución firme emitida por la autoridad sancionadora a la que corresponde la sanción en su versión pública.",
             },
           },
         },
@@ -638,7 +643,7 @@ let data = {
               title: "Tipo de sancion",
               items: {
                 type: "object",
-                title: "Tipo de sancion",
+                title: "Tipo de sanción",
                 required: ["clave"],
                 properties: {
                   clave: {
