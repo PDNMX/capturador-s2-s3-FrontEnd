@@ -456,7 +456,7 @@ let data = {
                 "COALICION",
                 "USO_ILICITO",
                 "RENUMERACION_ILICITA",
-                "CONCUSION", //REVISAR
+                "CONCUSION", 
                 "INTIMIDACION",
                 "EJERCICIO_ABUSIVO",
                 "TRAFICO",
@@ -467,21 +467,20 @@ let data = {
                 "OTRO",
               ],
               enumNames: [
-                //ARREGLAR MINUSCULAS
-                "Ejercicio Ilícito De Servicio Público",
-                "Abuso De Autoridad",
-                "Coalición De Servidores Públicos",
-                "Uso Ilícito De Atribuciones Y Facultades",
-                "Remuneración Ilícita",
-                "Concusión", // REVISAR
+                "Ejercicio ilícito de servicio público",
+                "Abuso de autoridad",
+                "Coalición de servidores públicos",
+                "Uso ilícito de atribuciones y facultades",
+                "Remuneración ilícita",
+                "Concusión",
                 "Intimidación",
-                "Ejercicio Abusivo De Funciones",
-                "Tráfico De Influencias",
+                "Ejercicio abusivo de funciones",
+                "Tráfico de influencias",
                 "Cohecho",
-                "Cohecho A Servidores Públicos Extranjeros",
+                "Cohecho a servidores públicos extranjeros",
                 "Peculado",
-                "Enriquecimiento Ilícito",
-                "Otro",
+                "Enriquecimiento ilícito",
+                "Otro"
               ],
             },
             nombreNormatividadInfringida: {
