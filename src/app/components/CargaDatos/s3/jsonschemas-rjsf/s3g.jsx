@@ -305,37 +305,79 @@ let data = {
           type: "object",
           required: ["clave", "nivel", "areaAdscripcion"],
           properties: {
-            clave: {
-              title:
-                "Empleo, cargo o comisión de la persona servidora pública sancionada",
-              description:
-                "Escribir el nombre completo del empleo, cargo o comisión que aparece en su recibo de nómina, nombramiento, contrato u oficio de comisión.",
-              enum: [
-                "OPERATIVO_U_HOMOLOGO",
-                "ENLACE_U_HOMOLOGO",
-                "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
-                "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
-                "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
-                "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
-                "DIRECCION_GENERAL_U_HOMOLOGO",
-                "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
-                "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
-                "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
-                "OTRO",
-              ],
-              enumNames: [
-                "Operativo u homologo",
-                "Enlace u homologo",
-                "Jefatura de departamento u homologo",
-                "Subdireccion de area u homologo",
-                "Coordinacion direccon de area u homologo",
-                "Direccion general adjunta u homologo",
-                "Direccion general u homologo",
-                "Jefatura de unidad u homologo",
-                "Ssubsecretaria de estado oficialia mayor MAYOR u homologo",
-                "Secretaria de esatdo u homologo",
-                "Otro",
-              ],
+            nombre: {
+              type: "object",
+              properties: {
+                clave: {
+                  title:
+                    "Empleo, cargo o comisión de la persona servidora pública sancionada",
+                  description:
+                    "Escribir el nombre completo del empleo, cargo o comisión que aparece en su recibo de nómina, nombramiento, contrato u oficio de comisión.",
+                  enum: [
+                    "OPERATIVO_U_HOMOLOGO",
+                    "ENLACE_U_HOMOLOGO",
+                    "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
+                    "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
+                    "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
+                    "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
+                    "DIRECCION_GENERAL_U_HOMOLOGO",
+                    "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
+                    "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
+                    "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
+                    "OTRO",
+                  ],
+                  enumNames: [
+                    "Operativo u homologo",
+                    "Enlace u homologo",
+                    "Jefatura de departamento u homologo",
+                    "Subdireccion de area u homologo",
+                    "Coordinacion direccon de area u homologo",
+                    "Direccion general adjunta u homologo",
+                    "Direccion general u homologo",
+                    "Jefatura de unidad u homologo",
+                    "Subsecretaria de estado oficialia mayor MAYOR u homologo",
+                    "Secretaria de esatdo u homologo",
+                    "Otro",
+                  ],
+                },
+              },
+              dependencies: {
+                clave: {
+                  oneOf: [
+                    {
+                      properties: {
+                        clave: {
+                          enum: ["OTRO"],
+                        },
+                        valor: {
+                          title: "Otro",
+                          description: "Especifique",
+                          type: "string",
+                        },
+                      },
+                      required: ["valor"],
+                    },
+                    {
+                      properties: {
+                        clave: {
+                          enum: [
+                            "OPERATIVO_U_HOMOLOGO",
+                            "ENLACE_U_HOMOLOGO",
+                            "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
+                            "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
+                            "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
+                            "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
+                            "DIRECCION_GENERAL_U_HOMOLOGO",
+                            "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
+                            "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
+                            "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
+                          ],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             },
             nivel: {
               type: "string",
@@ -350,48 +392,10 @@ let data = {
                 "Escribir el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
             },
           },
-          dependencies: {
-            clave: {
-              oneOf: [
-                {
-                  properties: {
-                    clave: {
-                      enum: ["OTRO"],
-                    },
-                    valor: {
-                      title: "Otro",
-                      description: "Especifique",
-                      type: "string",
-                    },
-                  },
-                  required: ["valor"],
-                },
-                {
-                  properties: {
-                    clave: {
-                      enum: [
-                        "OPERATIVO_U_HOMOLOGO",
-                        "ENLACE_U_HOMOLOGO",
-                        "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
-                        "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
-                        "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
-                        "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
-                        "DIRECCION_GENERAL_U_HOMOLOGO",
-                        "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
-                        "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
-                        "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-          },
         },
-        origenFalta: {
+        origenInvestigacion: {
           type: "object",
-          title:
-            "3. ORIGEN DE LA FALTA ADMINISTRATIVA",
+          title: "3. ORIGEN DE LA FALTA ADMINISTRATIVA",
           description:
             "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
           properties: {
@@ -456,7 +460,8 @@ let data = {
         },
         faltaCometida: {
           type: "array",
-          title: "4. TIPO DE FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
+          title:
+            "4. TIPO DE FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
           items: {
             type: "object",
             title: "Falta cometida",
@@ -719,9 +724,9 @@ let data = {
                                   "fechaFinal",
                                 ],
                                 properties: {
-                                  año: { title: "Año", type: "string" },
-                                  mes: { title: "Mes", type: "string" },
-                                  dia: { title: "Día", type: "string" },
+                                  año: { title: "Año(s)", type: "string" },
+                                  mes: { title: "Mes(es)", type: "string" },
+                                  dia: { title: "Día(s)", type: "string" },
                                   fechaInicial: {
                                     type: "string",
                                     format: "date",
@@ -758,12 +763,12 @@ let data = {
                             description:
                               "Descripción o nota aclaratoria del tipo de sanción infringida.",
                           },
-                          destituciónEmpleoCargoComision: {
+                          destitucionEmpleo: {
                             type: "object",
                             title: "DESTITUCIÓN DEL EMPLEO CARGO O COMISIÓN",
-                            required: ["fechaDestitución", "constancia"],
+                            required: ["fechaDestitucion", "constancia"],
                             properties: {
-                              fechaDestitución: {
+                              fechaDestitucion: {
                                 title: "Fecha de destitución",
                                 type: "string",
                                 format: "date",
@@ -779,7 +784,7 @@ let data = {
                         },
                         required: [
                           "descripcion",
-                          "destituciónEmpleoCargoComision",
+                          "destitucionEmpleo",
                         ],
                       },
                       {
@@ -823,9 +828,9 @@ let data = {
                                   "Colocar el plazo de pago de la sanción económica de la persona servidora pública, empezando por año(s), mes(es) y día(s).",
                                 required: ["año", "mes", "dia"],
                                 properties: {
-                                  año: { title: "Año", type: "string" },
-                                  mes: { title: "Mes", type: "string" },
-                                  dia: { title: "Día", type: "string" },
+                                  año: { title: "Año(s)", type: "string" },
+                                  mes: { title: "Mes(es)", type: "string" },
+                                  dia: { title: "Día(s)", type: "string" },
                                 },
                               },
                               cobrado: {
@@ -907,9 +912,9 @@ let data = {
                                   "fechaFinal",
                                 ],
                                 properties: {
-                                  año: { title: "Año", type: "string" },
-                                  mes: { title: "Mes", type: "string" },
-                                  dia: { title: "Día", type: "string" },
+                                  año: { title: "Año(s)", type: "string" },
+                                  mes: { title: "Mes(es)", type: "string" },
+                                  dia: { title: "Día(s)", type: "string" },
                                   fechaInicial: {
                                     type: "string",
                                     format: "date",
