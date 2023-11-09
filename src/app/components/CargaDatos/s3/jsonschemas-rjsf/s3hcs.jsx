@@ -437,116 +437,128 @@ let data = {
           },
         },
         faltaCometida: {
-          type: "object",
-          title: "Falta cometida",
-          required: [
-            "clave",
-            "nombreNormatividadInfringida",
-            "articuloNormatividadInfringida",
-            "fraccionNormatividadInfringida",
-          ],
-          properties: {
-            clave: {
-              title: "Falta cometida",
-              description:
-                "Seleccionar el tipo de falta cometida por parte de la persona servidora pública sancionada.",
-              enum: [
-                "EJERCICIO_ILICITO",
-                "ABUSO_AUTORIDAD",
-                "COALICION",
-                "USO_ILICITO",
-                "RENUMERACION_ILICITA",
-                "CONCUSION", 
-                "INTIMIDACION",
-                "EJERCICIO_ABUSIVO",
-                "TRAFICO",
-                "COHECHO",
-                "COHECHO_SE",
-                "PECULADO",
-                "ENRIQUECIMINETO",
-                "OTRO",
-              ],
-              enumNames: [
-                "Ejercicio ilícito de servicio público",
-                "Abuso de autoridad",
-                "Coalición de servidores públicos",
-                "Uso ilícito de atribuciones y facultades",
-                "Remuneración ilícita",
-                "Concusión",
-                "Intimidación",
-                "Ejercicio abusivo de funciones",
-                "Tráfico de influencias",
-                "Cohecho",
-                "Cohecho a servidores públicos extranjeros",
-                "Peculado",
-                "Enriquecimiento ilícito",
-                "Otro"
-              ],
+          type: "array",
+          title: "4. FALTA COMETIDA DE LA PERSONA MORAL",
+          items: {
+            type: "object",
+            title: "Falta cometida",
+            required: [
+              "clave",
+              "nombreNormatividadInfringida",
+              "articuloNormatividadInfringida",
+              "fraccionNormatividadInfringida",
+            ],
+            properties: {
+              clave: {
+                title: "Falta cometida",
+                description:
+                  "Seleccionar el tipo de falta cometida por parte de la persona servidora pública sancionada.",
+                enum: [
+                  "EJERCICIO_ILICITO",
+                  "ABUSO_AUTORIDAD",
+                  "COALICION",
+                  "USO_ILICITO",
+                  "RENUMERACION_ILICITA",
+                  "CONCUSION",
+                  "INTIMIDACION",
+                  "EJERCICIO_ABUSIVO",
+                  "TRAFICO",
+                  "COHECHO",
+                  "COHECHO_SE",
+                  "PECULADO",
+                  "ENRIQUECIMINETO",
+                  "OTRO",
+                ],
+                enumNames: [
+                  "Ejercicio ilícito de servicio público",
+                  "Abuso de autoridad",
+                  "Coalición de servidores públicos",
+                  "Uso ilícito de atribuciones y facultades",
+                  "Remuneración ilícita",
+                  "Concusión",
+                  "Intimidación",
+                  "Ejercicio abusivo de funciones",
+                  "Tráfico de influencias",
+                  "Cohecho",
+                  "Cohecho a servidores públicos extranjeros",
+                  "Peculado",
+                  "Enriquecimiento ilícito",
+                  "Otro",
+                ],
+              },
+              nombreNormatividadInfringida: {
+                type: "string",
+                title: "Ley y/o normatividad infringida",
+                description:
+                  "Escribir el nombre de la ley o normatividad infringida por la persona servidora pública.",
+              },
+              articuloNormatividadInfringida: {
+                type: "array",
+                title: "Artículo(s) de la normatividad infringida",
+                items: {
+                  title: "Artículo",
+                  type: "string",
+                  description:
+                    "Escribir el artículo(s) infringido de la normatividad infringida.",
+                },
+              },
+              fraccionNormatividadInfringida: {
+                type: "array",
+                title: "Fracción(es) de la normatividad infringida",
+                items: {
+                  title: "Fracción",
+                  type: "string",
+                  description:
+                    "Escribir la fracción(es) infringida de la normatividad infringida.",
+                },
+              },
             },
-            nombreNormatividadInfringida: {
-              type: "string",
-              title: "Ley y/o normatividad infringida",
-              description:
-                "Escribir el nombre de la ley o normatividad infringida por la persona servidora pública.",
-            },
-            articuloNormatividadInfringida: {
-              title: "Artículo(s) de la normatividad infringida",
-              type: "string",
-              description:
-                "Escribir el artículo(s) infringido de la normatividad infringida.",
-            },
-            fraccionNormatividadInfringida: {
-              title: "Fracción(es) de la normatividad infringida",
-              type: "string",
-              description:
-                "Escribir la fracción(es) infringida de la normatividad infringida.",
-            },
-          },
-          dependencies: {
-            clave: {
-              oneOf: [
-                {
-                  properties: {
-                    clave: {
-                      enum: ["OTRO"],
+            dependencies: {
+              clave: {
+                oneOf: [
+                  {
+                    properties: {
+                      clave: {
+                        enum: ["OTRO"],
+                      },
+                      valor: {
+                        title: "Otro",
+                        description: "Especifique",
+                        type: "string",
+                      },
                     },
-                    valor: {
-                      title: "Otro",
-                      description: "Especifique",
-                      type: "string",
+                    required: ["valor"],
+                  },
+                  {
+                    properties: {
+                      clave: {
+                        enum: [
+                          "EJERCICIO_ILICITO",
+                          "ABUSO_AUTORIDAD",
+                          "COALICION",
+                          "USO_ILICITO",
+                          "RENUMERACION_ILICITA",
+                          "CONCUSION", //REVISAR
+                          "INTIMIDACION",
+                          "EJERCICIO_ABUSIVO",
+                          "TRAFICO",
+                          "COHECHO",
+                          "COHECHO_SE",
+                          "PECULADO",
+                          "ENRIQUECIMINETO",
+                        ],
+                      },
                     },
                   },
-                  required: ["valor"],
-                },
-                {
-                  properties: {
-                    clave: {
-                      enum: [
-                        "EJERCICIO_ILICITO",
-                        "ABUSO_AUTORIDAD",
-                        "COALICION",
-                        "USO_ILICITO",
-                        "RENUMERACION_ILICITA",
-                        "CONCUSION", //REVISAR
-                        "INTIMIDACION",
-                        "EJERCICIO_ABUSIVO",
-                        "TRAFICO",
-                        "COHECHO",
-                        "COHECHO_SE",
-                        "PECULADO",
-                        "ENRIQUECIMINETO",
-                      ],
-                    },
-                  },
-                },
-              ],
+                ],
+              },
             },
           },
         },
         resolucion: {
           type: "object",
           title:
-            "4. RESOLUCIÓN DE LA FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
+            "5. RESOLUCIÓN DE LA FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
           description: "Indicar la resolución de la falta cometida.",
           required: [
             "documentoResolucion",
@@ -593,13 +605,9 @@ let data = {
         },
         tipoSancion: {
           type: "object",
-          title: "5. TIPO DE SANCIÓN IMPUESTA A LA PERSONA SERVIDORA PÚBLICA",
+          title: "6. TIPO DE SANCIÓN IMPUESTA A LA PERSONA SERVIDORA PÚBLICA",
           description: "Indicar el tipo de sanción impuesta",
-          required: [
-            "ordenJurisdiccional",
-            "autoridadSancionadora",
-            "sancion",
-          ],
+          required: ["ordenJurisdiccional", "autoridadSancionadora", "sancion"],
           properties: {
             ordenJurisdiccional: {
               title: "Orden jurisdiccional de la sanción.",
@@ -666,7 +674,7 @@ let data = {
                                 type: "object",
                                 title: "Plazo de la sanción",
                                 description:
-                                "Colocar el plazo prisión de la persona servidora pública, empezando por año(s), mes(es) y día(s).",
+                                  "Colocar el plazo prisión de la persona servidora pública, empezando por año(s), mes(es) y día(s).",
                                 required: ["año", "mes", "dia"],
                                 properties: {
                                   año: { title: "Año(s)", type: "string" },
@@ -790,7 +798,7 @@ let data = {
                             type: "string",
                             title: "Descripción",
                             description:
-                            "Descripción o nota aclaratoria del tipo de sanción infringida.",
+                              "Descripción o nota aclaratoria del tipo de sanción infringida.",
                           },
                           sancionEconomica: {
                             type: "object",
@@ -807,19 +815,19 @@ let data = {
                                 type: "number",
                                 title: "Monto",
                                 description:
-                                "Colocar el monto total correspondiente a la sanción económica.",
+                                  "Colocar el monto total correspondiente a la sanción económica.",
                               },
                               moneda: {
                                 title: "Moneda",
                                 description:
-                                "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
+                                  "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
                                 enum: ["MXN", "UMA"],
                               },
                               plazo: {
                                 type: "object",
                                 title: "Plazo de la sanción",
                                 description:
-                                "Colocar el plazo de pago de la sanción económica de la persona servidora pública, empezando por año(s), mes(es) y día(s).",
+                                  "Colocar el plazo de pago de la sanción económica de la persona servidora pública, empezando por año(s), mes(es) y día(s).",
                                 required: ["año", "mes", "dia"],
                                 properties: {
                                   año: { title: "Año", type: "string" },
@@ -830,7 +838,7 @@ let data = {
                               cobrado: {
                                 type: "object",
                                 title:
-                                "Sanción económica efectivamente cobrada",
+                                  "Sanción económica efectivamente cobrada",
                                 required: [
                                   "monto",
                                   "moneda",
@@ -842,12 +850,12 @@ let data = {
                                     type: "number",
                                     title: "Monto",
                                     description:
-                                    "Colocar el monto total correspondiente a la sanción económica cobrada.",
+                                      "Colocar el monto total correspondiente a la sanción económica cobrada.",
                                   },
                                   moneda: {
                                     title: "Moneda",
                                     description:
-                                    "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
+                                      "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
                                     enum: ["MXN", "UMA"],
                                   },
                                   fecha: {
@@ -855,15 +863,15 @@ let data = {
                                     format: "date",
                                     title: "Fecha de cobreo de la sanción",
                                     description:
-                                    "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
+                                      "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
                                   },
                                   fechaPagoSancion: {
                                     type: "string",
                                     format: "date",
                                     title:
-                                    "Fecha en la que se realizo el pago total de la sanción",
+                                      "Fecha en la que se realizo el pago total de la sanción",
                                     description:
-                                    "En caso de no pagarse en una sola exhibición la sanción económica, especificar la fecha en que la persona servidora pública cubrió el pago total de la sanción económica en formato dd-mm-aaaa.",
+                                      "En caso de no pagarse en una sola exhibición la sanción económica, especificar la fecha en que la persona servidora pública cubrió el pago total de la sanción económica en formato dd-mm-aaaa.",
                                   },
                                 },
                               },
@@ -980,7 +988,7 @@ let data = {
           },
         },
         observaciones: {
-          title: "6. OBSERVACIONES",
+          title: "7. OBSERVACIONES",
           type: "string",
           description:
             "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",

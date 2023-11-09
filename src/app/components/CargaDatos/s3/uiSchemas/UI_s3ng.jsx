@@ -75,6 +75,9 @@ let data = {
       },
     },
     origenFalta: {
+      clave: {
+        "ui:widget": "RadioWidget",
+      },
       valor: {
         "ui:placeholder": "...",
       },

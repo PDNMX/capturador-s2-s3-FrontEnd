@@ -477,19 +477,13 @@ let data = {
             },
           },
         },
-        origenTipo: {
+        origenFalta: {
           type: "object",
           title:
             "4. ORIGEN DE LA SANCIÓN Y TIPO DE DELITO POR HECHO DE CORRUPCIÓN",
           description:
             "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
-          required: [
-            "clave",
-            "tipoDelito",
-            "nombreNormatividadInfringida",
-            "articuloNormatividadInfringida",
-            "fraccionNormatividadInfringida",
-          ],
+          required: ["clave"],
           properties: {
             clave: {
               title: "Origen de la sanción",
@@ -502,29 +496,6 @@ let data = {
                 "Oficio",
                 "Otro",
               ],
-            },
-            tipoDelito: {
-              type: "string",
-              title: "Tipo de delito por hechos de corrupción",
-              description: "Escribir el tipo de delito.",
-            },
-            nombreNormatividadInfringida: {
-              type: "string",
-              title: "Ley y/o normatividad infringida",
-              description:
-                "Escribir el nombre de la ley o normatividad infringida por la persona física.",
-            },
-            articuloNormatividadInfringida: {
-              title: "Artículo(s) de la normatividad infringida",
-              type: "string",
-              description:
-                "Escribir el artículo(s) infringido de la normatividad infringida.",
-            },
-            fraccionNormatividadInfringida: {
-              title: "Fracción(es) de la normatividad infringida",
-              type: "string",
-              description:
-                "Escribir la fracción(es) infringida de la normatividad infringida.",
             },
           },
           dependencies: {
@@ -554,9 +525,57 @@ let data = {
             },
           },
         },
+        faltaCometida: {
+          type: "array",
+          title: "5. FALTA COMETIDA DE LA PERSONA MORAL",
+          items: {
+            type: "object",
+            title: "Falta cometida",
+            required: [
+              "clave",
+              "nombreNormatividadInfringida",
+              "articuloNormatividadInfringida",
+              "fraccionNormatividadInfringida",
+            ],
+            properties: {
+              clave: {
+                title: "Falta cometida",
+                type: "string",
+                description:
+                  "Seleccionar el tipo de falta cometida por parte de la persona moral sancionada.",
+              },
+              nombreNormatividadInfringida: {
+                type: "string",
+                title: "Ley y/o normatividad infringida",
+                description:
+                  "Escribir el nombre de la ley o normatividad infringida por la persona moral.",
+              },
+              articuloNormatividadInfringida: {
+                type: "array",
+                title: "Artículo(s) de la normatividad infringida",
+                items: {
+                  title: "Artículo",
+                  type: "string",
+                  description:
+                    "Escribir el artículo(s) infringido de la normatividad infringida.",
+                },
+              },
+              fraccionNormatividadInfringida: {
+                type: "array",
+                title: "Fracción(es) de la normatividad infringida",
+                items: {
+                  title: "Fracción",
+                  type: "string",
+                  description:
+                    "Escribir la fracción(es) infringida de la normatividad infringida.",
+                },
+              },
+            },
+          },
+        },
         resolucion: {
           type: "object",
-          title: "5. RESOLUCIÓN FIRME POR LA COMISIÓN DE DELITOS POR HECHOS DE CORRUPCIÓN",
+          title: "6. RESOLUCIÓN FIRME POR LA COMISIÓN DE DELITOS POR HECHOS DE CORRUPCIÓN",
           description: "Indicar la resolución de la falta cometida.",
           required: [
             "documentoResolucion",
@@ -603,7 +622,7 @@ let data = {
         },
         tipoSancion: {
           type: "object",
-          title: "6. TIPO DE SANCIÓN APLICADA A LA PERSONA MORAL",
+          title: "7. TIPO DE SANCIÓN APLICADA A LA PERSONA MORAL",
           description: "Indicar el tipo de sanción impuesta",
           required: [
             "ordenJurisdiccional",
@@ -1023,7 +1042,7 @@ let data = {
           },
         },
         observaciones: {
-          title: "7. OBSERVACIONES",
+          title: "8. OBSERVACIONES",
           type: "string",
           description:
             "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",

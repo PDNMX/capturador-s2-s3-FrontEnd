@@ -391,7 +391,7 @@ let data = {
         origenFalta: {
           type: "object",
           title:
-            "3. ORIGEN Y TIPO DE PROBABLE FALTA ADMINISTRATIVA",
+            "3. ORIGEN PROBABLE FALTA ADMINISTRATIVA",
           description:
             "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
           properties: {
@@ -456,7 +456,7 @@ let data = {
         },
         faltaCometida: {
           type: "array",
-          title: "Tipo de falta cometida",
+          title: "4. TIPO DE FALTA PROBABLE FALTA ADMINISTRATIVA",
           items: {
             type: "object",
             title: "Falta cometida",
@@ -561,7 +561,7 @@ let data = {
         resolucion: {
           type: "object",
           title:
-            "4. RESOLUCIÓN DE ABSTENCIÓN DE IMPOSICIÓN DE SANCIÓN",
+            "5. RESOLUCIÓN DE ABSTENCIÓN DE IMPOSICIÓN DE SANCIÓN",
           description: "Indicar la resolución de la abstención.",
           required: [
             "documentoResolucion",
@@ -625,7 +625,7 @@ let data = {
           },
         },
         observaciones: {
-          title: "5. OBSERVACIONES",
+          title: "6. OBSERVACIONES",
           type: "string",
           description:
             "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",

@@ -444,13 +444,78 @@ let data = {
               type: "string",
               title: "Siglas del ente público",
               description:
-                "Escribir las siglas del ente público en el que labora la persona física sancionada.",
+              "Escribir las siglas del ente público en el que labora la persona física sancionada.",
+            },
+          },
+        },
+        origenFalta: {
+          type: "object",
+          title: "3. ORIGEN DE LA FALTA ADMINISTRATIVA",
+          description:
+            "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
+          properties: {
+            clave: {
+              title: "Origen de la falta administrativa",
+              description:
+                "Seleccionar conforme al catálogo el origen de la falta administrativa:",
+              enum: [
+                "AUDITORIA_SUPERIOR",
+                "AUDITORIA_OIC",
+                "QUEJA",
+                "DENUNCIA_CIUDADADA",
+                "DENUNCIA_SP",
+                "OFICIO",
+                "OTRO",
+              ],
+              enumNames: [
+                "Auditoria superior de la federacion o entidades de fiscalizacion superior de la entidades federativas",
+                "Auditoria del organo interno de control del ente publico",
+                "Queja ciudadana",
+                "Denuncia ciudadana",
+                "Denuncia de servidor publico",
+                "Oficio",
+                "Otro",
+              ],
+            },
+          },
+          required: ["clave"],
+          dependencies: {
+            clave: {
+              oneOf: [
+                {
+                  properties: {
+                    clave: {
+                      enum: ["OTRO"],
+                    },
+                    valor: {
+                      title: "Otro",
+                      description: "Especifique",
+                      type: "string",
+                    },
+                  },
+                  required: ["valor"],
+                },
+                {
+                  properties: {
+                    clave: {
+                      enum: [
+                        "AUDITORIA_SUPERIOR",
+                        "AUDITORIA_OIC",
+                        "QUEJA",
+                        "DENUNCIA_CIUDADADA",
+                        "DENUNCIA_SP",
+                        "OFICIO",
+                      ],
+                    },
+                  },
+                },
+              ],
             },
           },
         },
         faltaCometida: {
           type: "array",
-          title: "3. FALTA COMETIDA DE LA PERSONA FÍSICA",
+          title: "4. FALTA COMETIDA DE LA PERSONA FÍSICA",
           items: {
             type: "object",
             title: "Falta cometida",
@@ -549,71 +614,6 @@ let data = {
                   },
                 ],
               },
-            },
-          },
-        },
-        origenFalta: {
-          type: "object",
-          title: "4. ORIGEN DE LA FALTA ADMINISTRATIVA",
-          description:
-            "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
-          properties: {
-            clave: {
-              title: "Origen de la falta administrativa",
-              description:
-                "Seleccionar conforme al catálogo el origen de la falta administrativa:",
-              enum: [
-                "AUDITORIA_SUPERIOR",
-                "AUDITORIA_OIC",
-                "QUEJA",
-                "DENUNCIA_CIUDADADA",
-                "DENUNCIA_SP",
-                "OFICIO",
-                "OTRO",
-              ],
-              enumNames: [
-                "Auditoria superior de la federacion o entidades de fiscalizacion superior de la entidades federativas",
-                "Auditoria del organo interno de control del ente publico",
-                "Queja ciudadana",
-                "Denuncia ciudadana",
-                "Denuncia de servidor publico",
-                "Oficio",
-                "Otro",
-              ],
-            },
-          },
-          required: ["clave"],
-          dependencies: {
-            clave: {
-              oneOf: [
-                {
-                  properties: {
-                    clave: {
-                      enum: ["OTRO"],
-                    },
-                    valor: {
-                      title: "Otro",
-                      description: "Especifique",
-                      type: "string",
-                    },
-                  },
-                  required: ["valor"],
-                },
-                {
-                  properties: {
-                    clave: {
-                      enum: [
-                        "AUDITORIA_SUPERIOR",
-                        "AUDITORIA_OIC",
-                        "QUEJA",
-                        "DENUNCIA_CIUDADADA",
-                        "DENUNCIA_SP",
-                        "OFICIO",
-                      ],
-                    },
-                  },
-                },
-              ],
             },
           },
         },

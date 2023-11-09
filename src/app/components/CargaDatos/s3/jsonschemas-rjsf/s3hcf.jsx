@@ -443,19 +443,13 @@ let data = {
             },
           },
         },
-        origenTipo: {
+        origenFalta: {
           type: "object",
           title:
             "3. ORIGEN DE LA SANCIÓN Y TIPO DE DELITO POR HECHO DE CORRUPCIÓN",
           description:
             "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
-          required: [
-            "clave",
-            "tipoDelito",
-            "nombreNormatividadInfringida",
-            "articuloNormatividadInfringida",
-            "fraccionNormatividadInfringida",
-          ],
+          required: ["clave"],
           properties: {
             clave: {
               title: "Origen de la sanción",
@@ -468,29 +462,6 @@ let data = {
                 "Oficio",
                 "Otro",
               ],
-            },
-            tipoDelito: {
-              type: "string",
-              title: "Tipo de delito por hechos de corrupción",
-              description: "Escribir el tipo de delito.",
-            },
-            nombreNormatividadInfringida: {
-              type: "string",
-              title: "Ley y/o normatividad infringida",
-              description:
-                "Escribir el nombre de la ley o normatividad infringida por la persona física.",
-            },
-            articuloNormatividadInfringida: {
-              title: "Artículo(s) de la normatividad infringida",
-              type: "string",
-              description:
-                "Escribir el artículo(s) infringido de la normatividad infringida.",
-            },
-            fraccionNormatividadInfringida: {
-              title: "Fracción(es) de la normatividad infringida",
-              type: "string",
-              description:
-                "Escribir la fracción(es) infringida de la normatividad infringida.",
             },
           },
           dependencies: {
@@ -520,9 +491,58 @@ let data = {
             },
           },
         },
+        faltaCometida: {
+          type: "array",
+          title: "4. FALTA COMETIDA DE LA PERSONA MORAL",
+          items: {
+            type: "object",
+            title: "Falta cometida",
+            required: [
+              "clave",
+              "nombreNormatividadInfringida",
+              "articuloNormatividadInfringida",
+              "fraccionNormatividadInfringida",
+            ],
+            properties: {
+              clave: {
+                title: "Falta cometida",
+                type: "string",
+                description:
+                  "Seleccionar el tipo de falta cometida por parte de la persona moral sancionada.",
+              },
+              nombreNormatividadInfringida: {
+                type: "string",
+                title: "Ley y/o normatividad infringida",
+                description:
+                  "Escribir el nombre de la ley o normatividad infringida por la persona moral.",
+              },
+              articuloNormatividadInfringida: {
+                type: "array",
+                title: "Artículo(s) de la normatividad infringida",
+                items: {
+                  title: "Artículo",
+                  type: "string",
+                  description:
+                    "Escribir el artículo(s) infringido de la normatividad infringida.",
+                },
+              },
+              fraccionNormatividadInfringida: {
+                type: "array",
+                title: "Fracción(es) de la normatividad infringida",
+                items: {
+                  title: "Fracción",
+                  type: "string",
+                  description:
+                    "Escribir la fracción(es) infringida de la normatividad infringida.",
+                },
+              },
+            },
+          },
+        },
         resolucion: {
           type: "object",
-          title: "4. RESOLUCIÓN FIRME POR LA COMISIÓN DE DELITOS POR HECHOS DE CORRUPCIÓN",
+          title:
+            "5. RESOLUCIÓN FIRME POR LA COMISIÓN DE DELITOS POR HECHOS DE CORRUPCIÓN",
           description: "Indicar la resolución.",
           required: [
             "documentoResolucion",
@@ -569,13 +589,9 @@ let data = {
         },
         tipoSancion: {
           type: "object",
-          title: "5. TIPO DE SANCIÓN APLICADA A LA PERSONA FÍSICA",
+          title: "6. TIPO DE SANCIÓN APLICADA A LA PERSONA FÍSICA",
           description: "Indicar el tipo de sanción impuesta",
-          required: [
-            "ordenJurisdiccional",
-            "autoridadSancionadora",
-            "sancion",
-          ],
+          required: ["ordenJurisdiccional", "autoridadSancionadora", "sancion"],
           properties: {
             ordenJurisdiccional: {
               title: "Orden jurisdiccional de la sanción.",
@@ -677,7 +693,7 @@ let data = {
                             type: "string",
                             title: "Descripción",
                             description:
-                            "Descripción o nota aclaratoria del tipo de sanción infringida.",
+                              "Descripción o nota aclaratoria del tipo de sanción infringida.",
                           },
                           prision: {
                             type: "object",
@@ -687,7 +703,7 @@ let data = {
                                 type: "object",
                                 title: "Plazo de la sanción",
                                 description:
-                                "Colocar el plazo prisión de la persona física, empezando por año(s), mes(es) y día(s).",
+                                  "Colocar el plazo prisión de la persona física, empezando por año(s), mes(es) y día(s).",
                                 required: ["año", "mes", "dia"],
                                 properties: {
                                   año: { title: "Año(s)", type: "string" },
@@ -713,7 +729,7 @@ let data = {
                             type: "string",
                             title: "Descripción",
                             description:
-                            "Descripción o nota aclaratoria del tipo de sanción infringida.",
+                              "Descripción o nota aclaratoria del tipo de sanción infringida.",
                           },
                           sancionEconomica: {
                             type: "object",
@@ -730,19 +746,19 @@ let data = {
                                 type: "number",
                                 title: "Monto",
                                 description:
-                                "Colocar el monto total correspondiente a la sanción económica.",
+                                  "Colocar el monto total correspondiente a la sanción económica.",
                               },
                               moneda: {
                                 title: "Moneda",
                                 description:
-                                "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
+                                  "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
                                 enum: ["MXN", "UMA"],
                               },
                               plazo: {
                                 type: "object",
                                 title: "Plazo de la sanción",
                                 description:
-                                "Colocar el plazo de pago de la sanción económica de la persona física, empezando por año(s), mes(es) y día(s).",
+                                  "Colocar el plazo de pago de la sanción económica de la persona física, empezando por año(s), mes(es) y día(s).",
                                 required: ["año", "mes", "dia"],
                                 properties: {
                                   año: { title: "Año", type: "string" },
@@ -753,7 +769,7 @@ let data = {
                               cobrado: {
                                 type: "object",
                                 title:
-                                "Sanción económica efectivamente cobrada",
+                                  "Sanción económica efectivamente cobrada",
                                 required: [
                                   "monto",
                                   "moneda",
@@ -765,12 +781,12 @@ let data = {
                                     type: "number",
                                     title: "Monto",
                                     description:
-                                    "Colocar el monto total correspondiente a la sanción económica cobrada.",
+                                      "Colocar el monto total correspondiente a la sanción económica cobrada.",
                                   },
                                   moneda: {
                                     title: "Moneda",
                                     description:
-                                    "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
+                                      "Seleccionar el tipo de moneda en formato de tres letras, establecidos en el ISO 4217.",
                                     enum: ["MXN", "UMA"],
                                   },
                                   fecha: {
@@ -778,15 +794,15 @@ let data = {
                                     format: "date",
                                     title: "Fecha de cobreo de la sanción",
                                     description:
-                                    "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
+                                      "Registrar la fecha en que se realizó el cobro de la sanción económica en formato dd-mm-aaaa.",
                                   },
                                   fechaPagoSancion: {
                                     type: "string",
                                     format: "date",
                                     title:
-                                    "Fecha en la que se realizo el pago total de la sanción",
+                                      "Fecha en la que se realizo el pago total de la sanción",
                                     description:
-                                    "En caso de no pagarse en una sola exhibición la sanción económica, especificar la fecha en que la persona física cubrió el pago total de la sanción económica en formato dd-mm-aaaa.",
+                                      "En caso de no pagarse en una sola exhibición la sanción económica, especificar la fecha en que la persona física cubrió el pago total de la sanción económica en formato dd-mm-aaaa.",
                                   },
                                 },
                               },
@@ -845,7 +861,7 @@ let data = {
           },
         },
         observaciones: {
-          title: "6. OBSERVACIONES",
+          title: "7. OBSERVACIONES",
           type: "string",
           description:
             "En este espacio se podrán realizar las observaciones que se consideren pertinentes. aclaraciones u En virtud de que las aclaraciones pueden contener información reservada y/o confidencial, esta información no será de carácter pública.",

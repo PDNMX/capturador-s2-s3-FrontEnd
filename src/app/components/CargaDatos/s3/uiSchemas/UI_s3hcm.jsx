@@ -148,15 +148,7 @@ let data = {
         "ui:placeholder": "Ejemplo: Departamento de Recursos Humanos",
       },
     },
-    origenTipo: {
-      "ui:order": [
-        "clave",
-        "valor",
-        "tipoDelito",
-        "nombreNormatividadInfringida",
-        "articuloNormatividadInfringida",
-        "fraccionNormatividadInfringida",
-      ],
+    origenFalta: {
       clave: {
         "ui:widget": "RadioWidget",
         "ui:options": { inline: true },
@@ -164,19 +156,26 @@ let data = {
       valor: {
         "ui:placeholder": "...",
       },
-
-      tipoDelito: {
-        "ui:placeholder": "Ejemplo: ....",
-      },
-      nombreNormatividadInfringida: {
-        "ui:placeholder":
-          "Ejemplo: Ley General de Responsabilidades Administrativas",
-      },
-      articuloNormatividadInfringida: {
-        "ui:placeholder": "Ejemplo: Artículo 10, Artículo 20, ...",
-      },
-      fraccionNormatividadInfringida: {
-        "ui:placeholder": "Ejemplo: Fracción 10, Fracción 20, ...",
+    },
+    faltaCometida: {
+      items: {
+        clave: {
+          "ui:placeholder": "...",
+        },
+        nombreNormatividadInfringida: {
+          "ui:placeholder":
+            "Ejemplo: Ley General de Responsabilidades Administrativas",
+        },
+        articuloNormatividadInfringida: {
+          items: {
+            "ui:placeholder": "Ejemplo: Artículo 10, Artículo 20, ...",
+          },
+        },
+        fraccionNormatividadInfringida: {
+          items: {
+            "ui:placeholder": "Ejemplo: Fracción 10, Fracción 20, ...",
+          },
+        },
       },
     },
     resolucion: {

@@ -448,57 +448,9 @@ let data = {
             },
           },
         },
-        faltaCometida: {
-          type: "array",
-          title: "3. FALTA COMETIDA DE LA PERSONA FÍSICA",
-          items: {
-            type: "object",
-            title: "Falta cometida",
-            required: [
-              "falta",
-              "nombreNormatividadInfringida",
-              "articuloNormatividadInfringida",
-              "fraccionNormatividadInfringida",
-            ],
-            properties: {
-              falta: {
-                type: "string",
-                title: "Falta cometida",
-                description:
-                  "Seleccionar el tipo de falta cometida por parte de la persona física sancionada.",
-              },
-              nombreNormatividadInfringida: {
-                type: "string",
-                title: "Ley y/o normatividad infringida",
-                description:
-                  "Escribir el nombre de la ley o normatividad infringida por la persona física.",
-              },
-              articuloNormatividadInfringida: {
-                type: "array",
-                title: "Artículo(s) de la normatividad infringida",
-                items: {
-                  title: "Artículo",
-                  type: "string",
-                  description:
-                    "Escribir el artículo(s) infringido de la normatividad infringida.",
-                },
-              },
-              fraccionNormatividadInfringida: {
-                type: "array",
-                title: "Fracción(es) de la normatividad infringida",
-                items: {
-                  title: "Fracción",
-                  type: "string",
-                  description:
-                    "Escribir la fracción(es) infringida de la normatividad infringida.",
-                },
-              },
-            },
-          },
-        },
         origenFalta: {
           type: "object",
-          title: "4. ORIGEN DE LA FALTA ADMINISTRATIVA",
+          title: "3. ORIGEN DE LA FALTA ADMINISTRATIVA",
           description:
             "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
           properties: {
@@ -561,6 +513,54 @@ let data = {
             },
           },
         },
+        faltaCometida: {
+          type: "array",
+          title: "4. FALTA COMETIDA DE LA PERSONA FÍSICA",
+          items: {
+            type: "object",
+            title: "Falta cometida",
+            required: [
+              "falta",
+              "nombreNormatividadInfringida",
+              "articuloNormatividadInfringida",
+              "fraccionNormatividadInfringida",
+            ],
+            properties: {
+              falta: {
+                type: "string",
+                title: "Falta cometida",
+                description:
+                  "Seleccionar el tipo de falta cometida por parte de la persona física sancionada.",
+              },
+              nombreNormatividadInfringida: {
+                type: "string",
+                title: "Ley y/o normatividad infringida",
+                description:
+                  "Escribir el nombre de la ley o normatividad infringida por la persona física.",
+              },
+              articuloNormatividadInfringida: {
+                type: "array",
+                title: "Artículo(s) de la normatividad infringida",
+                items: {
+                  title: "Artículo",
+                  type: "string",
+                  description:
+                    "Escribir el artículo(s) infringido de la normatividad infringida.",
+                },
+              },
+              fraccionNormatividadInfringida: {
+                type: "array",
+                title: "Fracción(es) de la normatividad infringida",
+                items: {
+                  title: "Fracción",
+                  type: "string",
+                  description:
+                    "Escribir la fracción(es) infringida de la normatividad infringida.",
+                },
+              },
+            },
+          },
+        },
         resolucion: {
           type: "object",
           title: "5. RESOLUCIÓN",
@@ -612,11 +612,7 @@ let data = {
           type: "object",
           title: "6. TIPO DE SANCIÓN APLICADA A LA PERSONA FÍSICA",
           description: "Indicar el tipo de sanción impuesta",
-          required: [
-            "ordenJurisdiccional",
-            "autoridadSancionadora",
-            "sancion",
-          ],
+          required: ["ordenJurisdiccional", "autoridadSancionadora", "sancion"],
           properties: {
             ordenJurisdiccional: {
               title: "Orden jurisdiccional de la sanción.",
@@ -643,14 +639,8 @@ let data = {
                     title: "Tipo de sancion",
                     description:
                       "Elegir una o varias sanciones que fueron dictaminadas en la resolución, conforme a la o las elecciones del catálogo, es como deberá llenarse el resto del formato. Se podrán elegir de las siguientes opciones:",
-                    enum: [
-                      "INHABILITADO",
-                      "OTRO",
-                    ],
-                    enumNames: [
-                      "Inhabilitado",
-                      "Otro",
-                    ],
+                    enum: ["INHABILITADO", "OTRO"],
+                    enumNames: ["Inhabilitado", "Otro"],
                   },
                 },
                 dependencies: {
@@ -676,7 +666,7 @@ let data = {
                               "fechaFinal",
                               "constancia",
                             ],
-                            properties: {
+                            properties: { //CAMBIAR POR AÑO, MES , DIA 
                               plazo: {
                                 type: "string",
                                 title: "Plazo de inhabilitación",

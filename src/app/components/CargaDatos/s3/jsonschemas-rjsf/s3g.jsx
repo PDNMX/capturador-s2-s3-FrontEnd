@@ -391,7 +391,7 @@ let data = {
         origenFalta: {
           type: "object",
           title:
-            "3. ORIGEN Y TIPO DE FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
+            "3. ORIGEN DE LA FALTA ADMINISTRATIVA",
           description:
             "Indicar el origen y tipo de falta cometida conforme a los catálogos de cada sección.",
           properties: {
@@ -456,7 +456,7 @@ let data = {
         },
         faltaCometida: {
           type: "array",
-          title: "Tipo de falta cometida",
+          title: "4. TIPO DE FALTA COMETIDA POR LA PERSONA SERVIDORA PÚBLICA SANCIONADA",
           items: {
             type: "object",
             title: "Falta cometida",

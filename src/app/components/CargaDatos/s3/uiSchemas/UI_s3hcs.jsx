@@ -86,7 +86,6 @@ let data = {
       },
     },
     faltaCometida: {
-      "ui:options": { label: false },
       "ui:order": [
         "clave",
         "valor",
@@ -101,11 +100,19 @@ let data = {
         "ui:placeholder":
           "Ejemplo: Ley General de Responsabilidades Administrativas",
       },
+      nombreNormatividadInfringida: {
+        "ui:placeholder":
+          "Ejemplo: Ley General de Responsabilidades Administrativas",
+      },
       articuloNormatividadInfringida: {
-        "ui:placeholder": "Ejemplo: Artículo 10, Artículo 20, ...",
+        items: {
+          "ui:placeholder": "Ejemplo: Artículo 10, Artículo 20, ...",
+        },
       },
       fraccionNormatividadInfringida: {
-        "ui:placeholder": "Ejemplo: Fracción 10, Fracción 20, ...",
+        items: {
+          "ui:placeholder": "Ejemplo: Fracción 10, Fracción 20, ...",
+        },
       },
     },
     resolucion: {
