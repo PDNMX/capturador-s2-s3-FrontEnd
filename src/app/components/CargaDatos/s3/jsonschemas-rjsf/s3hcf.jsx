@@ -443,7 +443,7 @@ let data = {
             },
           },
         },
-        origenFalta: {
+        origenInvestigacion: {
           type: "object",
           title:
             "3. ORIGEN DE LA SANCIÓN Y TIPO DE DELITO POR HECHO DE CORRUPCIÓN",

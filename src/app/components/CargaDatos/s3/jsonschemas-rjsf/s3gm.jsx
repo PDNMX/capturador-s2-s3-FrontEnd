@@ -204,7 +204,7 @@ let data = {
         "domicilioMexico",
         "entePublico",
         "faltaCometida",
-        "origenFalta",
+        "origenInvestigacion",
         "resolucion",
         "tipoSancion",
         "observaciones",
@@ -477,7 +477,7 @@ let data = {
             },
           },
         },
-        origenFalta: {
+        origenInvestigacion: {
           type: "object",
           title: "4. ORIGEN DE LA FALTA ADMINISTRATIVA",
           description:

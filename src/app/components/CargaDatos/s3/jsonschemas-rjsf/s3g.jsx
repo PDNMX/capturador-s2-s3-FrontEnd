@@ -71,7 +71,7 @@ let data = {
         "sexo",
         "entePublico",
         "empleoCargoComision",
-        "origenFalta",
+        "origenInvestigacion",
         "faltaCometida",
         "resolucion",
         "tipoSancion",

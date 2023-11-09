@@ -71,7 +71,7 @@ let data = {
         "sexo",
         "entePublico",
         "empleoCargoComision",
-        "origenFalta",
+        "origenInvestigacion",
         "faltaCometida",
         "resolucion",
         "tipoSancion",
@@ -305,90 +305,95 @@ let data = {
           type: "object",
           required: ["clave", "nivel", "areaAdscripcion"],
           properties: {
-            clave: {
-              title:
-                "Empleo, cargo o comisión de la persona servidora pública sancionada",
-              description:
-                "Escribir el nombre completo del empleo, cargo o comisión que aparece en su recibo de nómina, nombramiento, contrato u oficio de comisión.",
-              enum: [
-                "OPERATIVO_U_HOMOLOGO",
-                "ENLACE_U_HOMOLOGO",
-                "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
-                "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
-                "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
-                "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
-                "DIRECCION_GENERAL_U_HOMOLOGO",
-                "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
-                "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
-                "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
-                "OTRO",
-              ],
-              enumNames: [
-                "Operativo u homologo",
-                "Enlace u homologo",
-                "Jefatura de departamento u homologo",
-                "Subdireccion de area u homologo",
-                "Coordinacion direccon de area u homologo",
-                "Direccion general adjunta u homologo",
-                "Direccion general u homologo",
-                "Jefatura de unidad u homologo",
-                "Ssubsecretaria de estado oficialia mayor MAYOR u homologo",
-                "Secretaria de esatdo u homologo",
-                "Otro",
-              ],
+            nombre: {
+              type: "object",
+              properties: {
+                clave: {
+                  title:
+                    "Empleo, cargo o comisión de la persona servidora pública sancionada",
+                  description:
+                    "Escribir el nombre completo del empleo, cargo o comisión que aparece en su recibo de nómina, nombramiento, contrato u oficio de comisión.",
+                  enum: [
+                    "OPERATIVO_U_HOMOLOGO",
+                    "ENLACE_U_HOMOLOGO",
+                    "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
+                    "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
+                    "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
+                    "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
+                    "DIRECCION_GENERAL_U_HOMOLOGO",
+                    "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
+                    "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
+                    "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
+                    "OTRO",
+                  ],
+                  enumNames: [
+                    "Operativo u homologo",
+                    "Enlace u homologo",
+                    "Jefatura de departamento u homologo",
+                    "Subdireccion de area u homologo",
+                    "Coordinacion direccon de area u homologo",
+                    "Direccion general adjunta u homologo",
+                    "Direccion general u homologo",
+                    "Jefatura de unidad u homologo",
+                    "Subsecretaria de estado oficialia mayor MAYOR u homologo",
+                    "Secretaria de esatdo u homologo",
+                    "Otro",
+                  ],
+                },
+              },
+              dependencies: {
+                clave: {
+                  oneOf: [
+                    {
+                      properties: {
+                        clave: {
+                          enum: ["OTRO"],
+                        },
+                        valor: {
+                          title: "Otro",
+                          description: "Especifique",
+                          type: "string",
+                        },
+                      },
+                      required: ["valor"],
+                    },
+                    {
+                      properties: {
+                        clave: {
+                          enum: [
+                            "OPERATIVO_U_HOMOLOGO",
+                            "ENLACE_U_HOMOLOGO",
+                            "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
+                            "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
+                            "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
+                            "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
+                            "DIRECCION_GENERAL_U_HOMOLOGO",
+                            "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
+                            "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
+                            "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
+                          ],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             },
             nivel: {
               type: "string",
               title: "Nivel del empleo, cargo o comisión",
               description:
-                "Escribir los caracteres alfanuméricos de la clave del empleo, cargo o comisión que desempeña la persona servidora pública sancionada.",
+                "Escribir los caracteres alfanuméricos de la clave o nivel del empleo, cargo o comisión que desempeña la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
             },
             areaAdscripcion: {
               type: "string",
-              title: "Denominación del área de adscripción",
+              title: "Denominación del area de adscripción",
               description:
-                "Especificar el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública sancionada.",
-            },
-          },
-          dependencies: {
-            clave: {
-              oneOf: [
-                {
-                  properties: {
-                    clave: {
-                      enum: ["OTRO"],
-                    },
-                    valor: {
-                      title: "Otro",
-                      description: "Especifique",
-                      type: "string",
-                    },
-                  },
-                  required: ["valor"],
-                },
-                {
-                  properties: {
-                    clave: {
-                      enum: [
-                        "OPERATIVO_U_HOMOLOGO",
-                        "ENLACE_U_HOMOLOGO",
-                        "JEFATURA_DE_DEPARTAMENTO_U_HOMOLOGO",
-                        "SUBDIRECCION_DE_AREA_U_HOMOLOGO",
-                        "COORDINACION_DIRECCIÓN_DE_AREA_U_HOMOLOGO",
-                        "DIRECCION_GENERAL_ADJUNTA_U_HOMÓLOGO",
-                        "DIRECCION_GENERAL_U_HOMOLOGO",
-                        "JEFATURA_DE_UNIDAD_U_HOMOLOGO",
-                        "SUBSECRETARIA_DE_ESTADO_OFICIALIA_MAYOR_U_HOMOLOGO",
-                        "SECRETARIA_DE_ESTADO_U_HOMÓLOGO",
-                      ],
-                    },
-                  },
-                },
-              ],
+                "Escribir el nombre de la Unidad Administrativa a la que está adscrita la persona servidora pública que interviene en alguno de los procedimientos citados en el objeto del sistema.",
             },
           },
         },
-        origenFalta: {
+        origenInvestigacion: {
           type: "object",
           title:
             "3. ORIGEN DE LA FALTA ADMINISTRATIVA",
