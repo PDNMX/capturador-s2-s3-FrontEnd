@@ -71,9 +71,7 @@ function MyForm(props) {
 
   const validator = customizeValidator({ customFormats }, spanishLocalizer);
 
-  const handleChange = (formData) => {
-    console.log(formData);
-  };
+  const handleChange = ({ formData}) => console.log(formData);
 
   function transformErrors(errors) {
     return errors.map((error) => {

@@ -71,18 +71,16 @@ function MyForm(props) {
 
   const validator = customizeValidator({ customFormats }, spanishLocalizer);
 
-  const handleChange = (formData) => {
-    console.log(formData);
-  };
+  const handleChange = ({ formData}) => console.log(formData);
 
-  function transformErrors(errors) {
+  /* function transformErrors(errors) {
     return errors.map((error) => {
       if (error.property === '.procedimientos.tipoArea.areas') {
         error.message = 'Error en tipo Áreas';
       }
       return error;
     });
-  }
+  } */
 
   return (
     <Grid item xs={12}>
@@ -110,7 +108,7 @@ function MyForm(props) {
                 liveValidate={false}
                 noHtml5Validate={true}
                 showErrorList={false}
-                transformErrors={transformErrors}
+                /* transformErrors={transformErrors} */
               />
             </Grid>
           </Grid>
