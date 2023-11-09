@@ -184,7 +184,11 @@ let data = {
             "ui:placeholder": "Ejemplo: Sancion impuesta por ...",
           },
           inhabilitado: {
-            plazo: { "ui:placeholder": "Ejemplo: 2 años, 4 meses y 23 días" },
+            plazo: {
+              año: { "ui:placeholder": "Ejemplo: 2 años" },
+              mes: { "ui:placeholder": "Ejemplo: 10 meses" },
+              dia: { "ui:placeholder": "Ejemplo: 24 dias" },
+            },
             constancia: {
               titulo: { "ui:placeholder": "Ejemplo: Constancia de Sanción" },
               url: {

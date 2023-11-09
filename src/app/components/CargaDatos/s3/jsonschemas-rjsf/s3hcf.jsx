@@ -650,30 +650,40 @@ let data = {
                             title: "INHABILITADO",
                             required: [
                               "plazo",
-                              "fechaInicial",
-                              "fechaFinal",
                               "constancia",
                             ],
                             properties: {
                               plazo: {
-                                type: "string",
-                                title: "Plazo de inhabilitación",
+                                type: "object",
+                                title: "Plazo de la inhabilitación del empleo",
                                 description:
-                                  "Colocar el tiempo que la Persona Física queda inhabilitada, empezando por año(s), mes(es) y día(s).",
-                              },
-                              fechaInicial: {
-                                type: "string",
-                                format: "date",
-                                title: "Fecha inicial de la inhabilitación",
-                                description:
-                                  "Registrar la fecha en la que inició la inhabilitación de la persona física en formato dd-mm-aaaa.",
-                              },
-                              fechaFinal: {
-                                type: "string",
-                                format: "date",
-                                title: "Fecha final de la inhabilitación",
-                                description:
-                                  "Indicar la fecha en la que se concluyó la inhabilitación de la persona física en formato dd-mm-aaaa.",
+                                  "Colocar el plazo de la inhabilitación de la persona servidora pública, empezando por año(s), mes(es) y día(s).",
+                                required: [
+                                  "año",
+                                  "mes",
+                                  "dia",
+                                  "fechaInicial",
+                                  "fechaFinal",
+                                ],
+                                properties: {
+                                  año: { title: "Año(s)", type: "string" },
+                                  mes: { title: "Mes(es)", type: "string" },
+                                  dia: { title: "Día(s)", type: "string" },
+                                  fechaInicial: {
+                                    type: "string",
+                                    format: "date",
+                                    title: "Fecha inicial de la inhabilitación",
+                                    description:
+                                      "Registrar la fecha en la que inició la inhabilitación de la persona servidora pública en formato dd-mm-aaaa.",
+                                  },
+                                  fechaFinal: {
+                                    type: "string",
+                                    format: "date",
+                                    title: "Fecha final de la inhabilitación",
+                                    description:
+                                      "Indicar la fecha en la que se concluyó la inhabilitación de la persona servidora pública en formato dd-mm-aaaa.",
+                                  },
+                                },
                               },
                               constancia: {
                                 title: "Constancia de la inhabilitación",
